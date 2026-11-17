@@ -1,0 +1,14 @@
+[project]
+name = "ecrt-pi"
+version = "0.1.0"
+description = "ECRT Raspberry Pi application: serial link to the Uno, SQLite logging, tariff and cost, load scheduling, web dashboard."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+ecrt-pi = "ecrt_pi:main"
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"

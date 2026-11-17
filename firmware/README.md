@@ -8,7 +8,7 @@ from the control schematic (`diagrams/ecrt_schematic_control.png`), so the code 
 ```
 firmware/
   arduino/ Arduino Uno project (PlatformIO): PZEM readings, keypad, LCD, relay outputs, USB serial to the Pi
-  pi/      Raspberry Pi 3B+ (Python): tariff and cost calculation, load scheduling, SQLite history, web dashboard
+  pi/      Raspberry Pi 3B+ (Python only, uv project): tariff and cost calculation, load scheduling, SQLite history, web dashboard
 ```
 
 ## Arduino Uno (`arduino/`)
@@ -34,6 +34,8 @@ Behaviour to implement:
 - Define the serial message format for measurements and commands (not yet decided).
 
 ## Raspberry Pi (`pi/`)
+
+Everything on the Pi is Python, managed with uv (`uv sync`, `uv run ecrt-pi`).
 
 - Receive measurements from the Uno over USB serial and store them in SQLite.
 - Configurable Time-of-Use tariff (peak, standard, off-peak) and cost calculation from the measured energy.

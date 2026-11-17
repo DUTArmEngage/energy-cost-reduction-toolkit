@@ -359,10 +359,6 @@ def mod2(ax, ref, name, sub, x, y_top, w, side, main, extra=(), nums=False):
     return m
 
 
-def notes(ax, x, y, lines, step=4.4):
-    for i, t in enumerate(lines):
-        ax.text(x, y - step * i, t, ha="left", va="center", fontsize=6.8 if i else 7.6, color=TXT,
-                fontweight="bold" if i == 0 else "normal")
 
 
 # =============================================================== BLOCK DIAGRAM
@@ -471,20 +467,6 @@ def schematic_control():
 
     ax.text(8, 168, "ECRT control sheet: Arduino Uno, PZEM TTL side, LCD, keypad, relay inputs, Pi link, DC supply",
             ha="left", va="center", fontsize=9, color=TXT, fontweight="bold")
-    notes(ax, 8, 88, [
-        "Notes",
-        "1. Uno is 5 V logic: the PZEM, LCD and relay module connect directly, with no level shifting.",
-        "2. The Uno's USB port is the serial link to the Pi (D0/D1 are reserved for it). A USB A-to-B cable is needed (not on the quote).",
-        "3. U2 uses SoftwareSerial on D2/D3 because the hardware UART (D0/D1) is the USB link. Check the PZEM TX level on the bench.",
-        "4. The Uno is powered at VIN from the 12 V supply (7 to 12 V). Its 5 V pin feeds U2 and U3 only (about 100 mA).",
-        "   Do not feed the 5 V pin from another source. Alternatively plug the 12 V adapter into the Uno's barrel jack.",
-        "5. U5 (MD0010) is active-low per its datasheet: drive IN LOW to switch on. A 5 V HIGH switches it off.",
-        "6. U6 (K7805, 2 A) powers the Pi only. A Pi 3B+ is rated for 2.5 A, so avoid heavy USB loads.",
-        "7. A 12 V DC adapter is needed for J2 and is not on the quote. D8 and D9 are spare.",
-        "8. Net-name ports with the same name are connected. Power rails and GND use power symbols.",
-        "9. The quote's Pro Mini, ESP8266 and AMS1117 are not used in this version.",
-        "10. Keypad connector pins 7 and 8 are columns 4 and 3 (found on the bench), so A2 carries C4 and A3 carries C3.",
-    ])
     check_overlaps(fig, ax, "schematic_control")
     store_registry()
     ksave(fig, "ecrt_schematic_control")
@@ -522,16 +504,6 @@ def schematic_mains():
         header(ax, 290, m.top - 7, f"J{i + 2}", f"Load {i} (appliance)", [N(f"LOAD{i}_L"), N(f"LOAD{i}_N")], "left")
         y = m.y0 - 6
 
-    notes(ax, 110, 62, [
-        "Notes",
-        "1. DRAFT. Mains wiring, earthing and enclosure: qualified electrician only.",
-        "2. The quote lists one contactor. KM2 to KM4 are still needed, one per channel.",
-        "3. U5's contacts switch only the 230 V contactor coils. Appliance current never passes through U5.",
-        "4. CT1 clamps the live conductor after QF1, so U2 measures all four channels together (aggregate).",
-        "5. QF1 (63 A) does not protect 25 A contactors or the loads: add an MCB per channel. Earth bar not drawn.",
-        "6. Test the control side first with low-voltage loads (see brief, section 7).",
-        "7. Net-name ports with the same name are connected.",
-    ])
     check_overlaps(fig, ax, "schematic_mains")
     store_registry()
     ksave(fig, "ecrt_schematic_mains")
