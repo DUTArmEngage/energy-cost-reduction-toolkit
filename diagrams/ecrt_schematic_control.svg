@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-17T11:40:06.478913</dc:date>
+    <dc:date>2026-11-17T12:14:50.499317</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -29,423 +29,423 @@ z
 " style="fill: #ffffff"/>
   </g>
   <g id="axes_1">
-   <g id="line2d_1">
+   <g id="pin--U8--USB--28">
     <path d="M 244.8 118.8 
 L 259.2 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_2">
+   <g id="pin--U8--PWR--30">
     <path d="M 136.8 118.8 
 L 122.4 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_3">
+   <g id="net--+5V_PI--34">
     <path d="M 122.4 118.8 
 L 114.48 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_4">
+   <g id="pin--U1--D2__SW_RX_--41">
     <path d="M 547.2 118.8 
 L 561.6 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_5">
+   <g id="pin--U1--D3__SW_TX_--43">
     <path d="M 547.2 133.2 
 L 561.6 133.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_6">
+   <g id="pin--U1--D4--45">
     <path d="M 547.2 147.6 
 L 561.6 147.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_7">
+   <g id="pin--U1--D5--47">
     <path d="M 547.2 162 
 L 561.6 162 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_8">
+   <g id="pin--U1--D6--49">
     <path d="M 547.2 176.4 
 L 561.6 176.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_9">
+   <g id="pin--U1--D7--51">
     <path d="M 547.2 190.8 
 L 561.6 190.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_10">
+   <g id="pin--U1--D8--53">
     <path d="M 547.2 205.2 
 L 561.6 205.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_11">
+   <g id="pin--U1--D9--55">
     <path d="M 547.2 219.6 
 L 561.6 219.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_12">
+   <g id="pin--U1--D10--57">
     <path d="M 547.2 234 
 L 561.6 234 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_13">
+   <g id="pin--U1--D11--59">
     <path d="M 547.2 248.4 
 L 561.6 248.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_14">
+   <g id="pin--U1--D12--61">
     <path d="M 547.2 262.8 
 L 561.6 262.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_15">
+   <g id="pin--U1--D13--63">
     <path d="M 547.2 277.2 
 L 561.6 277.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_16">
+   <g id="pin--U1--A0--65">
     <path d="M 547.2 291.6 
 L 561.6 291.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_17">
+   <g id="pin--U1--A1--67">
     <path d="M 547.2 306 
 L 561.6 306 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_18">
+   <g id="pin--U1--A2--69">
     <path d="M 547.2 320.4 
 L 561.6 320.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_19">
+   <g id="pin--U1--A3--71">
     <path d="M 547.2 334.8 
 L 561.6 334.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_20">
+   <g id="pin--U1--A4__SDA_--73">
     <path d="M 547.2 349.2 
 L 561.6 349.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_21">
+   <g id="pin--U1--A5__SCL_--75">
     <path d="M 547.2 363.6 
 L 561.6 363.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_22">
+   <g id="pin--U1--USB_B--77">
     <path d="M 424.8 118.8 
 L 410.4 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_23">
+   <g id="pin--U1--VIN--79">
     <path d="M 424.8 133.2 
 L 410.4 133.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_24">
+   <g id="pin--U1--5V--81">
     <path d="M 424.8 147.6 
 L 410.4 147.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_25">
+   <g id="pin--U1--GND--83">
     <path d="M 424.8 162 
 L 410.4 162 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_26">
+   <g id="pin--U1--3V3--85">
     <path d="M 424.8 176.4 
 L 410.4 176.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_27">
+   <g id="pin--U1--IOREF--87">
     <path d="M 424.8 190.8 
 L 410.4 190.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_28">
+   <g id="pin--U1--RESET--89">
     <path d="M 424.8 205.2 
 L 410.4 205.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_29">
+   <g id="pin--U1--AREF--91">
     <path d="M 424.8 219.6 
 L 410.4 219.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_30">
+   <g id="pin--U1--D0__RX_--93">
     <path d="M 424.8 234 
 L 410.4 234 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_31">
+   <g id="pin--U1--D1__TX_--95">
     <path d="M 424.8 248.4 
 L 410.4 248.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_32">
+   <g id="net--+12V--131">
     <path d="M 410.4 133.2 
 L 402.48 133.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_33">
+   <g id="net--+5V--134">
     <path d="M 410.4 147.6 
 L 402.48 147.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_34">
+   <g id="net--GND--137">
     <path d="M 410.4 162 
 L 402.48 162 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_35">
+   <g id="pin--U2--5V--146">
     <path d="M 763.2 118.8 
 L 748.8 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_36">
+   <g id="pin--U2--RX--148">
     <path d="M 763.2 133.2 
 L 748.8 133.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_37">
+   <g id="pin--U2--TX--150">
     <path d="M 763.2 147.6 
 L 748.8 147.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_38">
+   <g id="pin--U2--GND--152">
     <path d="M 763.2 162 
 L 748.8 162 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_39">
+   <g id="net--+5V--154">
     <path d="M 748.8 118.8 
 L 740.88 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_40">
+   <g id="net--GND--161">
     <path d="M 748.8 162 
 L 740.88 162 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_41">
+   <g id="pin--U3--GND--170">
     <path d="M 763.2 235.8 
 L 748.8 235.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_42">
+   <g id="pin--U3--VCC--172">
     <path d="M 763.2 250.2 
 L 748.8 250.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_43">
+   <g id="pin--U3--SDA--174">
     <path d="M 763.2 264.6 
 L 748.8 264.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_44">
+   <g id="pin--U3--SCL--176">
     <path d="M 763.2 279 
 L 748.8 279 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_45">
+   <g id="net--GND--178">
     <path d="M 748.8 235.8 
 L 740.88 235.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_46">
+   <g id="net--+5V--183">
     <path d="M 748.8 250.2 
 L 740.88 250.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_47">
+   <g id="pin--KP1--R1--194">
     <path d="M 763.2 352.8 
 L 748.8 352.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_48">
+   <g id="pin--KP1--R2--196">
     <path d="M 763.2 367.2 
 L 748.8 367.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_49">
+   <g id="pin--KP1--R3--198">
     <path d="M 763.2 381.6 
 L 748.8 381.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_50">
+   <g id="pin--KP1--R4--200">
     <path d="M 763.2 396 
 L 748.8 396 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_51">
+   <g id="pin--KP1--C1--202">
     <path d="M 763.2 410.4 
 L 748.8 410.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_52">
+   <g id="pin--KP1--C2--204">
     <path d="M 763.2 424.8 
 L 748.8 424.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_53">
+   <g id="pin--KP1--C3--206">
     <path d="M 763.2 439.2 
 L 748.8 439.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_54">
+   <g id="pin--KP1--C4--208">
     <path d="M 763.2 453.6 
 L 748.8 453.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_55">
+   <g id="pin--U5--VCC--230">
     <path d="M 763.2 527.4 
 L 748.8 527.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_56">
+   <g id="pin--U5--GND--232">
     <path d="M 763.2 541.8 
 L 748.8 541.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_57">
+   <g id="pin--U5--IN1--234">
     <path d="M 763.2 556.2 
 L 748.8 556.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_58">
+   <g id="pin--U5--IN2--236">
     <path d="M 763.2 570.6 
 L 748.8 570.6 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_59">
+   <g id="pin--U5--IN3--238">
     <path d="M 763.2 585 
 L 748.8 585 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_60">
+   <g id="pin--U5--IN4--240">
     <path d="M 763.2 599.4 
 L 748.8 599.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_61">
+   <g id="net--+12V--242">
     <path d="M 748.8 527.4 
 L 740.88 527.4 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_62">
+   <g id="net--GND--245">
     <path d="M 748.8 541.8 
 L 740.88 541.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_63">
+   <g id="pin--J2--1--263">
     <path d="M 1008 118.8 
 L 1022.4 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_64">
+   <g id="net--+12V--265">
     <path d="M 1022.4 118.8 
 L 1030.32 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_65">
+   <g id="pin--J2--2--268">
     <path d="M 1008 133.2 
 L 1022.4 133.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_66">
+   <g id="net--GND--270">
     <path d="M 1022.4 133.2 
 L 1030.32 133.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_67">
+   <g id="pin--U6--VOUT--279">
     <path d="M 1252.8 118.8 
 L 1267.2 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_68">
+   <g id="pin--U6--GND--281">
     <path d="M 1252.8 133.2 
 L 1267.2 133.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_69">
+   <g id="pin--U6--VIN--283">
     <path d="M 1130.4 118.8 
 L 1116 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.7; stroke-linecap: square"/>
    </g>
-   <g id="line2d_70">
+   <g id="net--+5V_PI--285">
     <path d="M 1267.2 118.8 
 L 1275.12 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_71">
+   <g id="net--GND--288">
     <path d="M 1267.2 133.2 
 L 1275.12 133.2 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_72">
+   <g id="net--+12V--293">
     <path d="M 1116 118.8 
 L 1108.08 118.8 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #000080; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_2">
+   <g id="part--U8--24">
     <path d="M 136.8 138.6 
 L 244.8 138.6 
 L 244.8 86.4 
 L 136.8 86.4 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_3">
+   <g id="part--U1--37">
     <path d="M 424.8 383.4 
 L 547.2 383.4 
 L 547.2 86.4 
 L 424.8 86.4 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_4">
+   <g id="part--U2--142">
     <path d="M 763.2 181.8 
 L 885.6 181.8 
 L 885.6 86.4 
 L 763.2 86.4 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_5">
+   <g id="part--U3--166">
     <path d="M 763.2 298.8 
 L 885.6 298.8 
 L 885.6 203.4 
 L 763.2 203.4 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_6">
+   <g id="part--KP1--190">
     <path d="M 763.2 473.4 
 L 885.6 473.4 
 L 885.6 320.4 
 L 763.2 320.4 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_7">
+   <g id="part--U5--226">
     <path d="M 763.2 619.2 
 L 885.6 619.2 
 L 885.6 495 
 L 763.2 495 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_8">
+   <g id="part--J2--258">
     <path d="M 986.4 140.4 
 L 1008 140.4 
 L 1008 111.6 
 L 986.4 111.6 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
-   <g id="text_1">
+   <g id="part--J2--259">
     <!-- J2 -->
     <g style="fill: #000080" transform="translate(986.4 106.489258) scale(0.07 -0.07)">
      <defs>
@@ -506,7 +506,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(38.921875 0)"/>
     </g>
    </g>
-   <g id="text_2">
+   <g id="part--J2--260">
     <!-- 12 V DC input -->
     <g style="fill: #000080" transform="translate(986.4 148.582875) scale(0.066 -0.066)">
      <defs>
@@ -803,15 +803,15 @@ z
      <use xlink:href="#TimesNewRomanPSMT-57" transform="translate(560.296875 0)"/>
     </g>
    </g>
-   <g id="patch_9">
+   <g id="part--U6--275">
     <path d="M 1130.4 153 
 L 1252.8 153 
 L 1252.8 86.4 
 L 1130.4 86.4 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffffb0; stroke: #800000; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
-   <g id="text_3">
+   <g id="text_1">
     <!-- ECRT control sheet: Arduino Uno, PZEM TTL side, LCD, keypad, relay inputs, Pi link, DC supply -->
     <g style="fill: #000080" transform="translate(36 23.678965) scale(0.09 -0.09)">
      <defs>
@@ -1830,7 +1830,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-5c" transform="translate(4170.515625 0)"/>
     </g>
    </g>
-   <g id="text_4">
+   <g id="text_2">
     <!-- Notes -->
     <g style="fill: #000080" transform="translate(36 311.353418) scale(0.076 -0.076)">
      <defs>
@@ -1873,7 +1873,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-56" transform="translate(199.90625 0)"/>
     </g>
    </g>
-   <g id="text_5">
+   <g id="text_3">
     <!-- 1. Uno is 5 V logic: the PZEM, LCD and relay module connect directly, with no level shifting. -->
     <g style="fill: #000080" transform="translate(36 327.067086) scale(0.068 -0.068)">
      <defs>
@@ -2804,7 +2804,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(3755.875 0)"/>
     </g>
    </g>
-   <g id="text_6">
+   <g id="text_4">
     <!-- 2. The Uno's USB port is the serial link to the Pi (D0/D1 are reserved for it). A USB A-to-B cable is needed (not on the quote). -->
     <g style="fill: #000080" transform="translate(36 342.907086) scale(0.068 -0.068)">
      <defs>
@@ -3282,7 +3282,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(5037.546875 0)"/>
     </g>
    </g>
-   <g id="text_7">
+   <g id="text_5">
     <!-- 3. U2 uses SoftwareSerial on D2/D3 because the hardware UART (D0/D1) is the USB link. Check the PZEM TX level on the bench. -->
     <g style="fill: #000080" transform="translate(36 358.747086) scale(0.068 -0.068)">
      <defs>
@@ -3540,7 +3540,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(5294.859375 0)"/>
     </g>
    </g>
-   <g id="text_8">
+   <g id="text_6">
     <!-- 4. The Uno is powered at VIN from the 12 V supply (7 to 12 V). Its 5 V pin feeds U2 and U3 only (about 100 mA). -->
     <g style="fill: #000080" transform="translate(36 374.587086) scale(0.068 -0.068)">
      <defs>
@@ -3748,7 +3748,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(4589.34375 0)"/>
     </g>
    </g>
-   <g id="text_9">
+   <g id="text_7">
     <!--    Do not feed the 5 V pin from another source. Alternatively plug the 12 V adapter into the Uno's barrel jack. -->
     <g style="fill: #000080" transform="translate(36 390.42868) scale(0.068 -0.068)">
      <defs>
@@ -3900,7 +3900,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(4337.34375 0)"/>
     </g>
    </g>
-   <g id="text_10">
+   <g id="text_8">
     <!-- 5. U5 (MD0010) is active-low per its datasheet: drive IN LOW to switch on. A 5 V HIGH switches it off. -->
     <g style="fill: #000080" transform="translate(36 406.267086) scale(0.068 -0.068)">
      <defs>
@@ -4167,7 +4167,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(4180.90625 0)"/>
     </g>
    </g>
-   <g id="text_11">
+   <g id="text_9">
     <!-- 6. U6 (K7805, 2 A) powers the Pi only. A Pi 3B+ is rated for 2.5 A, so avoid heavy USB loads. -->
     <g style="fill: #000080" transform="translate(36 422.107086) scale(0.068 -0.068)">
      <defs>
@@ -4406,7 +4406,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(3766.4375 0)"/>
     </g>
    </g>
-   <g id="text_12">
+   <g id="text_10">
     <!-- 7. A 12 V DC adapter is needed for J2 and is not on the quote. D8 and D9 are spare. -->
     <g style="fill: #000080" transform="translate(36 437.947086) scale(0.068 -0.068)">
      <defs>
@@ -4526,7 +4526,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(3323.46875 0)"/>
     </g>
    </g>
-   <g id="text_13">
+   <g id="text_11">
     <!-- 8. Net-name ports with the same name are connected. Power rails and GND use power symbols. -->
     <g style="fill: #000080" transform="translate(36 453.787086) scale(0.068 -0.068)">
      <use xlink:href="#TimesNewRomanPSMT-1b"/>
@@ -4621,7 +4621,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(3824.03125 0)"/>
     </g>
    </g>
-   <g id="text_14">
+   <g id="text_12">
     <!-- 9. The quote's Pro Mini, ESP8266 and AMS1117 are not used in this version. -->
     <g style="fill: #000080" transform="translate(36 469.627086) scale(0.068 -0.068)">
      <use xlink:href="#TimesNewRomanPSMT-1c"/>
@@ -4700,14 +4700,14 @@ z
      <use xlink:href="#TimesNewRomanPSMT-11" transform="translate(3061.5 0)"/>
     </g>
    </g>
-   <g id="text_15">
+   <g id="part--U8--25">
     <!-- U8 -->
     <g style="fill: #000080" transform="translate(136.8 81.289258) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
      <use xlink:href="#TimesNewRomanPSMT-1b" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_16">
+   <g id="part--U8--26">
     <!-- Raspberry Pi 3B+ -->
     <g style="fill: #000080" transform="translate(161.99707 97.492471) scale(0.075 -0.075)">
      <defs>
@@ -4854,7 +4854,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-e" transform="translate(711.09375 0)"/>
     </g>
    </g>
-   <g id="text_17">
+   <g id="part--U8--27">
     <!-- Python, web dashboard, Wi-Fi -->
     <g style="fill: #000080" transform="translate(154.228594 107.275664) scale(0.06 -0.06)">
      <defs>
@@ -4927,7 +4927,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-4c" transform="translate(1191.265625 0)"/>
     </g>
    </g>
-   <g id="text_18">
+   <g id="pin--U8--USB--29">
     <!-- USB -->
     <g style="fill: #000080" transform="translate(227.19375 120.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
@@ -4935,7 +4935,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-25" transform="translate(127.828125 0)"/>
     </g>
    </g>
-   <g id="text_19">
+   <g id="pin--U8--PWR--31">
     <!-- PWR -->
     <g style="fill: #000080" transform="translate(140.4 120.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-33"/>
@@ -4943,14 +4943,14 @@ z
      <use xlink:href="#TimesNewRomanPSMT-35" transform="translate(150 0)"/>
     </g>
    </g>
-   <g id="text_20">
+   <g id="part--U1--38">
     <!-- U1 -->
     <g style="fill: #000080" transform="translate(424.8 81.289258) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_21">
+   <g id="part--U1--39">
     <!-- Arduino Uno R3 -->
     <g style="fill: #000080" transform="translate(459.327539 97.492471) scale(0.075 -0.075)">
      <use xlink:href="#TimesNewRomanPS-BoldMT-24"/>
@@ -4969,7 +4969,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-16" transform="translate(661.265625 0)"/>
     </g>
    </g>
-   <g id="text_22">
+   <g id="part--U1--40">
     <!-- ATmega328P, 5 V / 16 MHz -->
     <g style="fill: #000080" transform="translate(451.943438 107.275664) scale(0.06 -0.06)">
      <defs>
@@ -5021,7 +5021,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-5d" transform="translate(1090.828125 0)"/>
     </g>
    </g>
-   <g id="text_23">
+   <g id="pin--U1--D2__SW_RX_--42">
     <!-- D2 (SW-RX) -->
     <g style="fill: #000080" transform="translate(505.402875 120.522797) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
@@ -5036,7 +5036,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-c" transform="translate(497.21875 0)"/>
     </g>
    </g>
-   <g id="text_24">
+   <g id="pin--U1--D3__SW_TX_--44">
     <!-- D3 (SW-TX) -->
     <g style="fill: #000080" transform="translate(505.807875 134.922797) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
@@ -5051,49 +5051,49 @@ z
      <use xlink:href="#TimesNewRomanPSMT-c" transform="translate(491.59375 0)"/>
     </g>
    </g>
-   <g id="text_25">
+   <g id="pin--U1--D4--46">
     <!-- D4 -->
     <g style="fill: #000080" transform="translate(534.80025 149.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_26">
+   <g id="pin--U1--D5--48">
     <!-- D5 -->
     <g style="fill: #000080" transform="translate(534.80025 163.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
      <use xlink:href="#TimesNewRomanPSMT-18" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_27">
+   <g id="pin--U1--D6--50">
     <!-- D6 -->
     <g style="fill: #000080" transform="translate(534.80025 178.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
      <use xlink:href="#TimesNewRomanPSMT-19" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_28">
+   <g id="pin--U1--D7--52">
     <!-- D7 -->
     <g style="fill: #000080" transform="translate(534.80025 192.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
      <use xlink:href="#TimesNewRomanPSMT-1a" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_29">
+   <g id="pin--U1--D8--54">
     <!-- D8 -->
     <g style="fill: #000080" transform="translate(534.80025 206.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
      <use xlink:href="#TimesNewRomanPSMT-1b" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_30">
+   <g id="pin--U1--D9--56">
     <!-- D9 -->
     <g style="fill: #000080" transform="translate(534.80025 221.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
      <use xlink:href="#TimesNewRomanPSMT-1c" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_31">
+   <g id="pin--U1--D10--58">
     <!-- D10 -->
     <g style="fill: #000080" transform="translate(531.20025 235.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
@@ -5101,7 +5101,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-13" transform="translate(122.21875 0)"/>
     </g>
    </g>
-   <g id="text_32">
+   <g id="pin--U1--D11--60">
     <!-- D11 -->
     <g style="fill: #000080" transform="translate(531.466875 250.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
@@ -5109,7 +5109,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(118.515625 0)"/>
     </g>
    </g>
-   <g id="text_33">
+   <g id="pin--U1--D12--62">
     <!-- D12 -->
     <g style="fill: #000080" transform="translate(531.20025 264.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
@@ -5117,7 +5117,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(122.21875 0)"/>
     </g>
    </g>
-   <g id="text_34">
+   <g id="pin--U1--D13--64">
     <!-- D13 -->
     <g style="fill: #000080" transform="translate(531.20025 278.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
@@ -5125,35 +5125,35 @@ z
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(122.21875 0)"/>
     </g>
    </g>
-   <g id="text_35">
+   <g id="pin--U1--A0--66">
     <!-- A0 -->
     <g style="fill: #000080" transform="translate(534.80025 293.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-24"/>
      <use xlink:href="#TimesNewRomanPSMT-13" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_36">
+   <g id="pin--U1--A1--68">
     <!-- A1 -->
     <g style="fill: #000080" transform="translate(534.80025 307.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-24"/>
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_37">
+   <g id="pin--U1--A2--70">
     <!-- A2 -->
     <g style="fill: #000080" transform="translate(534.80025 322.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-24"/>
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_38">
+   <g id="pin--U1--A3--72">
     <!-- A3 -->
     <g style="fill: #000080" transform="translate(534.80025 336.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-24"/>
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_39">
+   <g id="pin--U1--A4__SDA_--74">
     <!-- A4 (SDA) -->
     <g style="fill: #000080" transform="translate(513.802125 350.922797) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-24"/>
@@ -5166,7 +5166,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-c" transform="translate(380.5625 0)"/>
     </g>
    </g>
-   <g id="text_40">
+   <g id="pin--U1--A5__SCL_--76">
     <!-- A5 (SCL) -->
     <g style="fill: #000080" transform="translate(515.001375 365.322797) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-24"/>
@@ -5179,7 +5179,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-c" transform="translate(363.90625 0)"/>
     </g>
    </g>
-   <g id="text_41">
+   <g id="pin--U1--USB_B--78">
     <!-- USB-B -->
     <g style="fill: #000080" transform="translate(428.4 120.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
@@ -5189,7 +5189,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-25" transform="translate(227.828125 0)"/>
     </g>
    </g>
-   <g id="text_42">
+   <g id="pin--U1--VIN--80">
     <!-- VIN -->
     <g style="fill: #000080" transform="translate(428.4 134.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-39"/>
@@ -5197,14 +5197,14 @@ z
      <use xlink:href="#TimesNewRomanPSMT-31" transform="translate(105.515625 0)"/>
     </g>
    </g>
-   <g id="text_43">
+   <g id="pin--U1--5V--82">
     <!-- 5V -->
     <g style="fill: #000080" transform="translate(428.4 149.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-18"/>
      <use xlink:href="#TimesNewRomanPSMT-39" transform="translate(50 0)"/>
     </g>
    </g>
-   <g id="text_44">
+   <g id="pin--U1--GND--84">
     <!-- GND -->
     <g style="fill: #000080" transform="translate(428.4 163.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -5212,7 +5212,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_45">
+   <g id="pin--U1--3V3--86">
     <!-- 3V3 -->
     <g style="fill: #000080" transform="translate(428.4 178.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-16"/>
@@ -5220,7 +5220,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(122.21875 0)"/>
     </g>
    </g>
-   <g id="text_46">
+   <g id="pin--U1--IOREF--88">
     <!-- IOREF -->
     <g style="fill: #000080" transform="translate(428.4 192.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2c"/>
@@ -5230,7 +5230,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-29" transform="translate(233.296875 0)"/>
     </g>
    </g>
-   <g id="text_47">
+   <g id="pin--U1--RESET--90">
     <!-- RESET -->
     <g style="fill: #000080" transform="translate(428.4 206.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
@@ -5240,7 +5240,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-37" transform="translate(244.46875 0)"/>
     </g>
    </g>
-   <g id="text_48">
+   <g id="pin--U1--AREF--92">
     <!-- AREF -->
     <g style="fill: #000080" transform="translate(428.4 221.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-24"/>
@@ -5249,7 +5249,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-29" transform="translate(200 0)"/>
     </g>
    </g>
-   <g id="text_49">
+   <g id="pin--U1--D0__RX_--94">
     <!-- D0 (RX) -->
     <g style="fill: #000080" transform="translate(428.4 235.722797) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
@@ -5261,7 +5261,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-c" transform="translate(319.4375 0)"/>
     </g>
    </g>
-   <g id="text_50">
+   <g id="pin--U1--D1__TX_--96">
     <!-- D1 (TX) -->
     <g style="fill: #000080" transform="translate(428.4 250.122797) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-27"/>
@@ -5273,14 +5273,14 @@ z
      <use xlink:href="#TimesNewRomanPSMT-c" transform="translate(313.8125 0)"/>
     </g>
    </g>
-   <g id="text_51">
+   <g id="part--U2--143">
     <!-- U2 -->
     <g style="fill: #000080" transform="translate(763.2 81.289258) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_52">
+   <g id="part--U2--144">
     <!-- PZEM-004T V4 (TTL side) -->
     <g style="fill: #000080" transform="translate(780.886523 97.492471) scale(0.075 -0.075)">
      <defs>
@@ -5425,7 +5425,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-c" transform="translate(1127.0625 0)"/>
     </g>
    </g>
-   <g id="text_53">
+   <g id="part--U2--145">
     <!-- 5 V TTL, 9600 baud -->
     <g style="fill: #000080" transform="translate(799.817813 107.275664) scale(0.06 -0.06)">
      <use xlink:href="#TimesNewRomanPSMT-18"/>
@@ -5448,28 +5448,28 @@ z
      <use xlink:href="#TimesNewRomanPSMT-47" transform="translate(769.40625 0)"/>
     </g>
    </g>
-   <g id="text_54">
+   <g id="pin--U2--5V--147">
     <!-- 5V -->
     <g style="fill: #000080" transform="translate(766.8 120.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-18"/>
      <use xlink:href="#TimesNewRomanPSMT-39" transform="translate(50 0)"/>
     </g>
    </g>
-   <g id="text_55">
+   <g id="pin--U2--RX--149">
     <!-- RX -->
     <g style="fill: #000080" transform="translate(766.8 134.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
      <use xlink:href="#TimesNewRomanPSMT-3b" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_56">
+   <g id="pin--U2--TX--151">
     <!-- TX -->
     <g style="fill: #000080" transform="translate(766.8 149.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-37"/>
      <use xlink:href="#TimesNewRomanPSMT-3b" transform="translate(61.078125 0)"/>
     </g>
    </g>
-   <g id="text_57">
+   <g id="pin--U2--GND--153">
     <!-- GND -->
     <g style="fill: #000080" transform="translate(766.8 163.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -5477,14 +5477,14 @@ z
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_58">
+   <g id="part--U3--167">
     <!-- U3 -->
     <g style="fill: #000080" transform="translate(763.2 198.289258) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_59">
+   <g id="part--U3--168">
     <!-- LCD 1602 + I2C -->
     <g style="fill: #000080" transform="translate(797.990039 214.490347) scale(0.075 -0.075)">
      <defs>
@@ -5610,7 +5610,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-26" transform="translate(632.046875 0)"/>
     </g>
    </g>
-   <g id="text_60">
+   <g id="part--U3--169">
     <!-- backpack, 5 V, addr 0x27 (typ.) -->
     <g style="fill: #000080" transform="translate(786.685781 224.275664) scale(0.06 -0.06)">
      <defs>
@@ -5692,7 +5692,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-c" transform="translate(1223.84375 0)"/>
     </g>
    </g>
-   <g id="text_61">
+   <g id="pin--U3--GND--171">
     <!-- GND -->
     <g style="fill: #000080" transform="translate(766.8 237.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -5700,7 +5700,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_62">
+   <g id="pin--U3--VCC--173">
     <!-- VCC -->
     <g style="fill: #000080" transform="translate(766.8 251.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-39"/>
@@ -5708,7 +5708,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-26" transform="translate(138.921875 0)"/>
     </g>
    </g>
-   <g id="text_63">
+   <g id="pin--U3--SDA--175">
     <!-- SDA -->
     <g style="fill: #000080" transform="translate(766.8 266.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-36"/>
@@ -5716,7 +5716,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-24" transform="translate(127.828125 0)"/>
     </g>
    </g>
-   <g id="text_64">
+   <g id="pin--U3--SCL--177">
     <!-- SCL -->
     <g style="fill: #000080" transform="translate(766.8 280.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-36"/>
@@ -5724,7 +5724,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-2f" transform="translate(122.3125 0)"/>
     </g>
    </g>
-   <g id="text_65">
+   <g id="part--KP1--191">
     <!-- KP1 -->
     <g style="fill: #000080" transform="translate(763.2 315.289258) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -5732,7 +5732,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(127.828125 0)"/>
     </g>
    </g>
-   <g id="text_66">
+   <g id="part--KP1--192">
     <!-- 4x4 keypad -->
     <g style="fill: #000080" transform="translate(806.166797 331.490347) scale(0.075 -0.075)">
      <defs>
@@ -5796,7 +5796,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-47" transform="translate(430.609375 0)"/>
     </g>
    </g>
-   <g id="text_67">
+   <g id="part--KP1--193">
     <!-- thin-film matrix -->
     <g style="fill: #000080" transform="translate(805.154063 341.275664) scale(0.06 -0.06)">
      <use xlink:href="#TimesNewRomanPSMT-57"/>
@@ -5817,70 +5817,70 @@ z
      <use xlink:href="#TimesNewRomanPSMT-5b" transform="translate(591.53125 0)"/>
     </g>
    </g>
-   <g id="text_68">
+   <g id="pin--KP1--R1--195">
     <!-- R1 -->
     <g style="fill: #000080" transform="translate(766.8 354.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_69">
+   <g id="pin--KP1--R2--197">
     <!-- R2 -->
     <g style="fill: #000080" transform="translate(766.8 368.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_70">
+   <g id="pin--KP1--R3--199">
     <!-- R3 -->
     <g style="fill: #000080" transform="translate(766.8 383.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_71">
+   <g id="pin--KP1--R4--201">
     <!-- R4 -->
     <g style="fill: #000080" transform="translate(766.8 397.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_72">
+   <g id="pin--KP1--C1--203">
     <!-- C1 -->
     <g style="fill: #000080" transform="translate(766.8 412.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-26"/>
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_73">
+   <g id="pin--KP1--C2--205">
     <!-- C2 -->
     <g style="fill: #000080" transform="translate(766.8 426.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-26"/>
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_74">
+   <g id="pin--KP1--C3--207">
     <!-- C3 -->
     <g style="fill: #000080" transform="translate(766.8 440.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-26"/>
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_75">
+   <g id="pin--KP1--C4--209">
     <!-- C4 -->
     <g style="fill: #000080" transform="translate(766.8 455.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-26"/>
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(66.703125 0)"/>
     </g>
    </g>
-   <g id="text_76">
+   <g id="part--U5--227">
     <!-- U5 -->
     <g style="fill: #000080" transform="translate(763.2 489.889258) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
      <use xlink:href="#TimesNewRomanPSMT-18" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_77">
+   <g id="part--U5--228">
     <!-- 4-ch relay module -->
     <g style="fill: #000080" transform="translate(795.722461 506.090347) scale(0.075 -0.075)">
      <defs>
@@ -5959,7 +5959,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-48" transform="translate(720.34375 0)"/>
     </g>
    </g>
-   <g id="text_78">
+   <g id="part--U5--229">
     <!-- 12 V coils, control side -->
     <g style="fill: #000080" transform="translate(796.595625 515.875664) scale(0.06 -0.06)">
      <use xlink:href="#TimesNewRomanPSMT-14"/>
@@ -5988,7 +5988,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-48" transform="translate(882.421875 0)"/>
     </g>
    </g>
-   <g id="text_79">
+   <g id="pin--U5--VCC--231">
     <!-- VCC -->
     <g style="fill: #000080" transform="translate(766.8 529.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-39"/>
@@ -5996,7 +5996,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-26" transform="translate(138.921875 0)"/>
     </g>
    </g>
-   <g id="text_80">
+   <g id="pin--U5--GND--233">
     <!-- GND -->
     <g style="fill: #000080" transform="translate(766.8 543.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -6004,7 +6004,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_81">
+   <g id="pin--U5--IN1--235">
     <!-- IN1 -->
     <g style="fill: #000080" transform="translate(766.8 557.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2c"/>
@@ -6012,7 +6012,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(105.515625 0)"/>
     </g>
    </g>
-   <g id="text_82">
+   <g id="pin--U5--IN2--237">
     <!-- IN2 -->
     <g style="fill: #000080" transform="translate(766.8 572.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2c"/>
@@ -6020,7 +6020,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(105.515625 0)"/>
     </g>
    </g>
-   <g id="text_83">
+   <g id="pin--U5--IN3--239">
     <!-- IN3 -->
     <g style="fill: #000080" transform="translate(766.8 586.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2c"/>
@@ -6028,7 +6028,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(105.515625 0)"/>
     </g>
    </g>
-   <g id="text_84">
+   <g id="pin--U5--IN4--241">
     <!-- IN4 -->
     <g style="fill: #000080" transform="translate(766.8 601.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2c"/>
@@ -6036,7 +6036,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(105.515625 0)"/>
     </g>
    </g>
-   <g id="patch_10">
+   <g id="part--J2--261">
     <path d="M 997.2 133.92 
 C 999.300409 133.92 1001.315073 133.085499 1002.800286 131.600286 
 C 1004.285499 130.115073 1005.12 128.100409 1005.12 126 
@@ -6048,9 +6048,9 @@ C 989.28 128.100409 990.114501 130.115073 991.599714 131.600286
 C 993.084927 133.085499 995.099591 133.92 997.2 133.92 
 L 997.2 133.92 
 z
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.3; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.3; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_11">
+   <g id="part--J2--262">
     <path d="M 997.2 128.88 
 C 997.963785 128.88 998.69639 128.576545 999.236468 128.036468 
 C 999.776545 127.49639 1000.08 126.763785 1000.08 126 
@@ -6061,28 +6061,28 @@ C 994.623455 124.50361 994.32 125.236215 994.32 126
 C 994.32 126.763785 994.623455 127.49639 995.163532 128.036468 
 C 995.70361 128.576545 996.436215 128.88 997.2 128.88 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #800000; stroke: #800000; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #800000; stroke: #800000; stroke-linejoin: miter"/>
    </g>
-   <g id="text_85">
+   <g id="pin--J2--1--264">
     <!-- 1 -->
     <g style="fill: #800000" transform="translate(1013.6 114.89875) scale(0.064 -0.064)">
      <use xlink:href="#TimesNewRomanPSMT-14"/>
     </g>
    </g>
-   <g id="text_86">
+   <g id="pin--J2--2--269">
     <!-- 2 -->
     <g style="fill: #800000" transform="translate(1013.6 129.29875) scale(0.064 -0.064)">
      <use xlink:href="#TimesNewRomanPSMT-15"/>
     </g>
    </g>
-   <g id="text_87">
+   <g id="part--U6--276">
     <!-- U6 -->
     <g style="fill: #000080" transform="translate(1130.4 81.289258) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
      <use xlink:href="#TimesNewRomanPSMT-19" transform="translate(72.21875 0)"/>
     </g>
    </g>
-   <g id="text_88">
+   <g id="part--U6--277">
     <!-- K7805-2000R3 -->
     <g style="fill: #000080" transform="translate(1167.851367 97.490347) scale(0.075 -0.075)">
      <defs>
@@ -6226,7 +6226,7 @@ z
      <use xlink:href="#TimesNewRomanPS-BoldMT-16" transform="translate(583.296875 0)"/>
     </g>
    </g>
-   <g id="text_89">
+   <g id="part--U6--278">
     <!-- Mornsun SMPS 5 V 2 A (Pi supply) -->
     <g style="fill: #000080" transform="translate(1148.449219 107.275664) scale(0.06 -0.06)">
      <use xlink:href="#TimesNewRomanPSMT-30"/>
@@ -6263,7 +6263,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-c" transform="translate(1405.0625 0)"/>
     </g>
    </g>
-   <g id="text_90">
+   <g id="pin--U6--VOUT--280">
     <!-- VOUT -->
     <g style="fill: #000080" transform="translate(1229.203125 120.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-39"/>
@@ -6272,7 +6272,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-37" transform="translate(216.65625 0)"/>
     </g>
    </g>
-   <g id="text_91">
+   <g id="pin--U6--GND--282">
     <!-- GND -->
     <g style="fill: #000080" transform="translate(1233.60075 134.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -6280,7 +6280,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_92">
+   <g id="pin--U6--VIN--284">
     <!-- VIN -->
     <g style="fill: #000080" transform="translate(1134 120.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-39"/>
@@ -6288,448 +6288,448 @@ z
      <use xlink:href="#TimesNewRomanPSMT-31" transform="translate(105.515625 0)"/>
     </g>
    </g>
-   <g id="patch_12">
+   <g id="net--USB_SER--33">
     <path d="M 259.2 123.84 
 L 296.82 123.84 
 L 302.58 118.8 
 L 296.82 113.76 
 L 259.2 113.76 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_73">
+   <g id="net--+5V_PI--35">
     <path d="M 114.48 124.92 
 L 114.48 112.68 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="patch_13">
+   <g id="net--PZEM_TX--98">
     <path d="M 561.6 123.84 
 L 599.22 123.84 
 L 604.98 118.8 
 L 599.22 113.76 
 L 561.6 113.76 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_14">
+   <g id="net--PZEM_RX--100">
     <path d="M 561.6 138.24 
 L 599.22 138.24 
 L 604.98 133.2 
 L 599.22 128.16 
 L 561.6 128.16 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_15">
+   <g id="net--RLY_IN1--102">
     <path d="M 561.6 152.64 
 L 599.22 152.64 
 L 604.98 147.6 
 L 599.22 142.56 
 L 561.6 142.56 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_16">
+   <g id="net--RLY_IN2--104">
     <path d="M 561.6 167.04 
 L 599.22 167.04 
 L 604.98 162 
 L 599.22 156.96 
 L 561.6 156.96 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_17">
+   <g id="net--RLY_IN3--106">
     <path d="M 561.6 181.44 
 L 599.22 181.44 
 L 604.98 176.4 
 L 599.22 171.36 
 L 561.6 171.36 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_18">
+   <g id="net--RLY_IN4--108">
     <path d="M 561.6 195.84 
 L 599.22 195.84 
 L 604.98 190.8 
 L 599.22 185.76 
 L 561.6 185.76 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_19">
+   <g id="net--KP_R1--110">
     <path d="M 561.6 239.04 
 L 590.94 239.04 
 L 596.7 234 
 L 590.94 228.96 
 L 561.6 228.96 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_20">
+   <g id="net--KP_R2--112">
     <path d="M 561.6 253.44 
 L 590.94 253.44 
 L 596.7 248.4 
 L 590.94 243.36 
 L 561.6 243.36 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_21">
+   <g id="net--KP_R3--114">
     <path d="M 561.6 267.84 
 L 590.94 267.84 
 L 596.7 262.8 
 L 590.94 257.76 
 L 561.6 257.76 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_22">
+   <g id="net--KP_R4--116">
     <path d="M 561.6 282.24 
 L 590.94 282.24 
 L 596.7 277.2 
 L 590.94 272.16 
 L 561.6 272.16 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_23">
+   <g id="net--KP_C1--118">
     <path d="M 561.6 296.64 
 L 590.94 296.64 
 L 596.7 291.6 
 L 590.94 286.56 
 L 561.6 286.56 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_24">
+   <g id="net--KP_C2--120">
     <path d="M 561.6 311.04 
 L 590.94 311.04 
 L 596.7 306 
 L 590.94 300.96 
 L 561.6 300.96 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_25">
+   <g id="net--KP_C3--122">
     <path d="M 561.6 325.44 
 L 590.94 325.44 
 L 596.7 320.4 
 L 590.94 315.36 
 L 561.6 315.36 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_26">
+   <g id="net--KP_C4--124">
     <path d="M 561.6 339.84 
 L 590.94 339.84 
 L 596.7 334.8 
 L 590.94 329.76 
 L 561.6 329.76 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_27">
+   <g id="net--SDA--126">
     <path d="M 561.6 354.24 
 L 582.66 354.24 
 L 588.42 349.2 
 L 582.66 344.16 
 L 561.6 344.16 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_28">
+   <g id="net--SCL--128">
     <path d="M 561.6 368.64 
 L 582.66 368.64 
 L 588.42 363.6 
 L 582.66 358.56 
 L 561.6 358.56 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_29">
+   <g id="net--USB_SER--130">
     <path d="M 410.4 123.84 
 L 372.78 123.84 
 L 367.02 118.8 
 L 372.78 113.76 
 L 410.4 113.76 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_74">
+   <g id="net--+12V--132">
     <path d="M 402.48 139.32 
 L 402.48 127.08 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="line2d_75">
+   <g id="net--+5V--135">
     <path d="M 402.48 153.72 
 L 402.48 141.48 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="line2d_76">
+   <g id="net--GND--138">
     <path d="M 402.48 168.12 
 L 402.48 155.88 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_77">
+   <g id="net--GND--139">
     <path d="M 399.06 166.14 
 L 399.06 157.86 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_78">
+   <g id="net--GND--140">
     <path d="M 395.64 164.16 
 L 395.64 159.84 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_79">
+   <g id="net--+5V--155">
     <path d="M 740.88 124.92 
 L 740.88 112.68 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="patch_30">
+   <g id="net--PZEM_RX--158">
     <path d="M 748.8 138.24 
 L 711.18 138.24 
 L 705.42 133.2 
 L 711.18 128.16 
 L 748.8 128.16 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_31">
+   <g id="net--PZEM_TX--160">
     <path d="M 748.8 152.64 
 L 711.18 152.64 
 L 705.42 147.6 
 L 711.18 142.56 
 L 748.8 142.56 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_80">
+   <g id="net--GND--162">
     <path d="M 740.88 168.12 
 L 740.88 155.88 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_81">
+   <g id="net--GND--163">
     <path d="M 737.46 166.14 
 L 737.46 157.86 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_82">
+   <g id="net--GND--164">
     <path d="M 734.04 164.16 
 L 734.04 159.84 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_83">
+   <g id="net--GND--179">
     <path d="M 740.88 241.92 
 L 740.88 229.68 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_84">
+   <g id="net--GND--180">
     <path d="M 737.46 239.94 
 L 737.46 231.66 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_85">
+   <g id="net--GND--181">
     <path d="M 734.04 237.96 
 L 734.04 233.64 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_86">
+   <g id="net--+5V--184">
     <path d="M 740.88 256.32 
 L 740.88 244.08 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="patch_32">
+   <g id="net--SDA--187">
     <path d="M 748.8 269.64 
 L 727.74 269.64 
 L 721.98 264.6 
 L 727.74 259.56 
 L 748.8 259.56 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_33">
+   <g id="net--SCL--189">
     <path d="M 748.8 284.04 
 L 727.74 284.04 
 L 721.98 279 
 L 727.74 273.96 
 L 748.8 273.96 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_34">
+   <g id="net--KP_R1--211">
     <path d="M 748.8 357.84 
 L 719.46 357.84 
 L 713.7 352.8 
 L 719.46 347.76 
 L 748.8 347.76 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_35">
+   <g id="net--KP_R2--213">
     <path d="M 748.8 372.24 
 L 719.46 372.24 
 L 713.7 367.2 
 L 719.46 362.16 
 L 748.8 362.16 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_36">
+   <g id="net--KP_R3--215">
     <path d="M 748.8 386.64 
 L 719.46 386.64 
 L 713.7 381.6 
 L 719.46 376.56 
 L 748.8 376.56 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_37">
+   <g id="net--KP_R4--217">
     <path d="M 748.8 401.04 
 L 719.46 401.04 
 L 713.7 396 
 L 719.46 390.96 
 L 748.8 390.96 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_38">
+   <g id="net--KP_C1--219">
     <path d="M 748.8 415.44 
 L 719.46 415.44 
 L 713.7 410.4 
 L 719.46 405.36 
 L 748.8 405.36 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_39">
+   <g id="net--KP_C2--221">
     <path d="M 748.8 429.84 
 L 719.46 429.84 
 L 713.7 424.8 
 L 719.46 419.76 
 L 748.8 419.76 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_40">
+   <g id="net--KP_C3--223">
     <path d="M 748.8 444.24 
 L 719.46 444.24 
 L 713.7 439.2 
 L 719.46 434.16 
 L 748.8 434.16 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_41">
+   <g id="net--KP_C4--225">
     <path d="M 748.8 458.64 
 L 719.46 458.64 
 L 713.7 453.6 
 L 719.46 448.56 
 L 748.8 448.56 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_87">
+   <g id="net--+12V--243">
     <path d="M 740.88 533.52 
 L 740.88 521.28 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="line2d_88">
+   <g id="net--GND--246">
     <path d="M 740.88 547.92 
 L 740.88 535.68 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_89">
+   <g id="net--GND--247">
     <path d="M 737.46 545.94 
 L 737.46 537.66 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_90">
+   <g id="net--GND--248">
     <path d="M 734.04 543.96 
 L 734.04 539.64 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="patch_42">
+   <g id="net--RLY_IN1--251">
     <path d="M 748.8 561.24 
 L 711.18 561.24 
 L 705.42 556.2 
 L 711.18 551.16 
 L 748.8 551.16 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_43">
+   <g id="net--RLY_IN2--253">
     <path d="M 748.8 575.64 
 L 711.18 575.64 
 L 705.42 570.6 
 L 711.18 565.56 
 L 748.8 565.56 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_44">
+   <g id="net--RLY_IN3--255">
     <path d="M 748.8 590.04 
 L 711.18 590.04 
 L 705.42 585 
 L 711.18 579.96 
 L 748.8 579.96 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_45">
+   <g id="net--RLY_IN4--257">
     <path d="M 748.8 604.44 
 L 711.18 604.44 
 L 705.42 599.4 
 L 711.18 594.36 
 L 748.8 594.36 
 z
-" clip-path="url(#p04cd58a928)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#p849a1b3fec)" style="fill: #ffe9a8; stroke: #800000; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
-   <g id="line2d_91">
+   <g id="net--+12V--266">
     <path d="M 1030.32 124.92 
 L 1030.32 112.68 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="line2d_92">
+   <g id="net--GND--271">
     <path d="M 1030.32 139.32 
 L 1030.32 127.08 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_93">
+   <g id="net--GND--272">
     <path d="M 1033.74 137.34 
 L 1033.74 129.06 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_94">
+   <g id="net--GND--273">
     <path d="M 1037.16 135.36 
 L 1037.16 131.04 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_95">
+   <g id="net--+5V_PI--286">
     <path d="M 1275.12 124.92 
 L 1275.12 112.68 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="line2d_96">
+   <g id="net--GND--289">
     <path d="M 1275.12 139.32 
 L 1275.12 127.08 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_97">
+   <g id="net--GND--290">
     <path d="M 1278.54 137.34 
 L 1278.54 129.06 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_98">
+   <g id="net--GND--291">
     <path d="M 1281.96 135.36 
 L 1281.96 131.04 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.5"/>
    </g>
-   <g id="line2d_99">
+   <g id="net--+12V--294">
     <path d="M 1108.08 124.92 
 L 1108.08 112.68 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #800000; stroke-width: 1.8"/>
    </g>
-   <g id="text_93">
+   <g id="net--USB_SER--32">
     <!-- USB_SER -->
     <g style="fill: #000080" transform="translate(262.604812 120.519141) scale(0.072 -0.072)">
      <defs>
@@ -6750,7 +6750,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-35" transform="translate(361.21875 0)"/>
     </g>
    </g>
-   <g id="text_94">
+   <g id="net--+5V_PI--36">
     <!-- +5V PI -->
     <g style="fill: #800000" transform="translate(88.730781 120.471387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -6761,7 +6761,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-2c" transform="translate(257.40625 0)"/>
     </g>
    </g>
-   <g id="text_95">
+   <g id="net--PZEM_TX--97">
     <!-- PZEM_TX -->
     <g style="fill: #000080" transform="translate(564.210563 120.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-33"/>
@@ -6773,7 +6773,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-3b" transform="translate(377.765625 0)"/>
     </g>
    </g>
-   <g id="text_96">
+   <g id="net--PZEM_RX--99">
     <!-- PZEM_RX -->
     <g style="fill: #000080" transform="translate(564.008063 134.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-33"/>
@@ -6785,7 +6785,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-3b" transform="translate(383.390625 0)"/>
     </g>
    </g>
-   <g id="text_97">
+   <g id="net--RLY_IN1--101">
     <!-- RLY_IN1 -->
     <g style="fill: #000080" transform="translate(566.172 149.319141) scale(0.072 -0.072)">
      <defs>
@@ -6838,7 +6838,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(345.5 0)"/>
     </g>
    </g>
-   <g id="text_98">
+   <g id="net--RLY_IN2--103">
     <!-- RLY_IN2 -->
     <g style="fill: #000080" transform="translate(566.172 163.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
@@ -6850,7 +6850,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(345.5 0)"/>
     </g>
    </g>
-   <g id="text_99">
+   <g id="net--RLY_IN3--105">
     <!-- RLY_IN3 -->
     <g style="fill: #000080" transform="translate(566.172 178.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
@@ -6862,7 +6862,7 @@ z
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(345.5 0)"/>
     </g>
    </g>
-   <g id="text_100">
+   <g id="net--RLY_IN4--107">
     <!-- RLY_IN4 -->
     <g style="fill: #000080" transform="translate(566.172 192.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
@@ -6874,27 +6874,27 @@ z
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(345.5 0)"/>
     </g>
    </g>
-   <g id="line2d_100">
+   <g id="line2d_1">
     <path d="M 557.64 209.16 
 L 565.56 201.24 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_101">
+   <g id="line2d_2">
     <path d="M 557.64 201.24 
 L 565.56 209.16 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_102">
+   <g id="line2d_3">
     <path d="M 557.64 223.56 
 L 565.56 215.64 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_103">
+   <g id="line2d_4">
     <path d="M 557.64 215.64 
 L 565.56 223.56 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="text_101">
+   <g id="net--KP_R1--109">
     <!-- KP_R1 -->
     <g style="fill: #000080" transform="translate(565.666875 235.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -6904,7 +6904,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_102">
+   <g id="net--KP_R2--111">
     <!-- KP_R2 -->
     <g style="fill: #000080" transform="translate(565.666875 250.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -6914,7 +6914,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_103">
+   <g id="net--KP_R3--113">
     <!-- KP_R3 -->
     <g style="fill: #000080" transform="translate(565.666875 264.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -6924,7 +6924,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_104">
+   <g id="net--KP_R4--115">
     <!-- KP_R4 -->
     <g style="fill: #000080" transform="translate(565.666875 278.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -6934,7 +6934,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_105">
+   <g id="net--KP_C1--117">
     <!-- KP_C1 -->
     <g style="fill: #000080" transform="translate(565.666875 293.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -6944,7 +6944,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_106">
+   <g id="net--KP_C2--119">
     <!-- KP_C2 -->
     <g style="fill: #000080" transform="translate(565.666875 307.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -6954,7 +6954,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_107">
+   <g id="net--KP_C3--121">
     <!-- KP_C3 -->
     <g style="fill: #000080" transform="translate(565.666875 322.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -6964,7 +6964,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_108">
+   <g id="net--KP_C4--123">
     <!-- KP_C4 -->
     <g style="fill: #000080" transform="translate(565.666875 336.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -6974,7 +6974,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_109">
+   <g id="net--SDA--125">
     <!-- SDA -->
     <g style="fill: #000080" transform="translate(564.928313 350.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-36"/>
@@ -6982,7 +6982,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-24" transform="translate(127.828125 0)"/>
     </g>
    </g>
-   <g id="text_110">
+   <g id="net--SCL--127">
     <!-- SCL -->
     <g style="fill: #000080" transform="translate(565.527938 365.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-36"/>
@@ -6990,7 +6990,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-2f" transform="translate(122.3125 0)"/>
     </g>
    </g>
-   <g id="text_111">
+   <g id="net--USB_SER--129">
     <!-- USB_SER -->
     <g style="fill: #000080" transform="translate(376.184813 120.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-38"/>
@@ -7002,7 +7002,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-35" transform="translate(361.21875 0)"/>
     </g>
    </g>
-   <g id="text_112">
+   <g id="net--+12V--133">
     <!-- +12V -->
     <g style="fill: #800000" transform="translate(381.077344 134.871387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -7011,7 +7011,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-39" transform="translate(156.390625 0)"/>
     </g>
    </g>
-   <g id="text_113">
+   <g id="net--+5V--136">
     <!-- +5V -->
     <g style="fill: #800000" transform="translate(384.577344 149.271387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -7019,7 +7019,7 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-39" transform="translate(106.390625 0)"/>
     </g>
    </g>
-   <g id="text_114">
+   <g id="net--GND--141">
     <!-- GND -->
     <g style="fill: #800000" transform="translate(375.434063 163.671387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -7027,67 +7027,67 @@ L 565.56 223.56
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="line2d_104">
+   <g id="line2d_5">
     <path d="M 406.44 180.36 
 L 414.36 172.44 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_105">
+   <g id="line2d_6">
     <path d="M 406.44 172.44 
 L 414.36 180.36 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_106">
+   <g id="line2d_7">
     <path d="M 406.44 194.76 
 L 414.36 186.84 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_107">
+   <g id="line2d_8">
     <path d="M 406.44 186.84 
 L 414.36 194.76 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_108">
+   <g id="line2d_9">
     <path d="M 406.44 209.16 
 L 414.36 201.24 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_109">
+   <g id="line2d_10">
     <path d="M 406.44 201.24 
 L 414.36 209.16 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_110">
+   <g id="line2d_11">
     <path d="M 406.44 223.56 
 L 414.36 215.64 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_111">
+   <g id="line2d_12">
     <path d="M 406.44 215.64 
 L 414.36 223.56 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_112">
+   <g id="line2d_13">
     <path d="M 406.44 237.96 
 L 414.36 230.04 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_113">
+   <g id="line2d_14">
     <path d="M 406.44 230.04 
 L 414.36 237.96 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_114">
+   <g id="line2d_15">
     <path d="M 406.44 252.36 
 L 414.36 244.44 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="line2d_115">
+   <g id="line2d_16">
     <path d="M 406.44 244.44 
 L 414.36 252.36 
-" clip-path="url(#p04cd58a928)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
+" clip-path="url(#p849a1b3fec)" style="fill: none; stroke: #c00000; stroke-width: 1.4"/>
    </g>
-   <g id="text_115">
+   <g id="net--+5V--156">
     <!-- +5V -->
     <g style="fill: #800000" transform="translate(722.977344 120.471387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -7095,7 +7095,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-39" transform="translate(106.390625 0)"/>
     </g>
    </g>
-   <g id="text_116">
+   <g id="net--PZEM_RX--157">
     <!-- PZEM_RX -->
     <g style="fill: #000080" transform="translate(713.588063 134.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-33"/>
@@ -7107,7 +7107,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-3b" transform="translate(383.390625 0)"/>
     </g>
    </g>
-   <g id="text_117">
+   <g id="net--PZEM_TX--159">
     <!-- PZEM_TX -->
     <g style="fill: #000080" transform="translate(713.790563 149.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-33"/>
@@ -7119,7 +7119,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-3b" transform="translate(377.765625 0)"/>
     </g>
    </g>
-   <g id="text_118">
+   <g id="net--GND--165">
     <!-- GND -->
     <g style="fill: #800000" transform="translate(713.834063 163.671387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -7127,7 +7127,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_119">
+   <g id="net--GND--182">
     <!-- GND -->
     <g style="fill: #800000" transform="translate(713.834063 237.471387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -7135,7 +7135,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_120">
+   <g id="net--+5V--185">
     <!-- +5V -->
     <g style="fill: #800000" transform="translate(722.977344 251.871387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -7143,7 +7143,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-39" transform="translate(106.390625 0)"/>
     </g>
    </g>
-   <g id="text_121">
+   <g id="net--SDA--186">
     <!-- SDA -->
     <g style="fill: #000080" transform="translate(731.068313 266.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-36"/>
@@ -7151,7 +7151,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-24" transform="translate(127.828125 0)"/>
     </g>
    </g>
-   <g id="text_122">
+   <g id="net--SCL--188">
     <!-- SCL -->
     <g style="fill: #000080" transform="translate(731.667938 280.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-36"/>
@@ -7159,7 +7159,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-2f" transform="translate(122.3125 0)"/>
     </g>
    </g>
-   <g id="text_123">
+   <g id="net--KP_R1--210">
     <!-- KP_R1 -->
     <g style="fill: #000080" transform="translate(723.526875 354.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -7169,7 +7169,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_124">
+   <g id="net--KP_R2--212">
     <!-- KP_R2 -->
     <g style="fill: #000080" transform="translate(723.526875 368.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -7179,7 +7179,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_125">
+   <g id="net--KP_R3--214">
     <!-- KP_R3 -->
     <g style="fill: #000080" transform="translate(723.526875 383.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -7189,7 +7189,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_126">
+   <g id="net--KP_R4--216">
     <!-- KP_R4 -->
     <g style="fill: #000080" transform="translate(723.526875 397.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -7199,7 +7199,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_127">
+   <g id="net--KP_C1--218">
     <!-- KP_C1 -->
     <g style="fill: #000080" transform="translate(723.526875 412.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -7209,7 +7209,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_128">
+   <g id="net--KP_C2--220">
     <!-- KP_C2 -->
     <g style="fill: #000080" transform="translate(723.526875 426.519141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -7219,7 +7219,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_129">
+   <g id="net--KP_C3--222">
     <!-- KP_C3 -->
     <g style="fill: #000080" transform="translate(723.526875 440.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -7229,7 +7229,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_130">
+   <g id="net--KP_C4--224">
     <!-- KP_C4 -->
     <g style="fill: #000080" transform="translate(723.526875 455.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-2e"/>
@@ -7239,7 +7239,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(244.53125 0)"/>
     </g>
    </g>
-   <g id="text_131">
+   <g id="net--+12V--244">
     <!-- +12V -->
     <g style="fill: #800000" transform="translate(719.477344 529.071387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -7248,7 +7248,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-39" transform="translate(156.390625 0)"/>
     </g>
    </g>
-   <g id="text_132">
+   <g id="net--GND--249">
     <!-- GND -->
     <g style="fill: #800000" transform="translate(713.834063 543.471387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -7256,7 +7256,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_133">
+   <g id="net--RLY_IN1--250">
     <!-- RLY_IN1 -->
     <g style="fill: #000080" transform="translate(715.752 557.919141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
@@ -7268,7 +7268,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-14" transform="translate(345.5 0)"/>
     </g>
    </g>
-   <g id="text_134">
+   <g id="net--RLY_IN2--252">
     <!-- RLY_IN2 -->
     <g style="fill: #000080" transform="translate(715.752 572.319141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
@@ -7280,7 +7280,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-15" transform="translate(345.5 0)"/>
     </g>
    </g>
-   <g id="text_135">
+   <g id="net--RLY_IN3--254">
     <!-- RLY_IN3 -->
     <g style="fill: #000080" transform="translate(715.752 586.719141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
@@ -7292,7 +7292,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-16" transform="translate(345.5 0)"/>
     </g>
    </g>
-   <g id="text_136">
+   <g id="net--RLY_IN4--256">
     <!-- RLY_IN4 -->
     <g style="fill: #000080" transform="translate(715.752 601.119141) scale(0.072 -0.072)">
      <use xlink:href="#TimesNewRomanPSMT-35"/>
@@ -7304,7 +7304,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-17" transform="translate(345.5 0)"/>
     </g>
    </g>
-   <g id="text_137">
+   <g id="net--+12V--267">
     <!-- +12V -->
     <g style="fill: #800000" transform="translate(1035.72 120.471387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -7313,7 +7313,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-39" transform="translate(156.390625 0)"/>
     </g>
    </g>
-   <g id="text_138">
+   <g id="net--GND--274">
     <!-- GND -->
     <g style="fill: #800000" transform="translate(1042.2 134.871387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -7321,7 +7321,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_139">
+   <g id="net--+5V_PI--287">
     <!-- +5V PI -->
     <g style="fill: #800000" transform="translate(1280.52 120.471387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -7332,7 +7332,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-2c" transform="translate(257.40625 0)"/>
     </g>
    </g>
-   <g id="text_140">
+   <g id="net--GND--292">
     <!-- GND -->
     <g style="fill: #800000" transform="translate(1287 134.871387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-2a"/>
@@ -7340,7 +7340,7 @@ L 414.36 252.36
      <use xlink:href="#TimesNewRomanPSMT-27" transform="translate(144.4375 0)"/>
     </g>
    </g>
-   <g id="text_141">
+   <g id="net--+12V--295">
     <!-- +12V -->
     <g style="fill: #800000" transform="translate(1086.677344 120.471387) scale(0.07 -0.07)">
      <use xlink:href="#TimesNewRomanPSMT-e"/>
@@ -7352,7 +7352,7 @@ L 414.36 252.36
   </g>
  </g>
  <defs>
-  <clipPath id="p04cd58a928">
+  <clipPath id="p849a1b3fec">
    <rect x="7.2" y="7.2" width="1339.2" height="648"/>
   </clipPath>
  </defs>

@@ -3,7 +3,9 @@
 Run: python3 gen_diagrams.py -> ecrt_block_diagram, ecrt_schematic_control, ecrt_schematic_mains ({png,svg,pdf})
 The old UAV version is kept in gen_diagrams_uav_backup.py.
 """
+import itertools
 import os
+import re
 
 import matplotlib
 import matplotlib.patches
@@ -13,19 +15,57 @@ from matplotlib.patches import FancyBboxPatch, Rectangle
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
+# ---- registry for the interactive index.html: every drawn part, pin, net symbol and block carries an id (SVG gid) of the form
+# kind--name[--sub]--n, and what was drawn is recorded here so gen_index.py can build the page from the generator itself.
+_GID = itertools.count()
+REG = {"sheet": None, "parts": {}, "pins": [], "ctx": None}
+SHEETS = {}                       # sheet id -> {"parts": {...}, "pins": [...]} (filled by the schematic_* functions)
+BLOCKS = {}                       # block key -> label text (filled by block_diagram)
+
+
+def key(text):
+    return re.sub(r"[^A-Za-z0-9+_.]", "_", str(text))
+
+
+def tag(artist, kind, *names):
+    """Give an artist an SVG id: kind--name--...--n (unique)."""
+    artist.set_gid("--".join([kind] + [key(n) for n in names] + [str(next(_GID))]))
+    return artist
+
+
+def _snap(ax):
+    return len(ax.lines), len(ax.texts), len(ax.patches)
+
+
+def _tag_new(ax, snap, kind, *names):
+    for a in list(ax.lines)[snap[0]:] + list(ax.texts)[snap[1]:] + list(ax.patches)[snap[2]:]:
+        tag(a, kind, *names)
+
+
+def new_registry(sheet):
+    REG.update(sheet=sheet, parts={}, pins=[], ctx=None)
+
+
+def store_registry():
+    SHEETS[REG["sheet"]] = {"parts": dict(REG["parts"]), "pins": list(REG["pins"])}
+
 C_SENS, C_WIFI, C_VID, C_EMG, C_STAT, C_PWR, C_GND = (
     "#1a8a1a", "#1f3fd0", "#8a1a9a", "#d01010", "#e08a00", "#c03000", "#222222")
 C_NA = "#8a8a8a"
 
 
-def box(ax, x, y, w, h, text, fs=8, na=False, fc="white", bold=False, ls=None):
+def box(ax, x, y, w, h, text, fs=8, na=False, fc="white", bold=False, ls=None, blk=None):
     ec = C_NA if na else "#222222"
-    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.0,rounding_size=1.2",
+    patch = ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.0,rounding_size=1.2",
                                 fc="#f0f0f0" if na else fc, ec=ec, lw=1.1,
                                 ls=ls or ("--" if na else "-")))
-    ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", fontsize=fs,
-            color=C_NA if na else "black", fontweight="bold" if bold else "normal",
-            linespacing=1.25)
+    label = ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", fontsize=fs,
+                    color=C_NA if na else "black", fontweight="bold" if bold else "normal",
+                    linespacing=1.25)
+    if blk:
+        BLOCKS[blk] = text.replace("\n", " ")
+        tag(patch, "blk", blk)
+        tag(label, "blk", blk)
 
 
 def line(ax, pts, color="black", ls="-", lw=1.3, arrow=False, both=False, z=2):
@@ -98,13 +138,13 @@ class Mod:
         n = max(len(pins), len(extra or []))
         self.h = FIRST + PITCH * n + 1.5
         self.x, self.y0, self.w, self.top = x, y_top - self.h, w, y_top
-        ax.add_patch(Rectangle((x, self.y0), w, self.h, fc=FILL, ec=SYM, lw=1.8, zorder=3))
-        ax.text(x, y_top + 1.0, ref, ha="left", va="bottom", fontsize=7, color=TXT, zorder=4)
-        ax.text(x + w / 2, y_top - 2.6, name, ha="center", va="center", fontsize=7.5,
-                color=TXT, fontweight="bold", zorder=4)
+        tag(ax.add_patch(Rectangle((x, self.y0), w, self.h, fc=FILL, ec=SYM, lw=1.8, zorder=3)), "part", ref)
+        tag(ax.text(x, y_top + 1.0, ref, ha="left", va="bottom", fontsize=7, color=TXT, zorder=4), "part", ref)
+        tag(ax.text(x + w / 2, y_top - 2.6, name, ha="center", va="center", fontsize=7.5,
+                    color=TXT, fontweight="bold", zorder=4), "part", ref)
         if sub:
-            ax.text(x + w / 2, y_top - 5.4, sub, ha="center", va="center", fontsize=6,
-                    color=TXT, zorder=4)
+            tag(ax.text(x + w / 2, y_top - 5.4, sub, ha="center", va="center", fontsize=6,
+                        color=TXT, zorder=4), "part", ref)
         self.pin, self.xpin = {}, {}
         num = 1
         for edge_pins, main in ((pins, True), (extra or [], False)):
@@ -115,12 +155,12 @@ class Mod:
                 py = y_top - FIRST - i * PITCH
                 ex = x + w if on_right else x
                 sg = 1 if on_right else -1
-                ax.plot([ex, ex + sg * STUB], [py, py], color=SYM, lw=1.7, zorder=2)
+                tag(ax.plot([ex, ex + sg * STUB], [py, py], color=SYM, lw=1.7, zorder=2)[0], "pin", ref, p)
                 if nums:
-                    ax.text(ex + sg * STUB / 2, py + 0.7, str(num), ha="center", va="bottom",
-                            fontsize=6.4, color=NUM, zorder=4)
-                ax.text(ex - sg * 1, py, p, ha="right" if on_right else "left", va="center",
-                        fontsize=7.2, color=TXT, zorder=4)
+                    tag(ax.text(ex + sg * STUB / 2, py + 0.7, str(num), ha="center", va="bottom",
+                                fontsize=6.4, color=NUM, zorder=4), "pin", ref, p)
+                tag(ax.text(ex - sg * 1, py, p, ha="right" if on_right else "left", va="center",
+                            fontsize=7.2, color=TXT, zorder=4), "pin", ref, p)
                 (self.pin if main else self.xpin)[p] = (ex + sg * STUB, py)
                 num += 1
 
@@ -183,14 +223,22 @@ def noconnect(ax, xy):
 
 def attach(ax, tip, spec, direction):
     """spec: ('p', '+3V3'|'+5V'|'GND') power port | ('n', 'NET') port with net name | None = unused pin (no-connect)."""
+    ref, pin = REG["ctx"] or (None, None)
+    snap, net, kind = _snap(ax), None, "nc"
     if spec is None:
         noconnect(ax, tip)
     elif spec[0] == "s":
         return
     elif spec[0] == "p":
         power(ax, tip, spec[1], direction)
+        net, kind = spec[1], "power"
     else:
         port(ax, tip, spec[1], direction)
+        net, kind = spec[1], "signal"
+    if net:
+        _tag_new(ax, snap, "net", net)
+    if ref:
+        REG["pins"].append({"ref": ref, "pin": pin, "pinkey": key(pin), "net": net, "netkey": key(net) if net else None, "kind": kind})
 
 
 P3, P5, PG = ("p", "+3V3"), ("p", "+5V"), ("p", "GND")
@@ -233,23 +281,26 @@ def header(ax, x, y_top, ref, name, specs, side, jack=False):
     (power / net-port / None for unused / SKIP for hand-wired). Returns the pin tips."""
     n, w = len(specs), (6.0 if jack else 3.0)
     h = 4.0 * n
-    ax.add_patch(Rectangle((x, y_top - h), w, h, fc=FILL, ec=SYM, lw=1.5, zorder=3))
-    ax.text(x, y_top + 1.0, ref, ha="left", va="bottom", fontsize=7, color=TXT)
-    ax.text(x, y_top - h - 1.0, name, ha="left", va="top", fontsize=6.6, color=TXT)
+    REG["parts"][ref] = {"name": name, "sub": ""}
+    tag(ax.add_patch(Rectangle((x, y_top - h), w, h, fc=FILL, ec=SYM, lw=1.5, zorder=3)), "part", ref)
+    tag(ax.text(x, y_top + 1.0, ref, ha="left", va="bottom", fontsize=7, color=TXT), "part", ref)
+    tag(ax.text(x, y_top - h - 1.0, name, ha="left", va="top", fontsize=6.6, color=TXT), "part", ref)
     if jack:
-        ax.add_patch(plt.Circle((x + w / 2, y_top - h / 2), 2.2, fc="none", ec=SYM, lw=1.3, zorder=4))
-        ax.add_patch(plt.Circle((x + w / 2, y_top - h / 2), 0.8, fc=SYM, ec=SYM, zorder=4))
+        tag(ax.add_patch(plt.Circle((x + w / 2, y_top - h / 2), 2.2, fc="none", ec=SYM, lw=1.3, zorder=4)), "part", ref)
+        tag(ax.add_patch(plt.Circle((x + w / 2, y_top - h / 2), 0.8, fc=SYM, ec=SYM, zorder=4)), "part", ref)
     tips = []
     for i, spec in enumerate(specs):
         y = y_top - 2.0 - 4.0 * i
         ex = x + w if side == "right" else x
         sg = 1 if side == "right" else -1
-        ax.plot([ex, ex + sg * STUB], [y, y], color=SYM, lw=1.7, zorder=2)
+        tag(ax.plot([ex, ex + sg * STUB], [y, y], color=SYM, lw=1.7, zorder=2)[0], "pin", ref, str(i + 1))
         if not jack:
-            ax.add_patch(plt.Circle((x + w / 2, y), 0.7, fc=SYM, ec=SYM, zorder=4))
-        ax.text(ex + sg * STUB / 2, y + 0.7, str(i + 1), ha="center", va="bottom", fontsize=6.4, color=NUM, zorder=4)
+            tag(ax.add_patch(plt.Circle((x + w / 2, y), 0.7, fc=SYM, ec=SYM, zorder=4)), "pin", ref, str(i + 1))
+        tag(ax.text(ex + sg * STUB / 2, y + 0.7, str(i + 1), ha="center", va="bottom", fontsize=6.4, color=NUM, zorder=4),
+            "pin", ref, str(i + 1))
         tip = (ex + sg * STUB, y)
         tips.append(tip)
+        REG["ctx"] = (ref, str(i + 1))
         attach(ax, tip, spec, side)
     return tips
 
@@ -297,10 +348,13 @@ P12 = ("p", "+12V")
 def mod2(ax, ref, name, sub, x, y_top, w, side, main, extra=(), nums=False):
     """Module symbol from (pin, spec) lists. Main pins face `side`, extra pins the other edge. Pin names must be unique per list."""
     m = Mod(ax, ref, name, sub, x, y_top, w, [p for p, _ in main], side, extra=[p for p, _ in extra], nums=nums)
+    REG["parts"][ref] = {"name": name, "sub": sub or ""}
     for p, s in main:
+        REG["ctx"] = (ref, p)
         attach(ax, m.pin[p], s, side)
     opp = "left" if side == "right" else "right"
     for p, s in extra:
+        REG["ctx"] = (ref, p)
         attach(ax, m.xpin[p], s, opp)
     return m
 
@@ -317,26 +371,26 @@ def block_diagram():
     C_MAINS = C_EMG
 
     # mains path (left column, top to bottom)
-    box(ax, 3, 92, 30, 12, "230 V AC supply")
-    box(ax, 3, 74, 30, 12, "QF1 2P 63 A\nbreaker")
-    box(ax, 3, 52, 30, 16, "PZEM-004T V4\n+ 100 A split-core CT\n(aggregate meter)")
-    box(ax, 3, 26, 30, 16, "KM1-KM4\ncontactors 25 A, 2xNO")
-    box(ax, 3, 4, 30, 12, "4 appliance channels")
+    box(ax, 3, 92, 30, 12, "230 V AC supply", blk="supply")
+    box(ax, 3, 74, 30, 12, "QF1 2P 63 A\nbreaker", blk="qf1")
+    box(ax, 3, 52, 30, 16, "PZEM-004T V4\n+ 100 A split-core CT\n(aggregate meter)", blk="pzem")
+    box(ax, 3, 26, 30, 16, "KM1-KM4\ncontactors 25 A, 2xNO", blk="contactors")
+    box(ax, 3, 4, 30, 12, "4 appliance channels", blk="loads")
     for ya, yb in ((92, 86), (74, 68), (52, 42), (26, 16)):
         line(ax, [(18, ya), (18, yb)], C_MAINS, arrow=True)
 
     # controller column
-    box(ax, 70, 52, 36, 36, "Arduino Uno R3\nATmega328P, 5 V / 16 MHz\n\nSoftwareSerial (PZEM)\nUSB serial (Pi)\nI2C, GPIO", fs=8)
-    box(ax, 70, 94, 36, 12, "1602 I2C LCD +\n4x4 keypad")
-    box(ax, 70, 22, 36, 16, "12 V 4-channel relay module\n(IN1-IN4)")
+    box(ax, 70, 52, 36, 36, "Arduino Uno R3\nATmega328P, 5 V / 16 MHz\n\nSoftwareSerial (PZEM)\nUSB serial (Pi)\nI2C, GPIO", fs=8, blk="uno")
+    box(ax, 70, 94, 36, 12, "1602 I2C LCD +\n4x4 keypad", blk="hmi")
+    box(ax, 70, 22, 36, 16, "12 V 4-channel relay module\n(IN1-IN4)", blk="relay")
 
     # Raspberry Pi side
-    box(ax, 125, 78, 38, 24, "Raspberry Pi 3B+\nPython: tariff, cost,\nscheduling, web dashboard,\nSQLite")
-    box(ax, 172, 84, 28, 16, "Dashboard\n(browser over Wi-Fi)")
+    box(ax, 125, 78, 38, 24, "Raspberry Pi 3B+\nPython: tariff, cost,\nscheduling, web dashboard,\nSQLite", blk="pi")
+    box(ax, 172, 84, 28, 16, "Dashboard\n(browser over Wi-Fi)", blk="dashboard")
 
     # power chain
-    box(ax, 108, 4, 28, 14, "12 V DC supply\n(Uno VIN, relays;\nnot on quote)")
-    box(ax, 142, 4, 28, 14, "K7805 SMPS\n5 V 2 A (Pi)")
+    box(ax, 108, 4, 28, 14, "12 V DC supply\n(Uno VIN, relays;\nnot on quote)", blk="psu12")
+    box(ax, 142, 4, 28, 14, "K7805 SMPS\n5 V 2 A (Pi)", blk="k7805")
     line(ax, [(136, 11), (142, 11)], C_PWR, arrow=True)
     line(ax, [(156, 18), (156, 78)], C_PWR, lw=1.2, arrow=True)
     ax.text(158, 48, "5 V to the Pi", fontsize=6.3, color=C_PWR, va="center")
@@ -376,6 +430,7 @@ def schematic_control():
     Pin allocation: D2/D3 SoftwareSerial to PZEM (D0/D1 are the USB serial link), D4-D7 relays, D10-D13 + A0-A3 keypad (4 rows,
     4 columns), A4/A5 I2C LCD. The Uno is 5 V logic, so every module connects directly."""
     fig, ax = kcanvas(372, -8, 172, (24, 11.9))
+    new_registry("control")
     TOP = 150
 
     mod2(ax, "U8", "Raspberry Pi 3B+", "Python, web dashboard, Wi-Fi", 36, TOP, 30, "right",
@@ -430,6 +485,7 @@ def schematic_control():
         "9. The quote's Pro Mini, ESP8266 and AMS1117 are not used in this version.",
     ])
     check_overlaps(fig, ax, "schematic_control")
+    store_registry()
     ksave(fig, "ecrt_schematic_control")
 
 
@@ -439,6 +495,7 @@ def schematic_mains():
     NO contacts switch the 230 V coils of KM1-KM4, and each contactor switches one appliance channel.
     Connections are net-name ports (ports with the same name are connected)."""
     fig, ax = kcanvas(330, -20, 150, (22, 11.4))
+    new_registry("mains")
     TOP = 130
 
     ax.text(8, 144, "ECRT mains and switching sheet (DRAFT: design and install by a qualified electrician)",
@@ -475,6 +532,7 @@ def schematic_mains():
         "7. Net-name ports with the same name are connected.",
     ])
     check_overlaps(fig, ax, "schematic_mains")
+    store_registry()
     ksave(fig, "ecrt_schematic_mains")
 
 
