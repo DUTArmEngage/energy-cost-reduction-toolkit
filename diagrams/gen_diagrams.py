@@ -428,7 +428,7 @@ def schematic_control():
     """Control sheet: Arduino Uno, PZEM TTL side, LCD, keypad, relay module inputs, USB link to the Pi, 12 V supply and the Pi's 5 V.
     Signals between blocks are net-name ports (ports with the same name are connected); the rails and ground use power symbols.
     Pin allocation: D2/D3 SoftwareSerial to PZEM (D0/D1 are the USB serial link), D4-D7 relays, D10-D13 + A0-A3 keypad (4 rows,
-    4 columns), A4/A5 I2C LCD. The Uno is 5 V logic, so every module connects directly."""
+    4 columns; the last two columns are crossed, see note 10), A4/A5 I2C LCD. The Uno is 5 V logic, so every module connects directly."""
     fig, ax = kcanvas(372, -8, 172, (24, 11.9))
     new_registry("control")
     TOP = 150
@@ -441,7 +441,7 @@ def schematic_control():
                ("D4", N("RLY_IN1")), ("D5", N("RLY_IN2")), ("D6", N("RLY_IN3")), ("D7", N("RLY_IN4")),
                ("D8", None), ("D9", None),
                ("D10", N("KP_R1")), ("D11", N("KP_R2")), ("D12", N("KP_R3")), ("D13", N("KP_R4")),
-               ("A0", N("KP_C1")), ("A1", N("KP_C2")), ("A2", N("KP_C3")), ("A3", N("KP_C4")),
+               ("A0", N("KP_C1")), ("A1", N("KP_C2")), ("A2", N("KP_C4")), ("A3", N("KP_C3")),
                ("A4 (SDA)", N("SDA")), ("A5 (SCL)", N("SCL"))],
          extra=[("USB-B", N("USB_SER")), ("VIN", P12), ("5V", P5), ("GND", PG), ("3V3", None), ("IOREF", None),
                 ("RESET", None), ("AREF", None), ("D0 (RX)", None), ("D1 (TX)", None)])
@@ -455,7 +455,7 @@ def schematic_control():
          [("GND", PG), ("VCC", P5), ("SDA", N("SDA")), ("SCL", N("SCL"))]),
         ("KP1", "4x4 keypad", "thin-film matrix",
          [("R1", N("KP_R1")), ("R2", N("KP_R2")), ("R3", N("KP_R3")), ("R4", N("KP_R4")),
-          ("C1", N("KP_C1")), ("C2", N("KP_C2")), ("C3", N("KP_C3")), ("C4", N("KP_C4"))]),
+          ("C1", N("KP_C1")), ("C2", N("KP_C2")), ("C4", N("KP_C4")), ("C3", N("KP_C3"))]),
         ("U5", "4-ch relay module", "12 V coils, control side",
          [("VCC", P12), ("GND", PG), ("IN1", N("RLY_IN1")), ("IN2", N("RLY_IN2")),
           ("IN3", N("RLY_IN3")), ("IN4", N("RLY_IN4"))]),
@@ -483,6 +483,7 @@ def schematic_control():
         "7. A 12 V DC adapter is needed for J2 and is not on the quote. D8 and D9 are spare.",
         "8. Net-name ports with the same name are connected. Power rails and GND use power symbols.",
         "9. The quote's Pro Mini, ESP8266 and AMS1117 are not used in this version.",
+        "10. Keypad connector pins 7 and 8 are columns 4 and 3 (found on the bench), so A2 carries C4 and A3 carries C3.",
     ])
     check_overlaps(fig, ax, "schematic_control")
     store_registry()

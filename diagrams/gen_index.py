@@ -245,6 +245,7 @@ function merge(rs,p){
 }
 function rectsFor(s,item){
   if(!item)return[];
+  if(item.type==="parts")return item.refs.flatMap(ref=>rectsFor(s,{type:"part",ref}));
   const els=[];
   if(item.type==="part")els.push(...(s.idx.part[item.ref]||[]));
   else if(item.type==="blk")els.push(...(s.idx.blk[item.key]||[]));
@@ -300,7 +301,7 @@ const scale=s=>{const r=s.svg.getBoundingClientRect();return Math.min(r.width/s.
 
 /* ---------- status line ---------- */
 const HINT="Hover to highlight, click to select. Wheel zooms, drag pans. F fits, Esc clears, S sidebar, PgUp/PgDn change page.";
-const status=t=>{$("#status").textContent=t||HINT;};
+const status=t=>{const s=S[current];$("#status").textContent=t||(s&&s.sel?"Selected: "+describe(s,s.sel):HINT);};
 
 /* ---------- item from an event target ---------- */
 function itemFrom(s,target){
@@ -313,12 +314,13 @@ function itemFrom(s,target){
   return p&&p.netkey?{type:"net",key:p.netkey,viaPin:m}:{type:"pin",ref:m.ref,pin:m.pin};
 }
 function describe(s,item){
+  if(item.type==="parts")return item.refs.join(", ")+(item.blk?"  "+DATA.blocks[item.blk].title:"");
   if(item.type==="part")return item.ref+"  "+partName(item.ref,s.sid);
   if(item.type==="blk"){const b=DATA.blocks[item.key];return b.title+(b.targets.length?"  (click to open)":"");}
   if(item.type==="net"){const n=DATA.nets[item.key];return n.name+"  "+(netPins[s.sid][item.key]||[]).length+" pin(s)"+(item.viaPin?"  via "+item.viaPin.ref+"."+item.viaPin.pin:"");}
   return item.ref+"."+item.pin+"  not connected";
 }
-const sameItem=(a,b)=>!!(a&&b&&a.type===b.type&&(a.ref||a.key)===(b.ref||b.key));
+const sameItem=(a,b)=>!!(a&&b&&a.type===b.type&&(a.ref||a.key||a.refs.join())===(b.ref||b.key||b.refs.join()));
 
 /* ---------- interaction on a sheet ---------- */
 function bind(s){
@@ -342,7 +344,14 @@ function bind(s){
     if(s.moved){s.moved=false;return;}
     const it=itemFrom(s,e.target);
     if(!it){select(s.sid,null,false);return;}
-    if(it.type==="blk"){const b=DATA.blocks[it.key];if(b.targets.length===1){nav(b.targets[0].sheet,{part:b.targets[0].ref});return;}}
+    if(it.type==="blk"){
+      const b=DATA.blocks[it.key];
+      if(b.targets.length){                       // open the first target's sheet and highlight the block's parts on it
+        const sheet=b.targets[0].sheet, refs=b.targets.filter(t=>t.sheet===sheet).map(t=>t.ref);
+        nav(sheet,refs.length>1?{parts:refs.join(","),blk:it.key}:{part:refs[0],blk:it.key});
+        return;
+      }
+    }
     select(s.sid,it,false);
   });
 }
@@ -356,9 +365,10 @@ function setHover(s,it){
 /* ---------- selection + info pane ---------- */
 function select(sid,item,fitWhenCleared){
   const s=S[sid]; s.sel=item; draw(s,"sel",item); draw(s,"hov",null); s.hovKey="";
-  renderInfo(s); markRows();
+  renderInfo(s); markRows(); status("");
   const p=new URLSearchParams();
-  if(item&&item.type==="part")p.set("part",item.ref); if(item&&item.type==="net")p.set("net",item.key); if(item&&item.type==="blk")p.set("blk",item.key);
+  if(item&&item.type==="part")p.set("part",item.ref); if(item&&item.type==="parts")p.set("parts",item.refs.join(",")); if(item&&item.type==="net")p.set("net",item.key); if(item&&item.type==="blk")p.set("blk",item.key);
+  if(item&&item.blk&&item.type!=="blk")p.set("blk",item.blk);
   const h="#/"+sid+(p.toString()?"?"+p:""); if(location.hash!==h)history.replaceState(null,"",h);
   if(!item&&fitWhenCleared)fit(s,true);
 }
@@ -372,6 +382,12 @@ function renderInfo(s){
     h+=`<h2>${esc(b.title)}</h2><div class="sub">${esc(b.label)}</div>`;
     if(b.note)h+=`<div>${esc(b.note)}</div>`;
     if(b.targets.length)h+=`<h4>Open</h4>`+b.targets.map(t=>`<div>${link(esc(t.ref),t.sheet,{part:t.ref})} on ${esc(SHEET[t.sheet].title)}</div>`).join("");
+  }else if(it.type==="parts"){
+    const b=it.blk?DATA.blocks[it.blk]:null;
+    h+=`<h2>${esc(b?b.title:it.refs.join(", "))}</h2><div class="sub">${esc(b?b.label:"")}</div>`;
+    h+=`<h4>Parts</h4>`+it.refs.map(r=>`<div>${link(esc(r),sid,{part:r})} ${esc(partName(r,sid))}</div>`).join("");
+    if(b){const o=b.targets.filter(t=>t.sheet!==sid);if(o.length)h+=`<h4>Also</h4>`+o.map(t=>`<div>${link(esc(t.ref),t.sheet,{part:t.ref})} on ${esc(SHEET[t.sheet].title)}</div>`).join("");
+      h+=`<div>${link("Back to the block diagram","block",{blk:it.blk})}</div>`;}
   }else if(it.type==="part"){
     const ref=it.ref;
     h+=`<h2>${esc(ref)}  ${esc(partName(ref,sid))}</h2><div class="sub">${esc(partSub(ref,sid))}</div>`;
@@ -411,11 +427,12 @@ function route(){
   requestAnimationFrame(()=>{
     if(!s.fitted){fit(s,false);s.fitted=true;}else setVB(s,s.vb);
     let item=null;
-    const part=params.get("part"), net=params.get("net"), blk=params.get("blk");
-    if(part&&s.idx.part[part])item={type:"part",ref:part};
+    const part=params.get("part"), parts=(params.get("parts")||"").split(",").filter(r=>r&&s.idx.part[r]), net=params.get("net"), blk=params.get("blk");
+    if(parts.length>1)item={type:"parts",refs:parts,blk:DATA.blocks[blk]?blk:null};
+    else if(parts.length===1||part&&s.idx.part[part])item={type:"part",ref:parts[0]||part,blk:DATA.blocks[blk]&&current!=="block"?blk:null};
     else if(net&&(s.idx.net[net]||netPins[view][net]))item={type:"net",key:net};
-    else if(blk&&s.idx.blk[blk])item={type:"blk",key:blk};
-    s.sel=item; draw(s,"sel",item); draw(s,"hov",null); s.hovKey=""; renderInfo(s); markRows();
+    else if(blk&&s.idx.blk[blk]&&view==="block")item={type:"blk",key:blk};
+    s.sel=item; draw(s,"sel",item); draw(s,"hov",null); s.hovKey=""; renderInfo(s); markRows(); status("");
     if(item)zoomToRects(s,rectsFor(s,item)); else if(params.toString()===""&&s.vb.w!==fitRect(s,s.orig,1.04).w)fit(s,true);
   });
 }

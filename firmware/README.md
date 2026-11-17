@@ -22,7 +22,7 @@ firmware/
 | D4, D5, D6, D7 | Relay module IN1 to IN4 | Active-low (MD0010): LOW = relay on, HIGH = off |
 | D8, D9 | Spare | |
 | D10, D11, D12, D13 | Keypad rows R1 to R4 | |
-| A0, A1, A2, A3 | Keypad columns C1 to C4 | Analog pins used as digital I/O |
+| A0, A1, A3, A2 | Keypad columns C1 to C4 | Analog pins used as digital I/O. Keypad connector pins 7 and 8 are columns 4 and 3 (found with `test_keypad`), so C3 is on A3 and C4 on A2 |
 | A4 (SDA), A5 (SCL) | LCD 1602 I2C backpack | Address 0x27 is typical: confirm with an I2C scan |
 
 Behaviour to implement:

@@ -11,7 +11,9 @@ constexpr uint8_t PIN_RELAY[4] = {4, 5, 6, 7};
 
 // 4x4 keypad
 constexpr uint8_t PIN_KP_ROW[4] = {10, 11, 12, 13};
-constexpr uint8_t PIN_KP_COL[4] = {A0, A1, A2, A3};
+// Columns C1..C4 are the keypad's physical columns. Bench test: the keypad connector's pins 7 and 8 are columns 4 and 3, so the
+// last two column lines are crossed and C3 is on A3, C4 on A2.
+constexpr uint8_t PIN_KP_COL[4] = {A0, A1, A3, A2};
 
 // LCD 1602 I2C backpack on A4 (SDA) / A5 (SCL), address 0x27 is typical: confirm with an I2C scan
 constexpr uint8_t LCD_I2C_ADDR = 0x27;

@@ -1,6 +1,7 @@
 // Test: 4x4 keypad on D10-D13 (rows R1..R4) and A0-A3 (columns C1..C4). Prints each key press to the USB serial.
 // Expected layout (standard thin-film 4x4): 1 2 3 A / 4 5 6 B / 7 8 9 C / * 0 # D. If keys come out wrong, the header order is
-// different from the assumption: note what each key prints and fix the wiring or the keymap.
+// different from the assumption: note what each key prints and fix the wiring or the keymap. (Bench result: the connector's last
+// two column pins were crossed, which is why PIN_KP_COL in pins.h lists A3 before A2.)
 #include <Arduino.h>
 #include <Keypad.h>
 
