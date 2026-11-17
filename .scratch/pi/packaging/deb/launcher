@@ -1,0 +1,3 @@
+#!/bin/sh
+# Start the dashboard: `ecrt-ui` (extra arguments go to `streamlit run`), e.g. ECRT_FEED=serial ECRT_PORT=/dev/ttyACM0 ecrt-ui
+exec /usr/lib/@NAME@/venv/bin/ecrt-ui "$@"

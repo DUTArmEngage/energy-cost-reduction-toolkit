@@ -1,0 +1,10 @@
+#!/bin/sh
+# Stop the service before the files go away; on removal also disable it.
+set -e
+if [ -d /run/systemd/system ]; then
+    case "$1" in
+        remove|deconfigure) systemctl disable --now @NAME@.service || true ;;
+        upgrade)            systemctl stop @NAME@.service || true ;;
+    esac
+fi
+exit 0

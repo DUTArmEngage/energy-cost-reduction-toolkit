@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 *.pdf
 .venv/
+dist/
+build/
