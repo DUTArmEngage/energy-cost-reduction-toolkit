@@ -4,7 +4,6 @@ Run: python3 gen_diagrams.py -> ecrt_block_diagram, ecrt_schematic_control, ecrt
 The old UAV version is kept in gen_diagrams_uav_backup.py.
 """
 import os
-import random
 
 import matplotlib
 import matplotlib.patches
@@ -370,133 +369,50 @@ def block_diagram():
     save(fig, "ecrt_block_diagram")
 
 
-# ================================================== wiring helpers (real wires instead of net-name ports)
-def _seg_pen(a, b, c, d):
-    ah, ch = abs(a[1] - b[1]) < 1e-9, abs(c[1] - d[1]) < 1e-9
-    if ah and ch:
-        if abs(a[1] - c[1]) > 1e-6:
-            return 0
-        lo, hi = max(min(a[0], b[0]), min(c[0], d[0])), min(max(a[0], b[0]), max(c[0], d[0]))
-        return 1000 if hi - lo > 1e-6 else 0
-    if (not ah) and (not ch):
-        if abs(a[0] - c[0]) > 1e-6:
-            return 0
-        lo, hi = max(min(a[1], b[1]), min(c[1], d[1])), min(max(a[1], b[1]), max(c[1], d[1]))
-        return 1000 if hi - lo > 1e-6 else 0
-    h, v = ((a, b), (c, d)) if ah else ((c, d), (a, b))
-    hx0, hx1 = sorted((h[0][0], h[1][0]))
-    y = h[0][1]
-    vx = v[0][0]
-    vy0, vy1 = sorted((v[0][1], v[1][1]))
-    if hx0 - 1e-6 <= vx <= hx1 + 1e-6 and vy0 - 1e-6 <= y <= vy1 + 1e-6:
-        interior = hx0 + 1e-6 < vx < hx1 - 1e-6 and vy0 + 1e-6 < y < vy1 - 1e-6
-        return 1 if interior else 1000
-    return 0
-
-
-def wire_penalty(polys):
-    segs = [(i, a, b) for i, p in enumerate(polys) for a, b in zip(p, p[1:]) if abs(a[0] - b[0]) + abs(a[1] - b[1]) > 1e-6]
-    tot = 0
-    for k, (i, a, b) in enumerate(segs):
-        for (j, c, d) in segs[k + 1:]:
-            if i != j:
-                tot += _seg_pen(a, b, c, d)
-    return tot
-
-
-def channel_wires(pairs, xs, tries=1500):
-    """Route each (A, B) tip pair as A -> vertical channel -> B, picking the channel order with the fewest crossings.
-    Returns (polylines, penalty). A penalty of 1000 or more would mean two wires lie on top of each other."""
-    n = len(pairs)
-    rnd = random.Random(1)
-
-    def build(perm):
-        return [[A, (xs[perm[i]], A[1]), (xs[perm[i]], B[1]), B] for i, (A, B) in enumerate(pairs)]
-
-    cands = [list(range(n)), list(range(n))[::-1]]
-    by_a = sorted(range(n), key=lambda i: pairs[i][0][1])
-    cands += [[by_a.index(i) for i in range(n)], [n - 1 - by_a.index(i) for i in range(n)]]
-    bp = min(cands, key=lambda p_: wire_penalty(build(p_)))
-    best = wire_penalty(build(bp))
-    for _ in range(tries):
-        q = bp[:]
-        i, j = rnd.sample(range(n), 2)
-        q[i], q[j] = q[j], q[i]
-        pq_ = wire_penalty(build(q))
-        if pq_ <= best:
-            best, bp = pq_, q
-    return build(bp), best
-
-
-def draw_wires(ax, polys):
-    for p in polys:
-        pts = [p[0]]
-        for q in p[1:]:
-            if abs(q[0] - pts[-1][0]) + abs(q[1] - pts[-1][1]) > 1e-6:
-                pts.append(q)
-        wire(ax, pts)
-
-
 # ================================================== SHEET 1: low-voltage control
 def schematic_control():
     """Control sheet: Arduino Uno, PZEM TTL side, LCD, keypad, relay module inputs, USB link to the Pi, 12 V supply and the Pi's 5 V.
-    Signals are drawn as real wires (no net-name ports); only the power rails and ground use power symbols.
+    Signals between blocks are net-name ports (ports with the same name are connected); the rails and ground use power symbols.
     Pin allocation: D2/D3 SoftwareSerial to PZEM (D0/D1 are the USB serial link), D4-D7 relays, D10-D13 + A0-A3 keypad (4 rows,
     4 columns), A4/A5 I2C LCD. The Uno is 5 V logic, so every module connects directly."""
-    fig, ax = kcanvas(394, -8, 172, (25.5, 11.9))
+    fig, ax = kcanvas(372, -8, 172, (24, 11.9))
     TOP = 150
 
-    pi = mod2(ax, "U8", "Raspberry Pi 3B+", "Python, web dashboard, Wi-Fi", 36, TOP, 30, "right",
-              main=[("USB", SKIP)], extra=[("PWR", ("p", "+5V PI"))])
+    mod2(ax, "U8", "Raspberry Pi 3B+", "Python, web dashboard, Wi-Fi", 36, TOP, 30, "right",
+         main=[("USB", N("USB_SER"))], extra=[("PWR", ("p", "+5V PI"))])
 
-    u1 = mod2(ax, "U1", "Arduino Uno R3", "ATmega328P, 5 V / 16 MHz", 116, TOP, 34, "right",
-              main=[("D2 (SW-RX)", SKIP), ("D3 (SW-TX)", SKIP), ("D4", SKIP), ("D5", SKIP), ("D6", SKIP), ("D7", SKIP),
-                    ("D8", None), ("D9", None),
-                    ("D10", SKIP), ("D11", SKIP), ("D12", SKIP), ("D13", SKIP),
-                    ("A0", SKIP), ("A1", SKIP), ("A2", SKIP), ("A3", SKIP), ("A4 (SDA)", SKIP), ("A5 (SCL)", SKIP)],
-              extra=[("USB-B", SKIP), ("VIN", P12), ("5V", P5), ("GND", PG), ("3V3", None), ("IOREF", None),
-                     ("RESET", None), ("AREF", None), ("D0 (RX)", None), ("D1 (TX)", None)])
-    # USB cable: Pi USB-A port to the Uno USB-B socket (same row, one straight wire)
-    draw_wires(ax, [[pi.pin["USB"], u1.xpin["USB-B"]]])
-    ax.text((pi.pin["USB"][0] + u1.xpin["USB-B"][0]) / 2, pi.pin["USB"][1] + 1.0, "USB cable (serial + power)", ha="center",
-            va="bottom", fontsize=6.5, color=LBL)
+    mod2(ax, "U1", "Arduino Uno R3", "ATmega328P, 5 V / 16 MHz", 116, TOP, 34, "right",
+         main=[("D2 (SW-RX)", N("PZEM_TX")), ("D3 (SW-TX)", N("PZEM_RX")),
+               ("D4", N("RLY_IN1")), ("D5", N("RLY_IN2")), ("D6", N("RLY_IN3")), ("D7", N("RLY_IN4")),
+               ("D8", None), ("D9", None),
+               ("D10", N("KP_R1")), ("D11", N("KP_R2")), ("D12", N("KP_R3")), ("D13", N("KP_R4")),
+               ("A0", N("KP_C1")), ("A1", N("KP_C2")), ("A2", N("KP_C3")), ("A3", N("KP_C4")),
+               ("A4 (SDA)", N("SDA")), ("A5 (SCL)", N("SCL"))],
+         extra=[("USB-B", N("USB_SER")), ("VIN", P12), ("5V", P5), ("GND", PG), ("3V3", None), ("IOREF", None),
+                ("RESET", None), ("AREF", None), ("D0 (RX)", None), ("D1 (TX)", None)])
 
-    # peripherals, pins face the Uno (shifted by 2 so their rows never line up with the Uno's)
-    px, pw, y = 230, 34, TOP - 2
+    # peripherals, pins face the Uno
+    px, pw, y = 210, 34, TOP
     stack_parts = [
         ("U2", "PZEM-004T V4 (TTL side)", "5 V TTL, 9600 baud",
-         [("5V", P5), ("RX", SKIP), ("TX", SKIP), ("GND", PG)]),
+         [("5V", P5), ("RX", N("PZEM_RX")), ("TX", N("PZEM_TX")), ("GND", PG)]),
         ("U3", "LCD 1602 + I2C", "backpack, 5 V, addr 0x27 (typ.)",
-         [("GND", PG), ("VCC", P5), ("SDA", SKIP), ("SCL", SKIP)]),
+         [("GND", PG), ("VCC", P5), ("SDA", N("SDA")), ("SCL", N("SCL"))]),
         ("KP1", "4x4 keypad", "thin-film matrix",
-         [("R1", SKIP), ("R2", SKIP), ("R3", SKIP), ("R4", SKIP), ("C1", SKIP), ("C2", SKIP), ("C3", SKIP), ("C4", SKIP)]),
+         [("R1", N("KP_R1")), ("R2", N("KP_R2")), ("R3", N("KP_R3")), ("R4", N("KP_R4")),
+          ("C1", N("KP_C1")), ("C2", N("KP_C2")), ("C3", N("KP_C3")), ("C4", N("KP_C4"))]),
         ("U5", "4-ch relay module", "12 V coils, control side",
-         [("VCC", P12), ("GND", PG), ("IN1", SKIP), ("IN2", SKIP), ("IN3", SKIP), ("IN4", SKIP)]),
+         [("VCC", P12), ("GND", PG), ("IN1", N("RLY_IN1")), ("IN2", N("RLY_IN2")),
+          ("IN3", N("RLY_IN3")), ("IN4", N("RLY_IN4"))]),
     ]
-    mods = {}
     for ref, name, sub, main in stack_parts:
         m = mod2(ax, ref, name, sub, px, y, pw, "left", main)
-        mods[ref] = m
         y = m.y0 - 6
-    links = [("D2 (SW-RX)", "U2", "TX"), ("D3 (SW-TX)", "U2", "RX"),
-             ("D4", "U5", "IN1"), ("D5", "U5", "IN2"), ("D6", "U5", "IN3"), ("D7", "U5", "IN4"),
-             ("D10", "KP1", "R1"), ("D11", "KP1", "R2"), ("D12", "KP1", "R3"), ("D13", "KP1", "R4"),
-             ("A0", "KP1", "C1"), ("A1", "KP1", "C2"), ("A2", "KP1", "C3"), ("A3", "KP1", "C4"),
-             ("A4 (SDA)", "U3", "SDA"), ("A5 (SCL)", "U3", "SCL")]
-    pairs = [(u1.pin[a], mods[r].pin[b]) for a, r, b in links]
-    polys, pen = channel_wires(pairs, [166 + 3.4 * i for i in range(len(pairs))])
-    assert pen < 1000, "signal wires overlap"
-    print("control sheet wire crossings:", pen)
-    draw_wires(ax, polys)
 
     # 12 V jack -> K7805 -> Raspberry Pi 5 V. The same 12 V rail feeds the Uno VIN pin and the relay module.
-    jk = header(ax, 292, TOP - 7, "J2", "12 V DC input", [SKIP, PG], "right", jack=True)
-    u6 = mod2(ax, "U6", "K7805-2000R3", "Mornsun SMPS 5 V 2 A (Pi supply)", 332, TOP, 34, "right",
-              main=[("VOUT", ("p", "+5V PI")), ("GND", PG)], extra=[("VIN", SKIP)])
-    draw_wires(ax, [[jk[0], u6.xpin["VIN"]]])
-    mx = (jk[0][0] + u6.xpin["VIN"][0]) / 2
-    junction(ax, mx, jk[0][1])
-    power(ax, (mx, jk[0][1]), "+12V", "up")
+    header(ax, 272, TOP - 7, "J2", "12 V DC input", [P12, PG], "right", jack=True)
+    mod2(ax, "U6", "K7805-2000R3", "Mornsun SMPS 5 V 2 A (Pi supply)", 312, TOP, 34, "right",
+         main=[("VOUT", ("p", "+5V PI")), ("GND", PG)], extra=[("VIN", P12)])
 
     ax.text(8, 168, "ECRT control sheet: Arduino Uno, PZEM TTL side, LCD, keypad, relay inputs, Pi link, DC supply",
             ha="left", va="center", fontsize=9, color=TXT, fontweight="bold")
@@ -510,7 +426,7 @@ def schematic_control():
         "5. U5 (MD0010) is active-low per its datasheet: drive IN LOW to switch on. A 5 V HIGH switches it off.",
         "6. U6 (K7805, 2 A) powers the Pi only. A Pi 3B+ is rated for 2.5 A, so avoid heavy USB loads.",
         "7. A 12 V DC adapter is needed for J2 and is not on the quote. D8 and D9 are spare.",
-        "8. Wires that cross without a dot are not connected. Power rails and GND use power symbols.",
+        "8. Net-name ports with the same name are connected. Power rails and GND use power symbols.",
         "9. The quote's Pro Mini, ESP8266 and AMS1117 are not used in this version.",
     ])
     check_overlaps(fig, ax, "schematic_control")
@@ -519,88 +435,36 @@ def schematic_control():
 
 # ================================================== SHEET 2: mains switching (draft)
 def schematic_mains():
-    """Mains sheet: supply -> QF1 -> L bus / N bus (drawn as wires with junction dots). PZEM voltage terminals and CT on the L conductor
-    measure the aggregate. The relay module's NO contacts switch the 230 V coils of KM1-KM4, and each contactor switches one appliance."""
-    fig, ax = kcanvas(330, -52, 160, (22, 14.2))
+    """Mains sheet: supply -> QF1 -> L_BUS / N_BUS. PZEM voltage terminals and CT on L_BUS measure the aggregate. The relay module's
+    NO contacts switch the 230 V coils of KM1-KM4, and each contactor switches one appliance channel.
+    Connections are net-name ports (ports with the same name are connected)."""
+    fig, ax = kcanvas(330, -20, 150, (22, 11.4))
     TOP = 130
-    LTOP, NTOP = 138, 141                       # top feed lines of the L and N buses
-    XL, XN = 160, 168                           # vertical L and N buses between the relay module and the contactors
-    XLL, XNL = 84, 80                           # vertical L and N taps on the left (breaker / PZEM)
 
-    ax.text(8, 154, "ECRT mains and switching sheet (DRAFT: design and install by a qualified electrician)",
+    ax.text(8, 144, "ECRT mains and switching sheet (DRAFT: design and install by a qualified electrician)",
             ha="left", va="center", fontsize=9, color=TXT, fontweight="bold")
 
-    j1 = header(ax, 24, TOP, "J1", "230 V AC supply", [SKIP, SKIP], "left")
+    header(ax, 24, TOP, "J1", "230 V AC supply", [N("L_SUP"), N("N_SUP")], "right")
     q1 = mod2(ax, "QF1", "2P 63 A C-curve", "6 kA breaker", 24, TOP - 20, 30, "right",
-              main=[("L OUT", SKIP), ("N OUT", SKIP)], extra=[("L IN", SKIP), ("N IN", SKIP)])
+              main=[("L OUT", N("L_BUS")), ("N OUT", N("N_BUS"))], extra=[("L IN", N("L_SUP")), ("N IN", N("N_SUP"))])
     u2 = mod2(ax, "U2", "PZEM-004T V4", "mains side: L/N sense + CT", 24, q1.y0 - 12, 30, "right",
-              main=[("L", SKIP), ("N", SKIP), ("CT A", SKIP), ("CT B", SKIP)])
-    ct = header(ax, 24, u2.y0 - 12, "CT1", "100 A split-core CT, clamped on the L conductor", [SKIP, SKIP], "right")
+              main=[("L", N("L_BUS")), ("N", N("N_BUS")), ("CT A", N("CT_A")), ("CT B", N("CT_B"))])
+    header(ax, 24, u2.y0 - 12, "CT1", "100 A split-core CT, clamped on L_BUS", [N("CT_A"), N("CT_B")], "right")
 
     rel = []
     for i in range(1, 5):
-        rel += [(f"COM{i}", SKIP), (f"NO{i}", SKIP), (f"NC{i}", None)]
-    u5 = mod2(ax, "U5", "4-ch relay module", "contact side (coil inputs on control sheet)", 110, TOP, 34, "right", rel)
+        rel += [(f"COM{i}", N("L_BUS")), (f"NO{i}", N(f"KM{i}_A1")), (f"NC{i}", None)]
+    mod2(ax, "U5", "4-ch relay module", "contact side (coil inputs on control sheet)", 110, TOP, 34, "right", rel)
 
-    # contactor stack: pick a gap so no contactor pin row lines up with a relay pin row (keeps the wires apart)
-    relay_rows = [p[1] for p in list(u5.pin.values())]
-    gap = 6.0
-    while True:
-        ytops = [TOP - 2 - (26.5 + gap) * k for k in range(4)]
-        rows = [yt - 9 - 4 * j for yt in ytops for j in range(4)]
-        if all(abs(r - rr) >= 1.0 for r in rows for rr in relay_rows):
-            break
-        gap += 0.25
-    kms = []
+    y = TOP
     for i in range(1, 5):
-        m = mod2(ax, f"KM{i}", "Contactor 25 A, 2xNO", f"channel {i}, 230 V coil", 200, ytops[i - 1], 34, "left",
-                 main=[("A1", SKIP), ("A2", SKIP), ("1 (L in)", SKIP), ("3 (N in)", SKIP)],
-                 extra=[("2 (L out)", SKIP), ("4 (N out)", SKIP)])
-        kms.append(m)
-        ld = header(ax, 290, m.top - 7, f"J{i + 2}", f"Load {i} (appliance)", [SKIP, SKIP], "left")
-        for k, name in enumerate(("2 (L out)", "4 (N out)")):
-            draw_wires(ax, [[m.xpin[name], ld[k]]])
+        m = mod2(ax, f"KM{i}", "Contactor 25 A, 2xNO", f"channel {i}, 230 V coil", 200, y, 34, "left",
+                 main=[("A1", N(f"KM{i}_A1")), ("A2", N("N_BUS")), ("1 (L in)", N("L_BUS")), ("3 (N in)", N("N_BUS"))],
+                 extra=[("2 (L out)", N(f"LOAD{i}_L")), ("4 (N out)", N(f"LOAD{i}_N"))])
+        header(ax, 290, m.top - 7, f"J{i + 2}", f"Load {i} (appliance)", [N(f"LOAD{i}_L"), N(f"LOAD{i}_N")], "left")
+        y = m.y0 - 6
 
-    # supply -> breaker inputs
-    yLi, yNi = q1.xpin["L IN"][1], q1.xpin["N IN"][1]
-    draw_wires(ax, [[j1[0], (14, j1[0][1]), (14, yLi), q1.xpin["L IN"]]])
-    draw_wires(ax, [[j1[1], (10, j1[1][1]), (10, yNi), q1.xpin["N IN"]]])
-
-    # left taps: breaker outputs and PZEM voltage terminals onto the L and N feed lines
-    yLo, yNo = q1.pin["L OUT"][1], q1.pin["N OUT"][1]
-    yLu, yNu = u2.pin["L"][1], u2.pin["N"][1]
-    draw_wires(ax, [[q1.pin["L OUT"], (XLL, yLo)], [u2.pin["L"], (XLL, yLu)], [(XLL, yLu), (XLL, LTOP), (XL, LTOP)]])
-    draw_wires(ax, [[q1.pin["N OUT"], (XNL, yNo)], [u2.pin["N"], (XNL, yNu)], [(XNL, yNu), (XNL, NTOP), (XN, NTOP)]])
-    for p in ((XLL, yLo), (XLL, yLu), (XNL, yNo), (XNL, yNu)):
-        junction(ax, *p)
-
-    # CT leads
-    ya, yb = ct[0][1], ct[1][1]
-    draw_wires(ax, [[u2.pin["CT A"], (70, u2.pin["CT A"][1]), (70, ya), ct[0]]])
-    draw_wires(ax, [[u2.pin["CT B"], (66, u2.pin["CT B"][1]), (66, yb), ct[1]]])
-
-    # right buses: L at XL (relay COM pins and contactor pin 1), N at XN (contactor A2 and pin 3)
-    l_pts, n_pts = [], []
-    for i in range(1, 5):
-        c = u5.pin[f"COM{i}"]
-        draw_wires(ax, [[c, (XL, c[1])]])
-        l_pts.append(c[1])
-        junction(ax, XL, c[1])
-        m = kms[i - 1]
-        for name, bus, lst in (("1 (L in)", XL, l_pts), ("A2", XN, n_pts), ("3 (N in)", XN, n_pts)):
-            t = m.pin[name]
-            draw_wires(ax, [[t, (bus, t[1])]])
-            lst.append(t[1])
-            junction(ax, bus, t[1])
-        # relay NO contact -> contactor coil A1 through its own channel
-        no, a1 = u5.pin[f"NO{i}"], m.pin["A1"]
-        xc = 176 + 4 * (i - 1)
-        draw_wires(ax, [[no, (xc, no[1]), (xc, a1[1]), a1]])
-    draw_wires(ax, [[(XL, LTOP), (XL, min(l_pts))], [(XN, NTOP), (XN, min(n_pts))]])
-    ax.text(XL - 1.5, LTOP + 1.2, "L", ha="right", va="bottom", fontsize=7.5, color=TXT, fontweight="bold")
-    ax.text(XN + 1.5, NTOP + 1.2, "N", ha="left", va="bottom", fontsize=7.5, color=TXT, fontweight="bold")
-
-    notes(ax, 24, -12, [
+    notes(ax, 110, 62, [
         "Notes",
         "1. DRAFT. Mains wiring, earthing and enclosure: qualified electrician only.",
         "2. The quote lists one contactor. KM2 to KM4 are still needed, one per channel.",
@@ -608,7 +472,7 @@ def schematic_mains():
         "4. CT1 clamps the live conductor after QF1, so U2 measures all four channels together (aggregate).",
         "5. QF1 (63 A) does not protect 25 A contactors or the loads: add an MCB per channel. Earth bar not drawn.",
         "6. Test the control side first with low-voltage loads (see brief, section 7).",
-        "7. Wires that cross without a dot are not connected.",
+        "7. Net-name ports with the same name are connected.",
     ])
     check_overlaps(fig, ax, "schematic_mains")
     ksave(fig, "ecrt_schematic_mains")

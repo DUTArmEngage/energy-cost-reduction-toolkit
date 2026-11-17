@@ -27,23 +27,6 @@ diagrams/
   gen_stripboard.py   stripboard layout for the low-voltage motherboard
 ```
 
-## Generating the drawings
-
-Needs Python 3 and matplotlib. Run from anywhere:
-
-```
-python3 diagrams/gen_diagrams.py     # ecrt_block_diagram, ecrt_schematic_control, ecrt_schematic_mains
-python3 diagrams/gen_stripboard.py   # stripboard (both sides), stripboard_1to1 (true size, print at 100 %)
-```
-
-Outputs are written next to the scripts as PNG, SVG and PDF. PDFs are git-ignored (regenerate them); the PNG and SVG files are tracked.
-
-- **Control schematic**: Uno, PZEM TTL side, LCD, keypad, relay inputs, Pi USB link, 12 V and the Pi supply. Signals are real wires;
-  power rails and ground use power symbols.
-- **Mains schematic** (draft): supply, breaker, PZEM voltage and CT, relay contacts, four contactors, load connectors, with L and N buses.
-- **Stripboard**: a 7.5 x 10 cm piece (29 x 39 holes) of a 10 x 30 cm board whose strips run along the numbers (each letter row is
-  one strip). The script places the cuts, routes the jumpers and checks for shorts and opens before drawing.
-
 ## Status and open items
 
 - The **stripboard layout is still for the Arduino Pro Mini** and no longer matches the Uno schematic. It needs redoing for the Uno
