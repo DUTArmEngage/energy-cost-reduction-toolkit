@@ -472,7 +472,7 @@ def schematic_control():
     ksave(fig, "ecrt_schematic_control")
 
 
-# ================================================== SHEET 2: mains switching (draft)
+# ================================================== SHEET 2: mains switching
 def schematic_mains():
     """Mains sheet: supply -> QF1 -> L_BUS / N_BUS. PZEM voltage terminals and CT on L_BUS measure the aggregate. The relay module's
     NO contacts switch the 230 V coils of KM1-KM4, and each contactor switches one appliance channel.
@@ -481,7 +481,7 @@ def schematic_mains():
     new_registry("mains")
     TOP = 130
 
-    ax.text(8, 144, "ECRT mains and switching sheet (DRAFT: design and install by a qualified electrician)",
+    ax.text(8, 144, "ECRT mains and switching sheet (design and install by a qualified electrician)",
             ha="left", va="center", fontsize=9, color=TXT, fontweight="bold")
 
     header(ax, 24, TOP, "J1", "230 V AC supply", [N("L_SUP"), N("N_SUP")], "right")

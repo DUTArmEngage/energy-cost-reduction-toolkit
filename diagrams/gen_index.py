@@ -21,7 +21,7 @@ SHEETS = [
      "How the parts fit together. Click a block to open it on a sheet."),
     ("control", "Control sheet", "ecrt_schematic_control",
      "Arduino Uno with the PZEM TTL side, LCD, keypad, relay-module inputs, the Raspberry Pi USB link and the 12 V / 5 V supply."),
-    ("mains", "Mains sheet (draft)", "ecrt_schematic_mains",
+    ("mains", "Mains sheet", "ecrt_schematic_mains",
      "Supply, breaker, PZEM voltage and CT, relay contacts, four contactors and the load connectors."),
 ]
 
@@ -157,6 +157,9 @@ button,input{font:inherit}
 svg.sheet{width:100%;height:100%;display:block}
 svg.sheet *{stroke-linejoin:round;stroke-linecap:butt}
 svg.sheet g[id*="--"]{cursor:pointer}
+svg.sheet [id$="axes_1"]>g{transition:opacity .12s}
+svg.sheet .dim{opacity:.12}
+button[aria-pressed="true"]{background:#ccc}
 .hl{fill:rgba(255,122,0,.16);stroke:#ff7a00;stroke-width:2;vector-effect:non-scaling-stroke;pointer-events:none}
 .hl-hov{fill:rgba(31,122,255,.12);stroke:#1f7aff;stroke-width:1.5;stroke-dasharray:5 3}
 #status{flex:none;border-top:1px solid #888;background:#eee;padding:2px 6px;min-height:1.4em;color:#333}
@@ -167,7 +170,7 @@ svg.sheet g[id*="--"]{cursor:pointer}
   <button id="btn-side" title="Show or hide the sidebar (S)">Sidebar</button>
   <b id="page-title"></b>
   <span class="sp"></span>
-  <button id="btn-out" title="Zoom out (-)">&minus;</button><button id="btn-in" title="Zoom in (+)">+</button><button id="btn-fit" title="Fit page (F)">Fit</button><span id="zoom"></span>
+  <button id="btn-out" title="Zoom out (-)">&minus;</button><button id="btn-in" title="Zoom in (+)">+</button><button id="btn-focus" title="Dim everything except the selected net or part (D)" aria-pressed="true">Dim others</button><button id="btn-fit" title="Fit page (F)">Fit</button><span id="zoom"></span>
   <span class="sp"></span>
   <span id="searchwrap"><input id="q" placeholder="Find part or net (/)" autocomplete="off" aria-label="Find part or net"><div id="results"></div></span>
 </div>
@@ -225,7 +228,7 @@ function initSheet(sid){
   svg.querySelectorAll('g[id*="--"]').forEach(g=>{const m=parseId(g.id);if(m)(idx[m.kind][m.key]||(idx[m.kind][m.key]=[])).push(g);});
   const ns="http://www.w3.org/2000/svg", ov=document.createElementNS(ns,"g");
   ov.innerHTML='<g id="ov-sel-'+sid+'"></g><g id="ov-hov-'+sid+'"></g>'; ov.setAttribute("pointer-events","none"); svg.appendChild(ov);
-  S[sid]={sid,wrap,svg,orig,idx,vb:{...orig},bb:new Map(),sel:null,hovKey:"",moved:false,anim:0,ns,fitted:false};
+  S[sid]={sid,wrap,svg,orig,idx,axes:svg.querySelector('g[id$="axes_1"]'),vb:{...orig},bb:new Map(),sel:null,hovKey:"",moved:false,anim:0,ns,fitted:false};
   bind(S[sid]);
 }
 function bbox(s,el){
@@ -300,7 +303,7 @@ function zoomToRects(s,rs){
 const scale=s=>{const r=s.svg.getBoundingClientRect();return Math.min(r.width/s.vb.w,r.height/s.vb.h);};
 
 /* ---------- status line ---------- */
-const HINT="Hover to highlight, click to select. Wheel zooms, drag pans. F fits, Esc clears, S sidebar, PgUp/PgDn change page.";
+const HINT="Hover to highlight, click to select. Wheel zooms, drag pans. F fits, Esc clears, S sidebar, D dim others, PgUp/PgDn change page.";
 const status=t=>{const s=S[current];$("#status").textContent=t||(s&&s.sel?"Selected: "+describe(s,s.sel):HINT);};
 
 /* ---------- item from an event target ---------- */
@@ -362,10 +365,29 @@ function setHover(s,it){
   status(it?describe(s,it):"");
 }
 
+/* ---------- focus: dim everything except the active nets ---------- */
+let focusOn=true;
+try{focusOn=localStorage.getItem("ecrt.focus")!=="0";}catch(e){}
+function applyFocus(s){
+  const it=s.sel, kids=[...s.axes.children];
+  const on=focusOn&&it&&s.sid!=="block"&&(it.type==="net"||it.type==="part"||it.type==="parts");
+  if(!on){kids.forEach(c=>c.classList.remove("dim"));return;}
+  const act=new Set(), add=a=>(a||[]).forEach(e=>act.add(e));
+  const addNet=key=>{add(s.idx.net[key]);for(const p of netPins[s.sid][key]||[]){add(s.idx.pin[p.ref+"|"+p.pinkey]);add(s.idx.part[p.ref]);}};
+  const addPart=ref=>{add(s.idx.part[ref]);for(const p of DATA.pins[s.sid])if(p.ref===ref){add(s.idx.pin[p.ref+"|"+p.pinkey]);if(p.netkey)addNet(p.netkey);}};
+  if(it.type==="net")addNet(it.key); else if(it.type==="part")addPart(it.ref); else it.refs.forEach(addPart);
+  kids.forEach(c=>c.classList.toggle("dim",!act.has(c)));
+}
+function setFocus(on){
+  focusOn=on; $("#btn-focus").setAttribute("aria-pressed",String(on));
+  try{localStorage.setItem("ecrt.focus",on?"1":"0");}catch(e){}
+  SHEET_IDS.forEach(id=>applyFocus(S[id]));
+}
+
 /* ---------- selection + info pane ---------- */
 function select(sid,item,fitWhenCleared){
   const s=S[sid]; s.sel=item; draw(s,"sel",item); draw(s,"hov",null); s.hovKey="";
-  renderInfo(s); markRows(); status("");
+  renderInfo(s); markRows(); status(""); applyFocus(s);
   const p=new URLSearchParams();
   if(item&&item.type==="part")p.set("part",item.ref); if(item&&item.type==="parts")p.set("parts",item.refs.join(",")); if(item&&item.type==="net")p.set("net",item.key); if(item&&item.type==="blk")p.set("blk",item.key);
   if(item&&item.blk&&item.type!=="blk")p.set("blk",item.blk);
@@ -432,7 +454,7 @@ function route(){
     else if(parts.length===1||part&&s.idx.part[part])item={type:"part",ref:parts[0]||part,blk:DATA.blocks[blk]&&current!=="block"?blk:null};
     else if(net&&(s.idx.net[net]||netPins[view][net]))item={type:"net",key:net};
     else if(blk&&s.idx.blk[blk]&&view==="block")item={type:"blk",key:blk};
-    s.sel=item; draw(s,"sel",item); draw(s,"hov",null); s.hovKey=""; renderInfo(s); markRows(); status("");
+    s.sel=item; draw(s,"sel",item); draw(s,"hov",null); s.hovKey=""; renderInfo(s); markRows(); status(""); applyFocus(s);
     if(item)zoomToRects(s,rectsFor(s,item)); else if(params.toString()===""&&s.vb.w!==fitRect(s,s.orig,1.04).w)fit(s,true);
   });
 }
@@ -448,6 +470,7 @@ window.addEventListener("keydown",e=>{
   else if(e.key==="+"||e.key==="="){const r=s.wrap.getBoundingClientRect();zoomAt(s,1.25,r.left+r.width/2,r.top+r.height/2);}
   else if(e.key==="-"){const r=s.wrap.getBoundingClientRect();zoomAt(s,1/1.25,r.left+r.width/2,r.top+r.height/2);}
   else if(e.key==="s"||e.key==="S")toggleSide();
+  else if(e.key==="d"||e.key==="D")setFocus(!focusOn);
   else if(e.key==="/"){e.preventDefault();$("#q").focus();}
 });
 window.addEventListener("resize",()=>{const s=S[current];setVB(s,fitRect(s,s.vb,1));});
@@ -458,6 +481,7 @@ function setSide(open,save){
 }
 function toggleSide(){setSide($("#side").hidden,true);}
 $("#btn-side").onclick=toggleSide;
+$("#btn-focus").onclick=()=>setFocus(!focusOn);
 $("#btn-fit").onclick=()=>fit(S[current],true);
 $("#btn-in").onclick=()=>{const s=S[current],r=s.wrap.getBoundingClientRect();zoomAt(s,1.25,r.left+r.width/2,r.top+r.height/2);};
 $("#btn-out").onclick=()=>{const s=S[current],r=s.wrap.getBoundingClientRect();zoomAt(s,1/1.25,r.left+r.width/2,r.top+r.height/2);};
@@ -516,6 +540,7 @@ q.addEventListener("blur",()=>setTimeout(()=>{results.style.display="none";},150
 
 /* ---------- start ---------- */
 SHEET_IDS.forEach(initSheet);
+$("#btn-focus").setAttribute("aria-pressed",String(focusOn));
 setTab("pages"); renderLists(); status("");
 try{if(localStorage.getItem("ecrt.side")==="0")$("#side").hidden=true;}catch(e){}
 route();
