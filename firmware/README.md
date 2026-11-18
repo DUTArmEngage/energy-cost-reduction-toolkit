@@ -31,7 +31,7 @@ Behaviour to implement:
 - Switch each of the four relay channels on command from the Pi, and from the keypad.
 - Show readings and channel states on the LCD.
 - Set every relay pin HIGH (off) before configuring it as an output, so no channel clicks on at power-up.
-- Define the serial message format for measurements and commands (not yet decided).
+- Speak the serial format for measurements and commands. A provisional CSV one is defined in `.scratch/pi/src/ecrt_pi_scratch/feed.py`: about once a second the Uno sends one line of ten numbers (volts, amps, watts, kWh, Hz, power factor, relays 1 to 4; no header and no field names, the order is fixed in code), and the Pi sends `R,channel,state`.
 
 ## Raspberry Pi (`pi/`)
 
@@ -46,4 +46,4 @@ Everything on the Pi is Python, managed with uv (`uv sync`, `uv run ecrt-pi`).
 ## Open items
 
 - The PZEM TX voltage level and the relay module's trigger behaviour should be confirmed on the bench before relying on them.
-- Dashboard framework and the serial protocol are still to be chosen.
+- The serial format (provisional CSV) is not final. The dashboard framework is Streamlit in the scratch project and not final either.

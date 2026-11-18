@@ -1,6 +1,6 @@
 [project]
 name = "ecrt-pi-scratch"
-version = "0.1.1"
+version = "0.1.2"
 description = "Scratch experiments for the ECRT Raspberry Pi side."
 readme = "README.md"
 requires-python = ">=3.11"
