@@ -2,7 +2,7 @@
 """ECRT STRIPBOARD MOTHERBOARD (low-voltage side only). The copper strips run across the page along the number axis (1..29):
 every LETTERED ROW is one strip, 29 holes long (39 strips: A..AM). Parts stand upright so each pin sits on its own strip, the strips
 are cut where two different nets would meet, and wire jumpers join what the strips cannot.
-Mains parts (QF1, contactors, PZEM mains side, relay contacts) are NOT on this board: see ecrt_schematic_mains.
+Mains parts (contactors, PZEM mains side, relay contacts) are NOT on this board: see ecrt_schematic_mains.
 
 Board: a 7.5 x 10 cm piece of the 10 x 30 cm board, assumed 2.54 mm pitch = 29 x 39 holes (39 strips of 29 holes).
 Writes next to this script: stripboard.png / .pdf (component side + copper side, cut and jumper lists)

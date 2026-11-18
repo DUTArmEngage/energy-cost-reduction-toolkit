@@ -12,7 +12,7 @@ from expensive tariff periods. Full description: [`references/PROJECT_BRIEF.md`]
 | Raspberry Pi 3B+ | Python: tariff, cost and scheduling; web dashboard; SQLite history. Wi-Fi built in |
 | PZEM-004T V4 + 100 A CT | Single aggregate meter (voltage, current, power, energy), TTL serial |
 | 12 V 4-channel relay module (Keyestudio MD0010, active-low) | Switches the 230 V coils of four contactors |
-| 4 x 25 A 2xNO modular contactors, 2P 63 A breaker | Mains switching and protection (enclosure, not on the board) |
+| 4 x 25 A 2xNO modular contactors | Mains switching (enclosure, not on the board) |
 | 1602 I2C LCD, 4x4 keypad | Local user interface |
 | K7805 SMPS (5 V 2 A) | Supplies the Pi from the 12 V rail |
 

@@ -368,11 +368,10 @@ def block_diagram():
 
     # mains path (left column, top to bottom)
     box(ax, 3, 92, 30, 12, "230 V AC supply", blk="supply")
-    box(ax, 3, 74, 30, 12, "QF1 2P 63 A\nbreaker", blk="qf1")
     box(ax, 3, 52, 30, 16, "PZEM-004T V4\n+ 100 A split-core CT\n(aggregate meter)", blk="pzem")
     box(ax, 3, 26, 30, 16, "KM1-KM4\ncontactors 25 A, 2xNO", blk="contactors")
     box(ax, 3, 4, 30, 12, "4 appliance channels", blk="loads")
-    for ya, yb in ((92, 86), (74, 68), (52, 42), (26, 16)):
+    for ya, yb in ((92, 68), (52, 42), (26, 16)):
         line(ax, [(18, ya), (18, yb)], C_MAINS, arrow=True)
 
     # controller column
@@ -474,7 +473,7 @@ def schematic_control():
 
 # ================================================== SHEET 2: mains switching
 def schematic_mains():
-    """Mains sheet: supply -> QF1 -> L_BUS / N_BUS. PZEM voltage terminals and CT on L_BUS measure the aggregate. The relay module's
+    """Mains sheet: supply -> L_BUS / N_BUS. PZEM voltage terminals and CT on L_BUS measure the aggregate. The relay module's
     NO contacts switch the 230 V coils of KM1-KM4, and each contactor switches one appliance channel.
     Connections are net-name ports (ports with the same name are connected)."""
     fig, ax = kcanvas(330, -20, 150, (22, 11.4))
@@ -484,10 +483,8 @@ def schematic_mains():
     ax.text(8, 144, "ECRT mains and switching sheet (design and install by a qualified electrician)",
             ha="left", va="center", fontsize=9, color=TXT, fontweight="bold")
 
-    header(ax, 24, TOP, "J1", "230 V AC supply", [N("L_SUP"), N("N_SUP")], "right")
-    q1 = mod2(ax, "QF1", "2P 63 A C-curve", "6 kA breaker", 24, TOP - 20, 30, "right",
-              main=[("L OUT", N("L_BUS")), ("N OUT", N("N_BUS"))], extra=[("L IN", N("L_SUP")), ("N IN", N("N_SUP"))])
-    u2 = mod2(ax, "U2", "PZEM-004T V4", "mains side: L/N sense + CT", 24, q1.y0 - 12, 30, "right",
+    header(ax, 24, TOP, "J1", "230 V AC supply", [N("L_BUS"), N("N_BUS")], "right")
+    u2 = mod2(ax, "U2", "PZEM-004T V4", "mains side: L/N sense + CT", 24, TOP - 20, 30, "right",
               main=[("L", N("L_BUS")), ("N", N("N_BUS")), ("CT A", N("CT_A")), ("CT B", N("CT_B"))])
     header(ax, 24, u2.y0 - 12, "CT1", "100 A split-core CT, clamped on L_BUS", [N("CT_A"), N("CT_B")], "right")
 

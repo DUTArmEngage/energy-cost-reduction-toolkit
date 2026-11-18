@@ -22,13 +22,12 @@ SHEETS = [
     ("control", "Control sheet", "ecrt_schematic_control",
      "Arduino Uno with the PZEM TTL side, LCD, keypad, relay-module inputs, the Raspberry Pi USB link and the 12 V / 5 V supply."),
     ("mains", "Mains sheet", "ecrt_schematic_mains",
-     "Supply, breaker, PZEM voltage and CT, relay contacts, four contactors and the load connectors."),
+     "Supply, PZEM voltage and CT, relay contacts, four contactors and the load connectors."),
 ]
 
 # block key -> (sheet, ref) targets. Blocks without a target are software or not drawn as parts.
 BLOCK_TARGETS = {
     "supply": [("mains", "J1")],
-    "qf1": [("mains", "QF1")],
     "pzem": [("control", "U2"), ("mains", "U2"), ("mains", "CT1")],
     "contactors": [("mains", f"KM{i}") for i in range(1, 5)],
     "loads": [("mains", f"J{i}") for i in range(3, 7)],
@@ -41,7 +40,7 @@ BLOCK_TARGETS = {
     "k7805": [("control", "U6")],
 }
 BLOCK_TITLES = {
-    "supply": "230 V AC supply", "qf1": "QF1 breaker", "pzem": "PZEM-004T + CT", "contactors": "Contactors KM1-KM4",
+    "supply": "230 V AC supply", "pzem": "PZEM-004T + CT", "contactors": "Contactors KM1-KM4",
     "loads": "Appliance channels", "uno": "Arduino Uno", "hmi": "LCD + keypad", "relay": "Relay module", "pi": "Raspberry Pi",
     "dashboard": "Dashboard", "psu12": "12 V supply", "k7805": "K7805 SMPS",
 }
