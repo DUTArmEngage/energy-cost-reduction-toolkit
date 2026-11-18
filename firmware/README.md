@@ -1,6 +1,6 @@
 # Firmware
 
-Code that runs on the two controllers of the ECRT. Only a starter Uno project exists so far (it builds, but only sets up the relays and serial). This file records what each side must do and the pin map
+Code that runs on the two controllers of the ECRT. The Uno firmware is written (it builds and its protocol code is unit-tested, but it has not run on hardware yet); the Pi side is still a Python scratch project. This file records what each side does and the pin map
 from the control schematic (`diagrams/ecrt_schematic_control.png`), so the code and the hardware stay in step.
 
 ## Layout (planned)
@@ -25,13 +25,27 @@ firmware/
 | A0, A1, A3, A2 | Keypad columns C1 to C4 | Analog pins used as digital I/O. Keypad connector pins 7 and 8 are columns 4 and 3 (found with `test_keypad`), so C3 is on A3 and C4 on A2 |
 | SDA, SCL (header pins next to AREF, same as A4, A5) | LCD 1602 I2C backpack | Address 0x27 is typical: confirm with an I2C scan |
 
-Behaviour to implement:
+### What the firmware does
 
-- Read voltage, current, active power and accumulated energy from the PZEM and send them to the Pi over USB serial.
-- Switch each of the four relay channels on command from the Pi, and from the keypad.
-- Show readings and channel states on the LCD.
-- Set every relay pin HIGH (off) before configuring it as an output, so no channel clicks on at power-up.
-- Speak the serial format for measurements and commands. A provisional CSV one is defined in `.scratch/pi/src/ecrt_pi_scratch/feed.py`: about once a second the Uno sends one line of ten numbers (volts, amps, watts, kWh, Hz, power factor, relays 1 to 4; no header and no field names, the order is fixed in code), and the Pi sends `R,channel,state`.
+- Reads voltage, current, power, energy, frequency and power factor from the PZEM once a second and sends one CSV line to the Pi: `volts,amps,watts,kWh,Hz,pf,r1,r2,r3,r4` (no header, six empty fields when the PZEM does not answer). The line is also sent straight after any relay change.
+- Switches a relay on `R,channel,state` from the Pi (channel 1 to 4, state 1 = on) and from the keypad. Nothing else is ever printed on the USB serial.
+- Keypad: `1` to `4` toggle that channel, `A` / `B` next / previous LCD page, `*` all off.
+- LCD pages: power and energy; frequency, power factor and the four channel states (`+` on, `-` off); meter and Pi link status. Keypad actions show a short message on the second line.
+- Contactor protection: a channel will not change again until it has held its state for `MIN_SWITCH_MS` (5 s, in `include/config.h`). A command that arrives too soon is ignored, and the next report line carries the real state. "All off" ignores the limit.
+- Every relay pin is set HIGH (off) before it becomes an output, so no channel clicks on at power-up. Relays stay in their last state if the Pi goes quiet: there is no watchdog yet (see open items).
+
+### Code layout
+
+```
+arduino/
+  include/pins.h, config.h      pin map; baud rates, report interval, switching limit
+  lib/ecrt_protocol/            line format and parsing, no Arduino dependencies (unit-tested on the PC)
+  src/main.cpp                  loop: Pi commands, keypad, meter, report, LCD
+  src/relays.*  meter.*  ui.*   relay outputs, PZEM reads, LCD and keypad
+  test/test_protocol/           pio test -e native
+```
+
+Build and flash with `pio run -t upload` in `arduino/`. Libraries (PZEM-004T-v30, LiquidCrystal_I2C, Keypad) are fetched by PlatformIO. The component test programs are in `.scratch/arduino` and use the same `pins.h`.
 
 ## Raspberry Pi (`pi/`)
 
@@ -45,5 +59,8 @@ Everything on the Pi is Python, managed with uv (`uv sync`, `uv run ecrt-pi`).
 
 ## Open items
 
+- The Uno has not run this firmware on real hardware. Bring it up in the order of the scratch tests (LCD, keypad, relay with the mains side disconnected, then the PZEM with a qualified person present).
+- SoftwareSerial (the PZEM link) disables interrupts while it receives, so a command byte arriving from the Pi in that ~25 ms window each second can be lost. The Pi should confirm the state in the next report line and resend if it did not change.
+- There is no fail-safe if the Pi stops sending: the relays keep their last state. Decide what the loads should do (stay, or switch off after a timeout) before real use.
 - The PZEM TX voltage level and the relay module's trigger behaviour should be confirmed on the bench before relying on them.
 - The serial format (provisional CSV) is not final. The dashboard framework is Streamlit in the scratch project and not final either.
