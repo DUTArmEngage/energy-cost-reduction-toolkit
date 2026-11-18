@@ -23,7 +23,7 @@ firmware/
 | D8, D9 | Spare | |
 | D10, D11, D12, D13 | Keypad rows R1 to R4 | |
 | A0, A1, A3, A2 | Keypad columns C1 to C4 | Analog pins used as digital I/O. Keypad connector pins 7 and 8 are columns 4 and 3 (found with `test_keypad`), so C3 is on A3 and C4 on A2 |
-| A4 (SDA), A5 (SCL) | LCD 1602 I2C backpack | Address 0x27 is typical: confirm with an I2C scan |
+| SDA, SCL (header pins next to AREF, same as A4, A5) | LCD 1602 I2C backpack | Address 0x27 is typical: confirm with an I2C scan |
 
 Behaviour to implement:
 

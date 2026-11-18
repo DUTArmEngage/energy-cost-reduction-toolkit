@@ -15,7 +15,7 @@ constexpr uint8_t PIN_KP_ROW[4] = {10, 11, 12, 13};
 // last two column lines are crossed and C3 is on A3, C4 on A2.
 constexpr uint8_t PIN_KP_COL[4] = {A0, A1, A3, A2};
 
-// LCD 1602 I2C backpack on A4 (SDA) / A5 (SCL), address 0x27 is typical: confirm with an I2C scan
+// LCD 1602 I2C backpack on the SDA / SCL header pins (next to AREF, same as A4 / A5), address 0x27 is typical: confirm with an I2C scan
 constexpr uint8_t LCD_I2C_ADDR = 0x27;
 
 // D8, D9: spare

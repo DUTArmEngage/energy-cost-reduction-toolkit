@@ -1,4 +1,4 @@
-// Test: I2C bus scan on A4 (SDA) / A5 (SCL). The LCD backpack is usually at 0x27 or 0x3F.
+// Test: I2C bus scan on the SDA / SCL header pins (next to AREF, same as A4 / A5). The LCD backpack is usually at 0x27 or 0x3F.
 #include <Arduino.h>
 #include <Wire.h>
 

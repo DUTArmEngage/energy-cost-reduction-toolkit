@@ -442,7 +442,7 @@ def schematic_control():
     """Control sheet: Arduino Uno, PZEM TTL side, LCD, keypad, relay module inputs, USB link to the Pi, 12 V supply and the Pi's 5 V.
     Signals between blocks are net-name ports (ports with the same name are connected); the rails and ground use power symbols.
     Pin allocation: D2/D3 SoftwareSerial to PZEM (D0/D1 are the USB serial link), D4-D7 relays, D10-D13 + A0-A3 keypad (4 rows,
-    4 columns; the last two columns are crossed, see note 10), A4/A5 I2C LCD. The Uno is 5 V logic, so every module connects directly."""
+    4 columns; the last two columns are crossed, see note 10), SDA/SCL header pins (same as A4/A5) for the I2C LCD. The Uno is 5 V logic, so every module connects directly."""
     fig, ax = kcanvas(372, -8, 172, (24, 11.9))
     new_registry("control")
     TOP = 150
@@ -456,7 +456,7 @@ def schematic_control():
                ("D8", None), ("D9", None),
                ("D10", N("KP_R1")), ("D11", N("KP_R2")), ("D12", N("KP_R3")), ("D13", N("KP_R4")),
                ("A0", N("KP_C1")), ("A1", N("KP_C2")), ("A2", N("KP_C4")), ("A3", N("KP_C3")),
-               ("A4 (SDA)", N("SDA")), ("A5 (SCL)", N("SCL"))],
+               ("SDA", N("SDA")), ("SCL", N("SCL"))],
          extra=[("USB-B", N("USB_SER")), ("VIN", P12), ("5V", P5), ("GND", PG), ("3V3", None), ("IOREF", None),
                 ("RESET", None), ("AREF", None), ("D0 (RX)", None), ("D1 (TX)", None)])
 

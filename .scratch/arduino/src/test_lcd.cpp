@@ -1,4 +1,4 @@
-// Test: LCD 1602 with I2C backpack on A4/A5. Shows a title and an uptime counter.
+// Test: LCD 1602 with I2C backpack on the SDA/SCL header pins (next to AREF, same as A4/A5). Shows a title and an uptime counter.
 // If the screen stays blank, run test_i2c_scan to find the address, then adjust the potentiometer on the backpack (contrast).
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
