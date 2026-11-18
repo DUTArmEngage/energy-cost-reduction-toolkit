@@ -200,6 +200,24 @@ def power(ax, xy, label, direction):
 
 PORT_FILL, NC_RED = "#FFE9A8", "#C00000"
 
+# Net classes: one table for the schematic net ports, the registry and the 3D layout. Every net must be listed here.
+CLASSES = {"live": ("#d01010", "230 V live"), "neutral": ("#0aa0c8", "230 V neutral"), "pwr12": ("#e08a00", "12 V"),
+           "pwr5": ("#b8a000", "5 V"), "gnd": ("#222222", "GND"), "sense": ("#1a8a1a", "CT signal"),
+           "bus": ("#1f3fd0", "serial / I2C"), "ctrl": ("#8a1a9a", "relay control"), "kp": ("#a05a2c", "keypad")}
+NET_CLASS = {"L_BUS": "live", "N_BUS": "neutral", "+12V": "pwr12", "+5V": "pwr5", "+5V PI": "pwr5", "GND": "gnd",
+             "CT_A": "sense", "CT_B": "sense", "PZEM_TX": "bus", "PZEM_RX": "bus", "USB_SER": "bus", "SDA": "bus", "SCL": "bus"}
+NET_CLASS.update({f"KM{i}_A1": "live" for i in range(1, 5)})
+NET_CLASS.update({f"LOAD{i}_L": "live" for i in range(1, 5)})
+NET_CLASS.update({f"LOAD{i}_N": "neutral" for i in range(1, 5)})
+NET_CLASS.update({f"RLY_IN{i}": "ctrl" for i in range(1, 5)})
+NET_CLASS.update({f"KP_R{i}": "kp" for i in range(1, 5)})
+NET_CLASS.update({f"KP_C{i}": "kp" for i in range(1, 5)})
+
+
+def net_class(net):
+    assert net in NET_CLASS, f"net {net!r} has no class: add it to NET_CLASS in gen_diagrams.py"
+    return NET_CLASS[net]
+
 
 def port(ax, xy, net, direction):
     """Altium port (connector flag) carrying a net name; direction = 'left'/'right' = which way it points away from the pin."""
@@ -208,7 +226,7 @@ def port(ax, xy, net, direction):
     L = 4.0 + 1.15 * len(net)
     ax.add_patch(plt.Polygon([(x, y - 1.4), (x + d * (L - 1.6), y - 1.4), (x + d * L, y),
                               (x + d * (L - 1.6), y + 1.4), (x, y + 1.4)],
-                             closed=True, fc=PORT_FILL, ec=SYM, lw=1.1, zorder=5))
+                             closed=True, fc=PORT_FILL, ec=CLASSES[net_class(net)][0], lw=1.6, zorder=5))
     ax.text(x + d * (L - 1.6) / 2, y, net, ha="center", va="center", fontsize=7.2, color=LBL, zorder=6)
 
 
@@ -238,7 +256,8 @@ def attach(ax, tip, spec, direction):
     if net:
         _tag_new(ax, snap, "net", net)
     if ref:
-        REG["pins"].append({"ref": ref, "pin": pin, "pinkey": key(pin), "net": net, "netkey": key(net) if net else None, "kind": kind})
+        REG["pins"].append({"ref": ref, "pin": pin, "pinkey": key(pin), "net": net, "netkey": key(net) if net else None, "kind": kind,
+                            "cls": net_class(net) if net else None})
 
 
 P3, P5, PG = ("p", "+3V3"), ("p", "+5V"), ("p", "GND")

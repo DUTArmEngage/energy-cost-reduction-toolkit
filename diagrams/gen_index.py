@@ -14,6 +14,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
+import gen_3d  # noqa: E402
 import gen_diagrams as g  # noqa: E402
 
 SHEETS = [
@@ -23,6 +24,9 @@ SHEETS = [
      "Arduino Uno with the PZEM TTL side, LCD, keypad, relay-module inputs, the Raspberry Pi USB link and the 12 V / 5 V supply."),
     ("mains", "Mains sheet", "ecrt_schematic_mains",
      "Supply, PZEM voltage and CT, relay contacts, four contactors and the load connectors."),
+    ("view3d", "3D layout", "ecrt_layout_3d",
+     "The modules as plain boxes at their real sizes on a base board, wired from the schematic netlist. Drag to rotate, right-drag or shift-drag "
+     "to pan, wheel to zoom. Click a part or a wire."),
 ]
 
 # block key -> (sheet, ref) targets. Blocks without a target are software or not drawn as parts.
@@ -95,17 +99,23 @@ def build():
         blocks[k] = {"title": BLOCK_TITLES[k], "label": label, "targets": targets, "note": BLOCK_NOTES.get(k, "")}
     assert set(g.BLOCKS) == set(BLOCK_TARGETS) == set(BLOCK_TITLES), "block keys out of step between the drawing, BLOCK_TARGETS and BLOCK_TITLES"
 
+    model = gen_3d.build_model(g.SHEETS, g.CLASSES)
+    gen_3d.render_png(model, HERE / "ecrt_layout_3d.png")
     data = {
-        "sheets": [{"id": s, "title": t, "desc": d, "png": f"{f}.png"} for s, t, f, d in SHEETS],
+        "model3d": model,
+        "sheets": [{"id": s, "title": t, "desc": d, "png": f"{f}.png", **({"kind": "3d"} if s == "view3d" else {})} for s, t, f, d in SHEETS],
         "parts": parts, "nets": nets, "pins": pins, "blocks": blocks,
     }
     wraps = []
     for sid, _t, f, _d in SHEETS:
+        if sid == "view3d":
+            wraps.append('<div class="sheetwrap" id="wrap-view3d"><canvas id="cv3d"></canvas></div>')
+            continue
         svg = prep_svg(sid, (HERE / f"{f}.svg").read_text())
         wraps.append(f'<div class="sheetwrap" id="wrap-{sid}">{svg}</div>')
 
     payload = json.dumps(data, separators=(",", ":")).replace("</", "<\\/")
-    html = TEMPLATE.replace("/*__DATA__*/", f"const DATA = {payload};").replace("<!--__SHEETS__-->", "\n".join(wraps))
+    html = TEMPLATE.replace("/*__DATA__*/", f"const DATA = {payload};").replace("<!--__SHEETS__-->", "\n".join(wraps)).replace("/*__VIEW3D__*/", (HERE / "view3d.js").read_text())
     (HERE / "index.html").write_text(html)
     print(f"wrote {HERE / 'index.html'} ({len(html) // 1024} KB): {len(parts)} parts, {len(nets)} nets, {len(blocks)} blocks")
 
@@ -154,6 +164,7 @@ button,input{font:inherit}
 .sheetwrap.on{display:block}
 .sheetwrap.drag{cursor:grabbing}
 svg.sheet{width:100%;height:100%;display:block}
+#cv3d{display:block}
 svg.sheet *{stroke-linejoin:round;stroke-linecap:butt}
 svg.sheet g[id*="--"]{cursor:pointer}
 svg.sheet [id$="axes_1"]>g{transition:opacity .12s}
@@ -169,7 +180,7 @@ button[aria-pressed="true"]{background:#ccc}
   <button id="btn-side" title="Show or hide the sidebar (S)">Sidebar</button>
   <b id="page-title"></b>
   <span class="sp"></span>
-  <button id="btn-out" title="Zoom out (-)">&minus;</button><button id="btn-in" title="Zoom in (+)">+</button><button id="btn-focus" title="Dim everything except the selected net or part (D)" aria-pressed="true">Dim others</button><button id="btn-fit" title="Fit page (F)">Fit</button><span id="zoom"></span>
+  <button id="btn-out" title="Zoom out (-)">&minus;</button><button id="btn-in" title="Zoom in (+)">+</button><button id="btn-wires" title="Show or hide the wires (3D layout)" hidden>Wires</button><select id="sel-labels" title="What the parts are labelled with (3D layout)" hidden><option value="ref">Labels: reference</option><option value="short">Labels: short name</option><option value="both">Labels: both</option><option value="name">Labels: full name</option><option value="size">Labels: size</option><option value="none">Labels: off</option></select><button id="btn-netnames" title="Show net names on the wires (3D layout)" hidden>Net names</button><span id="views3d" hidden><button data-view3d="iso">Iso</button><button data-view3d="top">Top</button><button data-view3d="front">Front</button></span><button id="btn-focus" title="Dim everything except the selected net or part (D)" aria-pressed="true">Dim others</button><button id="btn-fit" title="Fit page (F)">Fit</button><span id="zoom"></span>
   <span class="sp"></span>
   <span id="searchwrap"><input id="q" placeholder="Find part or net (/)" autocomplete="off" aria-label="Find part or net"><div id="results"></div></span>
 </div>
@@ -195,7 +206,10 @@ button[aria-pressed="true"]{background:#ccc}
 const $=(s,r=document)=>r.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const SHEET_IDS=DATA.sheets.map(s=>s.id), SHEET={}; DATA.sheets.forEach(s=>SHEET[s.id]=s);
+const is3d=id=>!!SHEET[id]&&SHEET[id].kind==="3d";
+const SVG_IDS=SHEET_IDS.filter(id=>!is3d(id));
 let current=SHEET_IDS[0];
+let ACTIVE=null;   // the active part, group of parts, net or block: shared by every page, cleared only by Esc or a click on empty space
 
 /* ---------- lookups built from DATA ---------- */
 const pinNet={}, netPins={};
@@ -303,7 +317,8 @@ const scale=s=>{const r=s.svg.getBoundingClientRect();return Math.min(r.width/s.
 
 /* ---------- status line ---------- */
 const HINT="Hover to highlight, click to select. Wheel zooms, drag pans. F fits, Esc clears, S sidebar, D dim others, PgUp/PgDn change page.";
-const status=t=>{const s=S[current];$("#status").textContent=t||(s&&s.sel?"Selected: "+describe(s,s.sel):HINT);};
+const HINT3="Drag rotates, right-drag or shift-drag pans, wheel zooms. Click a part or a wire. F resets the view, Esc clears, D dims others.";
+const status=t=>{const s=S[current];$("#status").textContent=t||(is3d(current)?(V3.sel?"Selected: "+describe3d(V3.sel):HINT3):s&&s.sel?"Selected: "+describe(s,s.sel):HINT);};
 
 /* ---------- item from an event target ---------- */
 function itemFrom(s,target){
@@ -380,12 +395,12 @@ function applyFocus(s){
 function setFocus(on){
   focusOn=on; $("#btn-focus").setAttribute("aria-pressed",String(on));
   try{localStorage.setItem("ecrt.focus",on?"1":"0");}catch(e){}
-  SHEET_IDS.forEach(id=>applyFocus(S[id]));
+  SVG_IDS.forEach(id=>applyFocus(S[id])); if(V3.model)draw3d();
 }
 
 /* ---------- selection + info pane ---------- */
 function select(sid,item,fitWhenCleared){
-  const s=S[sid]; s.sel=item; draw(s,"sel",item); draw(s,"hov",null); s.hovKey="";
+  const s=S[sid]; s.sel=item; ACTIVE=item&&item.type!=="pin"?item:null; draw(s,"sel",item); draw(s,"hov",null); s.hovKey="";
   renderInfo(s); markRows(); status(""); applyFocus(s);
   const p=new URLSearchParams();
   if(item&&item.type==="part")p.set("part",item.ref); if(item&&item.type==="parts")p.set("parts",item.refs.join(",")); if(item&&item.type==="net")p.set("net",item.key); if(item&&item.type==="blk")p.set("blk",item.key);
@@ -397,7 +412,7 @@ const link=(txt,sid,params)=>`<a data-go="${sid}" data-params='${esc(JSON.string
 function renderInfo(s){
   const sid=s.sid, it=s.sel; let h="";
   if(!it){
-    h=`<h2>${esc(SHEET[sid].title)}</h2><div class="sub">${esc(SHEET[sid].desc)}</div>`;
+    h=`<h2>${esc(SHEET[sid].title)}</h2><div class="sub">${esc(SHEET[sid].desc)}</div>`+activeNote();
   }else if(it.type==="blk"){
     const b=DATA.blocks[it.key];
     h+=`<h2>${esc(b.title)}</h2><div class="sub">${esc(b.label)}</div>`;
@@ -413,7 +428,7 @@ function renderInfo(s){
     const ref=it.ref;
     h+=`<h2>${esc(ref)}  ${esc(partName(ref,sid))}</h2><div class="sub">${esc(partSub(ref,sid))}</div>`;
     const os=Object.keys(DATA.parts[ref].sheets).filter(x=>x!==sid), bk=partBlock[sid+"|"+ref];
-    if(os.length||bk){h+=`<div>`+os.map(o=>`Also on ${link(esc(SHEET[o].title),o,{part:ref})}. `).join("")+(bk?`In the ${link("block diagram","block",{blk:bk})}.`:"")+`</div>`;}
+    if(os.length||bk){h+=`<div>`+os.map(o=>`Also on ${link(esc(SHEET[o].title),o,{part:ref})}. `).join("")+(bk?`In the ${link("block diagram","block",{blk:bk})}.`:"")+(DATA.model3d&&DATA.model3d.parts.some(q=>q.ref===ref)?` In the ${link("3D layout","view3d",{part:ref})}.`:"")+`</div>`;}
     const pins=DATA.pins[sid].filter(p=>p.ref===ref);
     h+=`<h4>Pins</h4><table>`+pins.map(p=>`<tr><td>${esc(p.pin)}</td><td>${p.net?link(esc(p.net),sid,{net:p.netkey}):"–"}</td></tr>`).join("")+`</table>`;
     const nb={}; for(const p of pins){if(p.kind!=="signal")continue;for(const q of netPins[sid][p.netkey]||[])if(q.ref!==ref)(nb[q.ref]||(nb[q.ref]=new Set())).add(p.net);}
@@ -430,6 +445,29 @@ function renderInfo(s){
 }
 $("#info").addEventListener("click",e=>{const a=e.target.closest("[data-go]");if(a)nav(a.dataset.go,JSON.parse(a.dataset.params||"{}"));});
 
+/* ---------- the active item follows you from page to page ---------- */
+const BLK_OF=ref=>{const k=Object.keys(partBlock).find(x=>x.split("|")[1]===ref);return k?partBlock[k]:null;};
+function resolve(a,view){
+  if(!a)return null;
+  const th=is3d(view), s=th?null:S[view];
+  const has=r=>th?!!part3(r):!!s.idx.part[r];
+  if(view==="block"){
+    const b=a.type==="blk"?a.key:a.type==="part"?BLK_OF(a.ref):a.type==="parts"?(a.blk||BLK_OF(a.refs[0])):null;
+    return b&&s.idx.blk[b]?{type:"blk",key:b}:null;
+  }
+  if(a.type==="net")return (th?V3.model.wires.some(w=>w.netkey===a.key):(s.idx.net[a.key]||(netPins[view]||{})[a.key]))?{type:"net",key:a.key}:null;
+  let refs=a.type==="part"?[a.ref]:a.type==="parts"?a.refs:(DATA.blocks[a.key].targets.filter(t=>th||t.sheet===view).map(t=>t.ref));
+  refs=[...new Set(refs.filter(has))];
+  const blk=a.type==="blk"?a.key:a.blk||null;
+  return refs.length>1?{type:"parts",refs,blk:blk&&DATA.blocks[blk]?blk:null}:refs.length?{type:"part",ref:refs[0],blk:blk&&DATA.blocks[blk]&&!th?blk:null}:null;
+}
+function activeNote(){
+  const a=ACTIVE; if(!a||(a.type!=="part"&&a.type!=="net"))return"";
+  const where=a.type==="part"?Object.keys(DATA.parts[a.ref].sheets):Object.keys(DATA.nets[a.key].sheets);
+  const first=where[0]||"view3d", label=a.type==="part"?a.ref:DATA.nets[a.key].name;
+  return `<h4>Active</h4><div>${link(esc(label),first,a.type==="part"?{part:a.ref}:{net:a.key})} is not on this page. It stays active: Esc clears it.</div>`;
+}
+
 /* ---------- routing ---------- */
 function nav(view,params){
   const q=new URLSearchParams(params||{}).toString(), h="#/"+view+(q?"?"+q:"");
@@ -437,14 +475,17 @@ function nav(view,params){
 }
 function show(view){
   current=view;
-  for(const sid of SHEET_IDS)S[sid].wrap.classList.toggle("on",sid===view);
+  for(const sid of SHEET_IDS)$("#wrap-"+sid).classList.toggle("on",sid===view);
+  $("#btn-wires").hidden=$("#views3d").hidden=$("#sel-labels").hidden=$("#btn-netnames").hidden=!is3d(view);
+  if(!is3d(view))$("#zoom").textContent="";
   $("#page-title").textContent=SHEET[view].title+"  ("+(SHEET_IDS.indexOf(view)+1)+"/"+SHEET_IDS.length+")";
   document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.dataset.go===view));
   status("");
 }
 function route(){
   const raw=location.hash.replace(/^#\/?/,""), [pth,q=""]=raw.split("?"), view=SHEET[pth]?pth:SHEET_IDS[0], params=new URLSearchParams(q);
-  show(view); const s=S[view];
+  show(view); if(is3d(view)){route3d(params);return;}
+  const s=S[view];
   requestAnimationFrame(()=>{
     if(!s.fitted){fit(s,false);s.fitted=true;}else setVB(s,s.vb);
     let item=null;
@@ -453,8 +494,10 @@ function route(){
     else if(parts.length===1||part&&s.idx.part[part])item={type:"part",ref:parts[0]||part,blk:DATA.blocks[blk]&&current!=="block"?blk:null};
     else if(net&&(s.idx.net[net]||netPins[view][net]))item={type:"net",key:net};
     else if(blk&&s.idx.blk[blk]&&view==="block")item={type:"blk",key:blk};
+    const explicit=!!(part||net||blk||parts.length); let resolved=false;
+    if(item)ACTIVE=item; else if(!explicit){item=resolve(ACTIVE,view);resolved=!!item;}
     s.sel=item; draw(s,"sel",item); draw(s,"hov",null); s.hovKey=""; renderInfo(s); markRows(); status(""); applyFocus(s);
-    if(item)zoomToRects(s,rectsFor(s,item)); else if(params.toString()===""&&s.vb.w!==fitRect(s,s.orig,1.04).w)fit(s,true);
+    if(item&&!resolved)zoomToRects(s,rectsFor(s,item)); else if(params.toString()===""&&s.vb.w!==fitRect(s,s.orig,1.04).w)fit(s,true);
   });
 }
 window.addEventListener("hashchange",route);
@@ -462,28 +505,30 @@ const page=d=>{const i=SHEET_IDS.indexOf(current)+d;if(i>=0&&i<SHEET_IDS.length)
 window.addEventListener("keydown",e=>{
   if(e.target.tagName==="INPUT")return;
   const s=S[current];
-  if(e.key==="Escape")select(current,null,true);
-  else if(e.key==="f"||e.key==="F")fit(s,true);
+  if(e.key==="Escape")is3d(current)?select3d(null):select(current,null,true);
+  else if(e.key==="f"||e.key==="F")doFit();
   else if(e.key==="PageDown"){page(1);e.preventDefault();}
   else if(e.key==="PageUp"){page(-1);e.preventDefault();}
-  else if(e.key==="+"||e.key==="="){const r=s.wrap.getBoundingClientRect();zoomAt(s,1.25,r.left+r.width/2,r.top+r.height/2);}
-  else if(e.key==="-"){const r=s.wrap.getBoundingClientRect();zoomAt(s,1/1.25,r.left+r.width/2,r.top+r.height/2);}
+  else if(e.key==="+"||e.key==="=")doZoom(1.25);
+  else if(e.key==="-")doZoom(1/1.25);
   else if(e.key==="s"||e.key==="S")toggleSide();
   else if(e.key==="d"||e.key==="D")setFocus(!focusOn);
   else if(e.key==="/"){e.preventDefault();$("#q").focus();}
 });
-window.addEventListener("resize",()=>{const s=S[current];setVB(s,fitRect(s,s.vb,1));});
+window.addEventListener("resize",()=>{if(is3d(current)){resize3d();return;}const s=S[current];setVB(s,fitRect(s,s.vb,1));});
 function setSide(open,save){
   $("#side").hidden=!open;
   if(save){try{localStorage.setItem("ecrt.side",open?"1":"0");}catch(e){}}
-  requestAnimationFrame(()=>{const s=S[current];setVB(s,fitRect(s,s.vb,1));});
+  requestAnimationFrame(()=>{if(is3d(current)){resize3d();return;}const s=S[current];setVB(s,fitRect(s,s.vb,1));});
 }
 function toggleSide(){setSide($("#side").hidden,true);}
 $("#btn-side").onclick=toggleSide;
 $("#btn-focus").onclick=()=>setFocus(!focusOn);
-$("#btn-fit").onclick=()=>fit(S[current],true);
-$("#btn-in").onclick=()=>{const s=S[current],r=s.wrap.getBoundingClientRect();zoomAt(s,1.25,r.left+r.width/2,r.top+r.height/2);};
-$("#btn-out").onclick=()=>{const s=S[current],r=s.wrap.getBoundingClientRect();zoomAt(s,1/1.25,r.left+r.width/2,r.top+r.height/2);};
+const doFit=()=>is3d(current)?fit3d():fit(S[current],true);
+const doZoom=f=>{if(is3d(current)){zoom3d(f);return;}const s=S[current],r=s.wrap.getBoundingClientRect();zoomAt(s,f,r.left+r.width/2,r.top+r.height/2);};
+$("#btn-fit").onclick=doFit;
+$("#btn-in").onclick=()=>doZoom(1.25);
+$("#btn-out").onclick=()=>doZoom(1/1.25);
 
 /* ---------- sidebar: pages, parts, nets ---------- */
 $("#tab-pages").innerHTML=DATA.sheets.map((s,i)=>`<div class="page" data-go="${s.id}"><img src="${esc(s.png)}" alt=""><div>${i+1}. ${esc(s.title)}</div></div>`).join("");
@@ -505,7 +550,7 @@ function renderLists(){
   markRows();
 }
 function markRows(){
-  const s=S[current], sel=s&&s.sel;
+  const s=S[current], sel=is3d(current)?V3.sel:s&&s.sel;
   document.querySelectorAll("#list-parts .row").forEach(r=>r.classList.toggle("on",!!sel&&sel.type==="part"&&sel.ref===r.dataset.part));
   document.querySelectorAll("#list-nets .row").forEach(r=>r.classList.toggle("on",!!sel&&sel.type==="net"&&sel.key===r.dataset.net));
 }
@@ -537,8 +582,10 @@ q.addEventListener("keydown",e=>{
 results.addEventListener("mousedown",e=>{const d=e.target.closest("[data-i]");if(d)pick(hits[+d.dataset.i]);});
 q.addEventListener("blur",()=>setTimeout(()=>{results.style.display="none";},150));
 
+/*__VIEW3D__*/
+
 /* ---------- start ---------- */
-SHEET_IDS.forEach(initSheet);
+SVG_IDS.forEach(initSheet); init3d();
 $("#btn-focus").setAttribute("aria-pressed",String(focusOn));
 setTab("pages"); renderLists(); status("");
 try{if(localStorage.getItem("ecrt.side")==="0")$("#side").hidden=true;}catch(e){}

@@ -1,4 +1,4 @@
-# iot-energy-cost-reduction-load-scheduling-system
+# energy-cost-reduction-toolkit
 
 Design, simulation and implementation of an IoT-based Energy Cost Reduction Toolkit (ECRT): it monitors the aggregate electricity
 use of a supply, calculates cost from Time-of-Use (ToU) tariffs and switches four appliance channels to shift flexible loads away
