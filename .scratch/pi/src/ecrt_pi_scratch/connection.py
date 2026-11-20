@@ -4,7 +4,7 @@ A serial port can only be opened once, and several browsers can be looking at th
 page. A small background thread reads it continuously (which also keeps the serial buffer drained when nobody is watching) and
 keeps the recent readings; each session asks for the readings newer than the last one it saw.
 
-States: "mock" (simulated data), "serial" (connected to the Uno) and "none" (not connected: never opened, disconnected by the
+States: "serial" (connected to the Uno) and "none" (not connected: never opened, disconnected by the
 user, or the connection was lost).
 """
 from __future__ import annotations
@@ -12,7 +12,7 @@ from __future__ import annotations
 import threading
 from collections import deque
 
-from ecrt_pi_scratch.feed import N_RELAYS, FeedSettings, MockFeed, Reading, SerialFeed, scan_ports
+from ecrt_pi_scratch.feed import N_RELAYS, FeedSettings, Reading, SerialFeed, scan_ports
 
 
 class Connection:
@@ -32,19 +32,12 @@ class Connection:
         self.error: str | None = None
         self.generation = 0                                  # changes whenever the source changes: sessions start afresh
 
-        if settings.kind == "serial":
-            self.connect_serial(settings.port, settings.baud)
-        else:
-            self.use_mock()
+        self.connect_serial(settings.port, settings.baud)      # on failure: not connected, with the reason in `error`
         self._poll_once()
         self._thread = threading.Thread(target=self._run, args=(interval,), daemon=True, name="ecrt-feed")
         self._thread.start()
 
     # ------------------------------------------------------------ choosing the source
-    def use_mock(self) -> None:
-        with self._lock:
-            self._set(MockFeed(), "mock", None)
-
     def connect_serial(self, port: str, baud: int) -> bool:
         """Open `port` (or scan for the data feed when port is "auto"). Returns False, with `error` set, if it fails."""
         with self._lock:
@@ -132,8 +125,6 @@ class Connection:
 
     # ------------------------------------------------------------ status
     def describe(self) -> str:
-        if self.kind == "mock":
-            return "Mock data"
         if self.kind == "serial":
             return f"Connected to {self.port} at {self.baud} baud"
         return "Not connected"

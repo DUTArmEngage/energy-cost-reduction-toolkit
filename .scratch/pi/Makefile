@@ -1,7 +1,6 @@
 # ECRT Pi scratch project: run the UI, build a .tar.gz and a .deb.
 #
-#   make run                      dashboard with the mock feed
-#   make run-serial               dashboard reading the Uno (SERIAL_PORT=/dev/ttyACM0)
+#   make run                      dashboard (opens SERIAL_PORT at start; or connect from the page)
 #   make tar                      dist/<name>-<version>.tar.gz   (source distribution)
 #   make deb                      dist/<name>_<version>_arm64.deb  (self-contained: every dependency inside, installs offline)
 #   make dist                     both
@@ -48,11 +47,10 @@ DEB_DIR := build/deb/$(NAME)_$(VERSION)_$(DEB_ARCH)
 APP_DIR := /usr/lib/$(NAME)
 
 .DEFAULT_GOAL := help
-.PHONY: help sync lint test check run run-serial tar wheel deb dist checksums package clean distclean
+.PHONY: help sync lint test check run tar wheel deb dist checksums package clean distclean
 
 help:
-	@echo "  make run          dashboard with the mock feed (PORT=$(PORT))"
-	@echo "  make run-serial   dashboard reading the Uno (SERIAL_PORT=$(SERIAL_PORT) BAUD=$(BAUD))"
+	@echo "  make run          dashboard, opens SERIAL_PORT at start (PORT=$(PORT))"
 	@echo "  make tar          $(TARBALL)"
 	@echo "  make deb          $(DEB)"
 	@echo "  make dist         tar + deb"
@@ -72,10 +70,7 @@ test:
 check: lint test
 
 run: sync
-	ECRT_FEED=mock $(UV) run ecrt-ui --server.port $(PORT)
-
-run-serial: sync
-	ECRT_FEED=serial ECRT_PORT=$(SERIAL_PORT) ECRT_BAUD=$(BAUD) $(UV) run ecrt-ui --server.port $(PORT)
+	ECRT_PORT=$(SERIAL_PORT) ECRT_BAUD=$(BAUD) $(UV) run ecrt-ui --server.port $(PORT)
 
 tar:
 	$(UV) build --sdist --out-dir $(DIST)

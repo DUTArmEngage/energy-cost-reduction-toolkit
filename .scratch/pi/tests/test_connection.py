@@ -22,14 +22,27 @@ def wait_for(condition, timeout=3.0):
 
 
 def make(settings=None, **kw):
-    return Connection(settings or FeedSettings("mock"), interval=0.01, **kw)
+    kw.setdefault("serial_factory", factory_for(FakeSerial()))
+    return Connection(settings or FeedSettings("/dev/ttyACM0", 115200), interval=0.01, **kw)
 
 
-def test_starts_on_mock_data_with_a_reading_ready():
-    c = make()
+def test_starts_connected_and_reads_the_first_line():
+    c = make(serial_factory=factory_for(FakeSerial(GOOD)))
     try:
-        assert c.kind == "mock" and c.describe() == "Mock data"
-        assert c.readings_since(0)                         # the first reading is there before the thread has run
+        assert c.kind == "serial" and c.describe() == "Connected to /dev/ttyACM0 at 115200 baud"
+        assert wait_for(lambda: c.readings_since(0))
+    finally:
+        c.close()
+
+
+def test_start_without_a_uno_is_not_connected_and_says_why():
+    def missing(port, baud):
+        raise OSError("No such file or directory")
+
+    c = make(serial_factory=missing)
+    try:
+        assert c.kind == "none" and c.describe() == "Not connected" and "No such file" in c.error
+        assert c.readings_since(0) == []
     finally:
         c.close()
 
@@ -76,17 +89,6 @@ def test_a_pulled_cable_marks_the_connection_lost():
         c.close()
 
 
-def test_switching_between_mock_and_serial_changes_the_generation():
-    c = make(serial_factory=factory_for(FakeSerial()))
-    try:
-        g0 = c.generation
-        c.connect_serial("/dev/ttyACM0", 115200)
-        c.use_mock()
-        assert c.kind == "mock" and c.generation == g0 + 2
-    finally:
-        c.close()
-
-
 def test_auto_scans_for_the_feed_and_connects_to_it():
     fake = FakeSerial()
     found = [PortInfo("/dev/ttyACM1", "", "Uno", "feed"), PortInfo("/dev/ttyUSB0", "", "other", "silent")]
@@ -104,14 +106,5 @@ def test_auto_with_no_feed_says_so():
     try:
         assert c.connect_serial("auto", 115200) is False
         assert c.kind == "none" and "No data feed found" in c.error
-    finally:
-        c.close()
-
-
-def test_started_in_serial_mode_from_the_settings():
-    fake = FakeSerial()
-    c = Connection(FeedSettings("serial", "/dev/ttyACM0", 115200), interval=0.01, serial_factory=factory_for(fake))
-    try:
-        assert c.kind == "serial" and c.port == "/dev/ttyACM0"
     finally:
         c.close()

@@ -13,8 +13,11 @@ GOOD = line(230, 1, 230, 1, 50, 1)
 
 
 @pytest.fixture(autouse=True)
-def fresh_connection():
-    """The app keeps one shared connection: start every test with a new one (the old one is closed on release)."""
+def fresh_connection(monkeypatch):
+    """The app keeps one shared connection: start every test with a new one (the old one is closed on release). It opens a
+    fake Uno that has sent one line, so the page has a reading to show."""
+    real_feed = feed_module.SerialFeed
+    monkeypatch.setattr(connection_module, "SerialFeed", lambda port, baud: real_feed(port, baud, ser=FakeSerial(GOOD)))
     st.cache_resource.clear()
     yield
     st.cache_resource.clear()
@@ -28,7 +31,7 @@ def button(at, label):
     return next(b for b in at.button if b.label == label)
 
 
-def test_app_renders_with_the_mock_feed():
+def test_app_renders_with_a_reading_from_the_uno():
     at = run()
     assert not at.exception
     labels = {m.label for m in at.metric}
@@ -59,15 +62,17 @@ def test_cost_table_is_not_in_an_accordion():
     assert any(s.value == "Cost by tariff period" for s in at.subheader)
 
 
-def test_connection_panel_scan_connect_disconnect_and_back_to_mock(monkeypatch):
+def test_connection_panel_scan_disconnect_and_reconnect(monkeypatch):
     real_feed = feed_module.SerialFeed
     monkeypatch.setattr(feed_module, "candidate_ports", lambda: [("/dev/ttyFAKE", "Fake Uno", "2341:0043")])
     monkeypatch.setattr(feed_module, "_open_serial", lambda device, baud: FakeSerial(GOOD))
     monkeypatch.setattr(connection_module, "SerialFeed", lambda port, baud: real_feed(port, baud, ser=FakeSerial()))
 
     at = run()
-    assert any("Mock data" in m.value for m in at.markdown)
-    assert button(at, "Disconnect").disabled and button(at, "Use mock data").disabled
+    assert any("Connected to /dev/ttyACM0" in m.value for m in at.markdown)       # opened at start
+    assert not any(b.label == "Use mock data" for b in at.button)                  # there is no mock any more
+    button(at, "Disconnect").click().run()
+    assert any("Not connected" in m.value for m in at.markdown)
 
     button(at, "Scan for data feed").click().run()                       # finds the port that carries the data
     assert not at.exception
@@ -82,10 +87,6 @@ def test_connection_panel_scan_connect_disconnect_and_back_to_mock(monkeypatch):
     button(at, "Disconnect").click().run()
     assert any("Not connected" in m.value for m in at.markdown)
     assert any("Not connected" in w.value for w in at.warning)           # the page says so too
-    assert all(t.disabled for t in at.toggle) if len(at.toggle) else True
-
-    button(at, "Use mock data").click().run()
-    assert any("Mock data" in m.value for m in at.markdown)
 
 
 def test_a_failed_connect_shows_the_error(monkeypatch):
@@ -97,3 +98,15 @@ def test_a_failed_connect_shows_the_error(monkeypatch):
     at = run()
     button(at, "Connect").click().run()
     assert any("busy" in e.value for e in at.error)
+
+
+def test_page_starts_without_a_uno_and_says_so(monkeypatch):
+    def missing(port, baud):
+        raise OSError("No such file or directory")
+
+    monkeypatch.setattr(connection_module, "SerialFeed", missing)
+    st.cache_resource.clear()
+    at = run()
+    assert not at.exception
+    assert any("No such file" in w.value for w in at.warning)
+    assert any("Not connected" in m.value for m in at.markdown)

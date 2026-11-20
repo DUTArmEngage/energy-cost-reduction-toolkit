@@ -1,8 +1,8 @@
 """ECRT dashboard (Streamlit). Run with `uv run ecrt-ui`.
 
-The data comes from one shared Connection (see connection.py): simulated mock data, or the Uno over USB serial. Use the Connection
-panel at the bottom of the page to scan for the port that carries the data feed, connect, disconnect or switch to mock data. To
-start already connected, set ECRT_FEED=serial and ECRT_PORT=/dev/ttyACM0 (or ECRT_PORT=auto to scan at start) before starting.
+The data comes from one shared Connection (see connection.py): the Uno over USB serial. At start it opens ECRT_PORT (default
+/dev/ttyACM0, or "auto" to scan for the data feed). Use the Connection panel at the bottom of the page to scan for the port that
+carries the data feed, connect or disconnect.
 """
 from __future__ import annotations
 
@@ -74,7 +74,7 @@ def on_relay(channel: int) -> None:
 
 # ---------------------------------------------------------------- session setup
 def sync_generation() -> None:
-    """The data source changed (connect, disconnect, mock): start the session afresh so old and new readings are not mixed."""
+    """The data source changed (connect, disconnect): start the session afresh so old and new readings are not mixed."""
     init_state()
     if st.session_state.get("gen") != conn.generation:
         clear_state()
@@ -104,7 +104,7 @@ def live() -> None:
         s.seq = n
     connected = conn.kind != "none"
     if not connected:
-        st.warning(conn.error or "Not connected. Open Connection below to scan for the data feed and connect, or use mock data.")
+        st.warning(conn.error or "Not connected. Open Connection below to scan for the data feed and connect.")
     if not s.history:
         if connected:
             st.info("Waiting for the first reading…")
@@ -190,13 +190,15 @@ with st.expander("Connection"):
                                       *(d for d, _, _ in candidate_ports())]))
         if conn.kind == "serial" and conn.port not in options:
             options.insert(0, conn.port)
+        chosen = st.session_state.get("port")
+        if chosen and chosen not in options:                  # a port typed earlier, or the one opened at start
+            options.insert(0, chosen)
         if st.session_state.get("port") is None and options:
             st.session_state["port"] = options[0]
         st.selectbox("Port", options, key="port", accept_new_options=True)    # or type a path such as /dev/serial/by-id/…
-        b_connect, b_disconnect, b_mock = st.columns(3)
+        b_connect, b_disconnect = st.columns(2)
         b_connect.button("Connect", on_click=do_connect, disabled=not st.session_state.get("port"))
         b_disconnect.button("Disconnect", on_click=conn.disconnect, disabled=conn.kind != "serial")
-        b_mock.button("Use mock data", on_click=conn.use_mock, disabled=conn.kind == "mock")
     with right:
         scan = st.session_state.get("scan")
         if scan is None:

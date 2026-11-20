@@ -1,7 +1,6 @@
 # ECRT dashboard settings. After editing: sudo systemctl restart @NAME@
 #
-#ECRT_FEED=mock            # mock, or serial for the real Uno
-#ECRT_PORT=/dev/ttyACM0    # serial port (only used when ECRT_FEED=serial), or auto to scan for the data feed at start
+#ECRT_PORT=/dev/ttyACM0    # serial port opened at start, or auto to scan for the data feed
 #                          # (a /dev/serial/by-id/... path also works and survives replugging)
 #ECRT_BAUD=115200
 #

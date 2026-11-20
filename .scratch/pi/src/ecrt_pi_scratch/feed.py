@@ -1,12 +1,7 @@
-"""Data feeds for the ECRT Pi side: one interface, two interchangeable sources.
+"""The data feed of the ECRT Pi side: the real Arduino Uno over USB serial (SerialFeed). The UI talks to the `Feed` interface.
+The port and baud rate come from the Connection panel, or from the ECRT_PORT / ECRT_BAUD environment variables at start.
 
-    MockFeed    simulated meter and relays, no hardware needed
-    SerialFeed  the real Arduino Uno over USB serial
-
-Both implement `Feed`, so the UI only ever talks to a Feed. To switch from mock to the Uno, change the data source (sidebar,
-or the ECRT_FEED / ECRT_PORT / ECRT_BAUD environment variables): no UI code changes.
-
-PROVISIONAL serial protocol (CSV lines at 115200 baud; the Uno firmware does not speak it yet, and nothing here is final):
+PROVISIONAL serial protocol (CSV lines at 115200 baud; the Uno firmware in firmware/arduino speaks it, and nothing here is final):
     Uno -> Pi, about 1 Hz: one line of ten comma-separated numbers. No header line and no field names are ever sent: the
     order below is a convention both sides know, fixed in this file and in the Uno firmware.
         1 volts, 2 amps, 3 watts, 4 kWh (the PZEM's accumulated energy), 5 Hz, 6 power factor, 7 to 10 relay 1 to 4 (1 = on)
@@ -20,7 +15,6 @@ from __future__ import annotations
 
 import math
 import os
-import random
 import time
 from dataclasses import dataclass
 from typing import Protocol
@@ -56,48 +50,6 @@ class Feed(Protocol):
     def close(self) -> None: ...
 
 
-# ---------------------------------------------------------------- mock
-class MockFeed:
-    """Simulated meter: a small base load plus the four channels, each with a made-up nominal power."""
-
-    name = "mock"
-    LOADS_W = (1800.0, 900.0, 2200.0, 350.0)    # fictional appliances: channel 1 to 4
-    BASE_W = 120.0
-
-    def __init__(self, interval: float = 1.0, seed: int | None = None):
-        self._rnd = random.Random(seed)
-        self._interval = interval
-        self._on = [False] * N_RELAYS
-        self._energy = 12.0
-        self._last = time.time() - interval          # the first poll answers at once
-        self._phase = self._rnd.random() * 6.28
-
-    def poll(self) -> list[Reading]:
-        now = time.time()
-        dt = now - self._last
-        if dt < self._interval:
-            return []
-        self._last = now
-        v = 230 + 3 * math.sin(now / 37 + self._phase) + self._rnd.gauss(0, 0.4)
-        p = self.BASE_W * (1 + 0.1 * math.sin(now / 11)) + self._rnd.gauss(0, 3)
-        for load, on in zip(self.LOADS_W, self._on, strict=True):
-            if on:
-                p += load * (0.97 + 0.06 * self._rnd.random())
-        p = max(p, 0.0)
-        pf = 0.92 + 0.05 * math.sin(now / 53) if p > 200 else 0.75
-        self._energy += p * dt / 3.6e6
-        return [Reading(now, v, p / (v * pf), p, self._energy, 50.0 + self._rnd.gauss(0, 0.02), pf, tuple(self._on))]
-
-    def relays(self) -> tuple[bool, ...]:
-        return tuple(self._on)
-
-    def set_relay(self, channel: int, on: bool) -> None:
-        self._on[channel - 1] = on
-
-    def close(self) -> None:
-        pass
-
-
 # ---------------------------------------------------------------- serial
 def _plausible(nums) -> bool:
     """Limits of a PZEM-004T V4 100 A. Anything outside is a damaged reading: one 180 MW value once added 50 kWh."""
@@ -131,7 +83,7 @@ class SerialFeed:
     def __init__(self, port: str, baud: int = 115200, ser=None):
         """`ser` is any object with in_waiting, read(), write() and close(): given one, no port is opened (used by the tests)."""
         if ser is None:
-            import serial  # pyserial: imported here so the mock needs no serial port
+            import serial  # pyserial: imported here so importing this module needs no serial support
 
             ser = serial.Serial(port, baud, timeout=0, write_timeout=1)
             time.sleep(2.0)                             # opening the port resets an Uno: let it boot
@@ -195,14 +147,12 @@ class SerialFeed:
 # ---------------------------------------------------------------- choosing a feed
 @dataclass(frozen=True)
 class FeedSettings:
-    kind: str = "mock"                  # "mock" or "serial"
     port: str = "/dev/ttyACM0"          # or "auto": scan for the data feed at start
     baud: int = 115200
 
 
 def settings_from_env() -> FeedSettings:
-    return FeedSettings(os.environ.get("ECRT_FEED", "mock"), os.environ.get("ECRT_PORT", "/dev/ttyACM0"),
-                        int(os.environ.get("ECRT_BAUD", "115200")))
+    return FeedSettings(os.environ.get("ECRT_PORT", "/dev/ttyACM0"), int(os.environ.get("ECRT_BAUD", "115200")))
 
 
 # ---------------------------------------------------------------- finding the port that carries the data feed

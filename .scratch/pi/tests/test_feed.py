@@ -1,35 +1,14 @@
-import time
 from types import SimpleNamespace
 
 from fakes import FakeSerial, line
 
 from ecrt_pi_scratch.feed import (
-    MockFeed,
     SerialFeed,
     candidate_ports,
     parse_line,
     probe_port,
     scan_ports,
 )
-
-
-# ---------------------------------------------------------------- mock
-def test_mock_answers_immediately_and_relays_add_load():
-    f = MockFeed(interval=0.0, seed=1)
-    idle = f.poll()[0]
-    assert idle.ok and not any(idle.relays)
-    f.set_relay(3, True)
-    loaded = f.poll()[0]
-    assert loaded.relays == (False, False, True, False)
-    assert loaded.power > idle.power + 1500          # channel 3 is the 2.2 kW load
-    assert f.relays() == (False, False, True, False)
-
-
-def test_mock_energy_only_grows():
-    f = MockFeed(interval=0.0, seed=2)
-    first = f.poll()[0].energy
-    time.sleep(0.01)
-    assert f.poll()[0].energy > first
 
 
 # ---------------------------------------------------------------- serial protocol
