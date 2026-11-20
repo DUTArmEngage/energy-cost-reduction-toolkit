@@ -14,6 +14,7 @@ class Meter {
 
  private:
   ecrt::Measurement m_;
-  uint32_t last_ = 0;
+  uint32_t lastReport_ = 0;
+  uint32_t lastTry_ = 0;
   bool first_ = true;
 };

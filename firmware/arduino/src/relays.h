@@ -1,12 +1,12 @@
 #pragma once
-// The four relay channels (active-low module: LOW = relay on, HIGH = off), with a minimum time between changes.
+// The four relay channels (polarity set by RELAY_ACTIVE_LOW in pins.h), with a minimum time between changes.
 #include <stdint.h>
 
 #include "ecrt_protocol.h"
 
 class Relays {
  public:
-  void begin();  // drives every pin HIGH (off) before making it an output, so nothing clicks on at power-up
+  void begin();  // drives every pin to the off level before making it an output, so nothing clicks on at power-up
 
   enum class Result : uint8_t { Applied, Unchanged, TooSoon };
   Result set(uint8_t channel0, bool on, uint32_t now);

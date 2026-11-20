@@ -6,8 +6,12 @@
 constexpr uint8_t PIN_PZEM_RX = 2;  // Uno receives, wired to the PZEM TX
 constexpr uint8_t PIN_PZEM_TX = 3;  // Uno transmits, wired to the PZEM RX
 
-// 4-channel relay module (MD0010): active-low, LOW = relay on, HIGH = relay off
+// Relay module inputs IN1..IN4 on D4..D7. Only IN1 (D4) is fitted at the moment.
 constexpr uint8_t PIN_RELAY[4] = {4, 5, 6, 7};
+// Polarity of the relay module. The old 4-channel module (MD0010) is active-low (LOW = relay on). The single-channel modules with
+// only signal / voltage / ground pins are usually active-high (HIGH = relay on): set this to match what you have. If the relay
+// is on when it should be off (and the other way round), flip it.
+constexpr bool RELAY_ACTIVE_LOW = false;
 
 // 4x4 keypad
 constexpr uint8_t PIN_KP_ROW[4] = {10, 11, 12, 13};
