@@ -6,3 +6,6 @@ dist/
 build/
 submission/
 submission.zip
+
+# Report and presentation: contain a student number and a signed pledge, keep local
+docs/submissions/
