@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 # Defaults. Override in /etc/default/@NAME@ (read after these lines), then: sudo systemctl restart @NAME@
-Environment=ECRT_FEED=mock ECRT_PORT=/dev/ttyACM0 ECRT_BAUD=115200 ECRT_BIND=127.0.0.1 ECRT_HTTP_PORT=8501
+Environment=ECRT_FEED=mock ECRT_PORT=/dev/ttyACM0 ECRT_BAUD=115200 ECRT_BIND=0.0.0.0 ECRT_HTTP_PORT=8501
 EnvironmentFile=-/etc/default/@NAME@
 Environment=HOME=/var/lib/@NAME@
 ExecStart=/usr/bin/ecrt-ui --server.headless true --server.address ${ECRT_BIND} --server.port ${ECRT_HTTP_PORT}

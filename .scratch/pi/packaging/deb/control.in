@@ -2,10 +2,11 @@ Package: @NAME@
 Version: @VERSION@
 Section: misc
 Priority: optional
-Architecture: all
-Depends: python3 (>= 3.11), python3-venv
+Architecture: @ARCH@
+Depends: python3 (>= @PYVER@), python3 (<< @PYNEXT@)
 Maintainer: ECRT project <ecrt@localhost>
 Description: ECRT Raspberry Pi dashboard
  Streamlit dashboard for the ECRT energy monitor. Reads the Arduino Uno over
- USB serial, or a built-in mock feed. Installs into its own virtualenv and
- needs network access to PyPI when the package is configured.
+ USB serial, or a built-in mock feed. Self-contained: every Python dependency
+ is inside the package, so installing needs no network. Built for Python
+ @PYVER@ on @ARCH@.

@@ -1,3 +1,6 @@
 #!/bin/sh
-# Start the dashboard: `ecrt-ui` (extra arguments go to `streamlit run`), e.g. ECRT_FEED=serial ECRT_PORT=/dev/ttyACM0 ecrt-ui
-exec /usr/lib/@NAME@/venv/bin/ecrt-ui "$@"
+# Start the dashboard: `ecrt-ui` (extra arguments go to `streamlit run`), e.g. ECRT_FEED=serial ECRT_PORT=auto ecrt-ui
+# The app and all its dependencies live in /usr/lib/@NAME@/lib: no virtualenv, nothing is installed system-wide.
+export PYTHONPATH=/usr/lib/@NAME@/lib
+export PYTHONNOUSERSITE=1
+exec /usr/bin/python3 -c 'from ecrt_pi_scratch.cli import run_ui; run_ui()' "$@"

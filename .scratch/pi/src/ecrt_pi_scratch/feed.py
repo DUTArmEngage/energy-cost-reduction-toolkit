@@ -99,6 +99,13 @@ class MockFeed:
 
 
 # ---------------------------------------------------------------- serial
+def _plausible(nums) -> bool:
+    """Limits of a PZEM-004T V4 100 A. Anything outside is a damaged reading: one 180 MW value once added 50 kWh."""
+    v, a, w, e, f, pf = nums
+    return (None not in nums and 80 <= v <= 280 and 0 <= a <= 120 and 0 <= w <= 30000 and 45 <= f <= 65 and 0 <= pf <= 1
+            and 0 <= e <= 9999)
+
+
 def parse_line(raw: bytes):
     """One CSV line -> (voltage, current, power, energy, frequency, pf, relays), or None if it does not fit the protocol."""
     try:
@@ -111,6 +118,8 @@ def parse_line(raw: bytes):
         return None
     if any(x not in ("0", "1") for x in rel) or any(n is not None and not math.isfinite(n) for n in nums):
         return None
+    if any(n is not None for n in nums) and not _plausible(nums):
+        nums = (None,) * 6                           # a corrupted frame that passed the CRC: count it as "meter did not answer"
     return (*nums, tuple(x == "1" for x in rel))
 
 

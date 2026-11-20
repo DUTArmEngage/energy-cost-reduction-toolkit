@@ -29,6 +29,8 @@ bool Meter::poll(uint32_t now) {
   }
   float a = pzem.current(), w = pzem.power(), e = pzem.energy(), f = pzem.frequency(), pf = pzem.pf();
   bool ok = !(isnan(a) || isnan(w) || isnan(e) || isnan(f) || isnan(pf));
+  ok = ok && v >= PZEM_V_MIN && v <= PZEM_V_MAX && a >= 0 && a <= PZEM_A_MAX && w >= 0 && w <= PZEM_W_MAX && f >= PZEM_HZ_MIN &&
+       f <= PZEM_HZ_MAX && pf >= 0 && pf <= 1.0f && e >= 0 && e <= PZEM_KWH_MAX;
   m_.valid = ok;
   if (ok) {
     m_.volts = v;

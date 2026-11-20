@@ -5,7 +5,7 @@
 #                          # (a /dev/serial/by-id/... path also works and survives replugging)
 #ECRT_BAUD=115200
 #
-# 127.0.0.1 = this machine only. 0.0.0.0 = reachable from the network, but the page can switch relays and has no login:
-# only do that on a network you trust.
-#ECRT_BIND=127.0.0.1
+# 0.0.0.0 (the default) = reachable from the network. 127.0.0.1 = this machine only. The page can switch relays and has no
+# login, so only run it on a network you trust.
+#ECRT_BIND=0.0.0.0
 #ECRT_HTTP_PORT=8501

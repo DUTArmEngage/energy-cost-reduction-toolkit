@@ -8,6 +8,13 @@ constexpr uint32_t REPORT_INTERVAL_MS = 1000;   // one measurement line to the P
 // When the PZEM does not answer, one attempt blocks for 100 ms (the library's timeout). Retry only this often so the loop stays
 // responsive; a line is still sent every REPORT_INTERVAL_MS, with the measurement fields empty.
 constexpr uint32_t PZEM_RETRY_MS = 3000;
+// Plausible range of a PZEM-004T V4 reading (100 A version, 80-260 V). A reply outside it is a corrupted frame that happened to
+// pass the CRC (SoftwareSerial loses bits when an interrupt lands mid-byte) and is treated as "no answer".
+constexpr float PZEM_V_MIN = 80.0f, PZEM_V_MAX = 280.0f;
+constexpr float PZEM_A_MAX = 120.0f;
+constexpr float PZEM_W_MAX = 30000.0f;
+constexpr float PZEM_HZ_MIN = 45.0f, PZEM_HZ_MAX = 65.0f;
+constexpr float PZEM_KWH_MAX = 9999.0f;
 
 // Contactor protection: a channel will not change state again until it has been in its current state for this long, so a
 // misbehaving scheduler (or a bouncing finger) cannot chatter a 25 A contactor. 0 disables it. "All off" ignores it.

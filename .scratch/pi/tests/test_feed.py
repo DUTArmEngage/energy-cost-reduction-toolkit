@@ -148,3 +148,11 @@ def test_candidate_ports_leaves_out_the_onboard_uarts(monkeypatch):
             SimpleNamespace(device="/dev/ttyACM0", description="Arduino Uno", vid=0x2341, pid=0x43, hwid="USB VID:PID=2341:0043")]
     monkeypatch.setattr("serial.tools.list_ports.comports", lambda: fake)
     assert candidate_ports() == [("/dev/ttyACM0", "Arduino Uno", "2341:0043")]
+
+
+def test_parse_line_rejects_implausible_values():
+    # a damaged frame that still has the right shape: treated as "meter did not answer", not as a 180 MW load
+    parsed = parse_line(b"800.0,355000.0,180000000.0,12.345,50.0,0.98,0,1,0,0")
+    assert parsed[:6] == (None,) * 6
+    assert parsed[6] == (False, True, False, False)
+    assert parse_line(b"230.1,1.234,283.9,12.345,50.0,0.98,0,1,0,0")[0] == 230.1

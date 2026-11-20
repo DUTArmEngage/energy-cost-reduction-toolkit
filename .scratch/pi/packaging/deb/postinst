@@ -1,10 +1,12 @@
 #!/bin/sh
-# Create the app's own virtualenv, install the wheel (and its dependencies from PyPI) into it, then start the service.
+# Check the Python version, then start the service. Nothing is downloaded: the package already holds every dependency.
 set -e
-APP=/usr/lib/@NAME@
 if [ "$1" = "configure" ]; then
-    python3 -m venv "$APP/venv"
-    "$APP/venv/bin/pip" install --quiet --no-cache-dir "$APP"/*.whl
+    if ! /usr/bin/python3 -c 'import sys; sys.exit(0 if sys.version_info[:2] == tuple(map(int, "@PYVER@".split("."))) else 1)'; then
+        echo "@NAME@ bundles packages for Python @PYVER@, but this system has $(/usr/bin/python3 --version 2>&1)." >&2
+        echo "Build the package for this Python (see the Makefile) or install Python @PYVER@." >&2
+        exit 1
+    fi
     if [ -d /run/systemd/system ]; then
         systemctl daemon-reload || true
         systemctl enable @NAME@.service || true

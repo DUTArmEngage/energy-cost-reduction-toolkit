@@ -1,9 +1,6 @@
 #!/bin/sh
-# Remove the virtualenv that postinst created (dpkg only removes files it installed) and refresh systemd.
+# dpkg removes every file the package installed (the bytecode is part of the package); only tell systemd the unit is gone.
 set -e
-case "$1" in
-    remove|purge) rm -rf /usr/lib/@NAME@/venv ;;
-esac
 if [ -d /run/systemd/system ]; then
     systemctl daemon-reload || true
 fi
