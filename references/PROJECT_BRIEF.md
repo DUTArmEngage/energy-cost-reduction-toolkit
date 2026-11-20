@@ -37,11 +37,11 @@ The specific objectives are to:
 
 ### 5. Proposed System Design and Methodology
 
-The ECRT will use a two-controller architecture consisting of an Arduino Pro Mini (3.3 V, ATmega328P) and a Raspberry Pi 3B+.
+The ECRT will use a two-controller architecture consisting of an Arduino Uno R3 (5 V, ATmega328P) and a Raspberry Pi 3B+.
 
 The Arduino will function as the local hardware controller. It will receive electrical measurements from a PZEM-004T V4 energy meter with a 100 A current transformer, process keypad inputs, update a 1602 I2C LCD and manage four independent appliance-control outputs through a 12 V four-channel relay interface.
 
-The Raspberry Pi 3B+ will serve as the main processing and IoT platform. It will receive measurement data directly from the Arduino through a USB-to-serial communication interface. Python will be used to process energy measurements, calculate electricity costs and implement the tariff-based scheduling algorithm. The Raspberry Pi's built-in Wi-Fi will provide network connectivity, while Node-RED will be used to develop a graphical dashboard for monitoring and system interaction. SQLite may be used for historical data storage.
+The Raspberry Pi 3B+ will serve as the main processing and IoT platform. It will receive measurement data directly from the Arduino through a USB-to-serial communication interface. Python will be used to process energy measurements, calculate electricity costs and implement the tariff-based scheduling algorithm. The Raspberry Pi's built-in Wi-Fi will provide network connectivity, while a Python-served web dashboard (Streamlit) will provide the graphical interface for monitoring and system interaction. SQLite may be used for historical data storage.
 
 The ESP8266 communication module originally considered in the design has been removed because the Raspberry Pi 3B+ already provides Wi-Fi connectivity. This simplifies the system architecture, reduces component requirements and eliminates an unnecessary communication stage.
 
@@ -51,7 +51,7 @@ The proposed development methodology will consist of the following stages:
 - **Stage 2: Hardware development:** Assemble and test the low-voltage control circuit, including the Arduino, Raspberry Pi, LCD, keypad and relay interface.
 - **Stage 3: Energy monitoring:** Integrate the PZEM-004T V4 meter and develop the measurement acquisition functionality.
 - **Stage 4: Software development:** Develop the Arduino firmware and Raspberry Pi Python applications for communication, tariff calculations and load scheduling.
-- **Stage 5: IoT dashboard development:** Implement the Node-RED dashboard for real-time monitoring and system control.
+- **Stage 5: IoT dashboard development:** Implement the Python web dashboard for real-time monitoring and system control.
 - **Stage 6: Simulation and validation:** Use MATLAB/Simulink to evaluate the proposed scheduling algorithm and system behaviour.
 - **Stage 7: System integration and testing:** Integrate the hardware and software components and conduct controlled experiments to evaluate system performance.
 
@@ -69,7 +69,7 @@ The final evaluation will compare baseline and managed operating conditions usin
 
 The project will focus on a single aggregate electricity measurement point and four independently controlled appliance channels. Since only one PZEM energy meter will be used, the system will measure the combined consumption of the monitored supply rather than provide individual energy measurements for each appliance.
 
-The proposed hardware includes an Arduino Pro Mini, Raspberry Pi 3B+, PZEM-004T V4, 12 V four-channel relay board, 1602 I2C LCD, 4×4 keypad and associated power-supply and switching components.
+The proposed hardware includes an Arduino Uno R3, Raspberry Pi 3B+, PZEM-004T V4, 12 V four-channel relay board, 1602 I2C LCD, 4×4 keypad and associated power-supply and switching components.
 
 The final appliance selection, contactor arrangement, relay interface and electrical protection requirements will be confirmed during detailed hardware design. Mains-voltage installation and commissioning will require review and installation by an appropriately qualified electrical professional. Initial development and testing will be conducted using safe low-voltage arrangements.
 
